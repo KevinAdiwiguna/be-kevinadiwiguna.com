@@ -1,0 +1,185 @@
+generator client {
+  provider = "prisma-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id        BigInt      @id @default(autoincrement())
+  email     String       @unique
+  password  String?
+  name      String?
+
+  roleId    BigInt?
+  role      roles?       @relation(fields: [roleId], references: [id])
+
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  accounts         accounts[]
+  activities       activities[]
+  blogs            blogs[]
+  userExperiences  user_experiences[]
+  userSkills       user_skills[]
+}
+
+model roles {
+  id        BigInt   @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+
+  users     users[]
+}
+
+
+model accounts {
+  id            BigInt   @id @default(autoincrement())
+  userId        BigInt
+  provider      String
+  providerId    String?
+  providerEmail String?
+  accessToken   String?
+  refreshToken  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user          users    @relation(fields: [userId], references: [id])
+
+  @@unique([provider, providerId])
+}
+
+model activities {
+  id         BigInt   @id @default(autoincrement())
+  userId     BigInt?
+  action     String
+  targetType String?
+  targetId   BigInt?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  user       users?   @relation(fields: [userId], references: [id])
+}
+
+model blogs {
+  id        BigInt      @id @default(autoincrement())
+  title     String
+  slug      String      @unique
+  content   String
+  thumbnail String?
+  published Boolean     @default(false)
+  authorId  BigInt?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  author    users?      @relation(fields: [authorId], references: [id])
+  techs     blog_tech[]
+}
+
+model blog_tech {
+  blogId BigInt
+  techId BigInt
+
+  blog   blogs @relation(fields: [blogId], references: [id])
+  tech   tech  @relation(fields: [techId], references: [id])
+
+  @@id([blogId, techId])
+}
+
+model projects {
+  id          BigInt         @id @default(autoincrement())
+  name        String
+  slug        String         @unique
+  repoUrl     String?
+  demoUrl     String?
+  thumbnail   String?
+  description String?
+  isFeatured  Boolean        @default(false)
+  published   Boolean        @default(false)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  techs       project_tech[]
+}
+
+model project_tech {
+  projectId BigInt
+  techId    BigInt
+
+  project   projects @relation(fields: [projectId], references: [id])
+  tech      tech     @relation(fields: [techId], references: [id])
+
+  @@id([projectId, techId])
+}
+
+model experiences {
+  id             BigInt             @id @default(autoincrement())
+  companyName    String             @unique
+  role           String?
+  description    String?
+  image          String?
+  url            String?
+  durationMonths Int?
+  startDate      DateTime?
+  endDate        DateTime?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  users          user_experiences[]
+}
+
+model user_experiences {
+  userId       BigInt
+  experienceId BigInt
+
+  user         users        @relation(fields: [userId], references: [id])
+  experience   experiences  @relation(fields: [experienceId], references: [id])
+
+  @@id([userId, experienceId])
+}
+
+model skills {
+  id        BigInt        @id @default(autoincrement())
+  name      String        @unique
+  image     String?
+  createdAt DateTime      @default(now())
+
+  users     user_skills[]
+}
+
+model user_skills {
+  userId    BigInt
+  skillId   BigInt
+  level     String?
+  createdAt DateTime @default(now())
+
+  skill     skills   @relation(fields: [skillId], references: [id])
+  user      users    @relation(fields: [userId], references: [id])
+
+  @@id([userId, skillId])
+}
+
+model tech {
+  id           BigInt         @id @default(autoincrement())
+  name         String         @unique
+  url          String?
+  image        String?
+  createdAt    DateTime       @default(now())
+
+  blogTech     blog_tech[]
+  projectTech  project_tech[]
+}
+
+model heroes {
+  id          BigInt   @id @default(autoincrement())
+  title       String
+  description String?
+  githubLink  String?
+  cvLink      String?
+  phoneNumber String?
+  isPrimary   Boolean  @unique @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
