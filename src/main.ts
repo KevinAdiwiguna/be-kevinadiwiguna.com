@@ -1,26 +1,26 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+import { AppModule } from './app.module';
+
+import cookieParser from "cookie-parser"
+import fastifyCookie from '@fastify/cookie';
+
+async function bootstrap() {;
+
+const app = await NestFactory.create(AppModule);
+app.use(cookieParser());
+  (BigInt.prototype as any).toJSON = function () {
+    return this.toString();
+  };
 
   app.useGlobalPipes(
     new ValidationPipe({
-      transform: true,
       whitelist: true,
-      forbidUnknownValues: true,
-      stopAtFirstError: true,
-      validateCustomDecorators: true,
+      forbidNonWhitelisted: true,
+      transform: true,
     }),
   );
-
-  const configService = app.get(ConfigService);
-  const port = configService.get('PORT');
-
-  await app.listen(port, () => {
-    console.log(`Application running at ${port}`);
-  });
+  await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
