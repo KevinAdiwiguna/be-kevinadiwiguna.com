@@ -20,6 +20,7 @@ import { RateLimitController } from './rate-limit/rate-limit.controller';
 import { RateLimitGuard } from './rate-limit/rate-limit.guard';
 import { ExperienceModule } from './experience/experience.module';
 import { SkillsModule } from './skills/skills.module';
+import { TechModule } from './tech/tech.module';
 
 @Module({
   imports: [AuthModule,  PrismaModule, ResendModule,
@@ -31,6 +32,7 @@ import { SkillsModule } from './skills/skills.module';
      HerosModule,
      ExperienceModule,
      SkillsModule,
+     TechModule,
   ],
   controllers: [AppController, RateLimitController],
   providers: [AppService, PrismaService, AuthService, ResendService, RefreshTokenService, RateLimitGuard],
