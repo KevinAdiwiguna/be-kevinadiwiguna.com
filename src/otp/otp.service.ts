@@ -20,7 +20,6 @@ export class OtpService {
     const user = await this.prisma.users.findUnique({ where: { email } });
 
     if (!user) throw new NotFoundException('User not found');
-    await this.rateLimit.limitUser(user.id, 'request_email_otp', 3, 2 * 60 * 1000);
 
     if (user.emailVerified)
       throw new BadRequestException('Email already verified');
@@ -53,14 +52,13 @@ export class OtpService {
     });
 
     if (!user) throw new NotFoundException('User not found');
-    await this.rateLimit.limitUser(user.id, 'request_email_otp', 5, 2 * 60 * 1000);
 
     const record = await this.prisma.verification_codes.findFirst({
       where: {
         userId: user.id,
         code: dto.code,
         context: 'email_verification',
-        used: false,
+        used: false, 
         expiresAt: { gt: new Date() },
       },
     });

@@ -6,6 +6,8 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { PermissionsGuard } from 'src/auth/permission.guard';
 import { Permission } from 'src/auth/permission.decorator';
 import { EmptyDto } from 'src/types/Emty.dto';
+import { RateLimit } from 'src/rate-limit/rate-limit.decorator';
+import { RateLimitGuard } from 'src/rate-limit/rate-limit.guard';
 
 @Controller('heros')
 export class HerosController {
@@ -16,8 +18,9 @@ export class HerosController {
     return await this.herosService.findPrimary();
   }
 
-  @UseGuards(JwtAuthGuard, PermissionsGuard)
+  @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
   @Permission('read_hero')
+  @RateLimit(2, 1)
   @Get()
   findAll() {
     return this.herosService.findAll();
