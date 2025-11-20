@@ -7,7 +7,10 @@ export class PermissionsGuard implements CanActivate {
   constructor(private reflector: Reflector, private prisma: PrismaService) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const requiredPermission = this.reflector.get<string>('permission', context.getHandler());
+    const requiredPermission = this.reflector.get<string>(
+      'permission',
+      context.getHandler(),
+    );
     if (!requiredPermission) return true; 
 
     const request = context.switchToHttp().getRequest();
@@ -15,15 +18,26 @@ export class PermissionsGuard implements CanActivate {
 
     if (!user) return false;
 
+  
+
     const role = await this.prisma.roles.findUnique({
       where: { id: user.roleId },
       include: { permissions: { include: { permission: true } } },
     });
 
-    const hasPermission = role?.permissions.some(p => p.permission.name === requiredPermission);
+    const geVerified = await this.prisma.users.findFirst({
+      where: {id: user.sub}
+    })
+
+      if (!geVerified?.emailVerified) {
+      throw new ForbiddenException('Email not verified');
+    }
+
+    const hasPermission = role?.permissions.some(
+      (p) => p.permission.name === requiredPermission,
+    );
 
     if (!hasPermission) throw new ForbiddenException('Insufficient permissions');
-
     return true;
   }
 }
