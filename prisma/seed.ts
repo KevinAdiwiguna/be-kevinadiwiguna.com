@@ -17,6 +17,7 @@ async function main() {
   console.log("🌱 Seeding permissions...");
 
   const permissions = {
+    experience: ["create_experience", "read_experience", "read_experience_id", "update_experience", "delete_experience"],
     hero: ['create_hero', 'update_hero', 'delete_hero', 'read_hero', "read_hero_id"],
     blog: ['create_blog', 'update_blog', 'delete_blog', 'read_blog'],
     project: ['create_project', 'update_project', 'delete_project', 'read_project'],

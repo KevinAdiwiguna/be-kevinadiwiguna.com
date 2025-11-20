@@ -26,15 +26,16 @@ model users {
 
   rate_limits rate_limits[]
 
-  accounts        accounts[]
-  activities      activities[]
-  blogs           blogs[]
-  userExperiences user_experiences[]
-  userSkills      user_skills[]
+  accounts    accounts[]
+  activities  activities[]
+  blogs       blogs[]
+  experiences experiences[]
+  userSkills  user_skills[]
 
   refreshTokens     refresh_tokens[]
   magicLinks        magic_links[]
   verificationCodes verification_codes[]
+  userExperiences   user_experiences[]
 }
 
 model roles {
@@ -142,7 +143,9 @@ model experiences {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 
-  users user_experiences[]
+  ownerId         BigInt
+  owner           users              @relation(fields: [ownerId], references: [id])
+  userExperiences user_experiences[]
 }
 
 model user_experiences {

@@ -211,7 +211,8 @@ exports.Prisma.ExperiencesScalarFieldEnum = {
   startDate: 'startDate',
   endDate: 'endDate',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  ownerId: 'ownerId'
 };
 
 exports.Prisma.User_experiencesScalarFieldEnum = {

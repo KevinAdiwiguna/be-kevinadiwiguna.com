@@ -18,6 +18,7 @@ import { AppController } from './app.controller';
 import { RateLimitController } from './rate-limit/rate-limit.controller';
 
 import { RateLimitGuard } from './rate-limit/rate-limit.guard';
+import { ExperienceModule } from './experience/experience.module';
 
 @Module({
   imports: [AuthModule,  PrismaModule, ResendModule,
@@ -27,6 +28,7 @@ import { RateLimitGuard } from './rate-limit/rate-limit.guard';
      OtpModule,
      RateLimitModule,
      HerosModule,
+     ExperienceModule,
   ],
   controllers: [AppController, RateLimitController],
   providers: [AppService, PrismaService, AuthService, ResendService, RefreshTokenService, RateLimitGuard],

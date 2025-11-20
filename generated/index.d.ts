@@ -2594,11 +2594,12 @@ export namespace Prisma {
     accounts: number
     activities: number
     blogs: number
-    userExperiences: number
+    experiences: number
     userSkills: number
     refreshTokens: number
     magicLinks: number
     verificationCodes: number
+    userExperiences: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2606,11 +2607,12 @@ export namespace Prisma {
     accounts?: boolean | UsersCountOutputTypeCountAccountsArgs
     activities?: boolean | UsersCountOutputTypeCountActivitiesArgs
     blogs?: boolean | UsersCountOutputTypeCountBlogsArgs
-    userExperiences?: boolean | UsersCountOutputTypeCountUserExperiencesArgs
+    experiences?: boolean | UsersCountOutputTypeCountExperiencesArgs
     userSkills?: boolean | UsersCountOutputTypeCountUserSkillsArgs
     refreshTokens?: boolean | UsersCountOutputTypeCountRefreshTokensArgs
     magicLinks?: boolean | UsersCountOutputTypeCountMagicLinksArgs
     verificationCodes?: boolean | UsersCountOutputTypeCountVerificationCodesArgs
+    userExperiences?: boolean | UsersCountOutputTypeCountUserExperiencesArgs
   }
 
   // Custom InputTypes
@@ -2655,8 +2657,8 @@ export namespace Prisma {
   /**
    * UsersCountOutputType without action
    */
-  export type UsersCountOutputTypeCountUserExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: user_experiencesWhereInput
+  export type UsersCountOutputTypeCountExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: experiencesWhereInput
   }
 
   /**
@@ -2685,6 +2687,13 @@ export namespace Prisma {
    */
   export type UsersCountOutputTypeCountVerificationCodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: verification_codesWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountUserExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: user_experiencesWhereInput
   }
 
 
@@ -2795,11 +2804,11 @@ export namespace Prisma {
    */
 
   export type ExperiencesCountOutputType = {
-    users: number
+    userExperiences: number
   }
 
   export type ExperiencesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | ExperiencesCountOutputTypeCountUsersArgs
+    userExperiences?: boolean | ExperiencesCountOutputTypeCountUserExperiencesArgs
   }
 
   // Custom InputTypes
@@ -2816,7 +2825,7 @@ export namespace Prisma {
   /**
    * ExperiencesCountOutputType without action
    */
-  export type ExperiencesCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExperiencesCountOutputTypeCountUserExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: user_experiencesWhereInput
   }
 
@@ -3197,11 +3206,12 @@ export namespace Prisma {
     accounts?: boolean | users$accountsArgs<ExtArgs>
     activities?: boolean | users$activitiesArgs<ExtArgs>
     blogs?: boolean | users$blogsArgs<ExtArgs>
-    userExperiences?: boolean | users$userExperiencesArgs<ExtArgs>
+    experiences?: boolean | users$experiencesArgs<ExtArgs>
     userSkills?: boolean | users$userSkillsArgs<ExtArgs>
     refreshTokens?: boolean | users$refreshTokensArgs<ExtArgs>
     magicLinks?: boolean | users$magicLinksArgs<ExtArgs>
     verificationCodes?: boolean | users$verificationCodesArgs<ExtArgs>
+    userExperiences?: boolean | users$userExperiencesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
 
@@ -3250,11 +3260,12 @@ export namespace Prisma {
     accounts?: boolean | users$accountsArgs<ExtArgs>
     activities?: boolean | users$activitiesArgs<ExtArgs>
     blogs?: boolean | users$blogsArgs<ExtArgs>
-    userExperiences?: boolean | users$userExperiencesArgs<ExtArgs>
+    experiences?: boolean | users$experiencesArgs<ExtArgs>
     userSkills?: boolean | users$userSkillsArgs<ExtArgs>
     refreshTokens?: boolean | users$refreshTokensArgs<ExtArgs>
     magicLinks?: boolean | users$magicLinksArgs<ExtArgs>
     verificationCodes?: boolean | users$verificationCodesArgs<ExtArgs>
+    userExperiences?: boolean | users$userExperiencesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type usersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3272,11 +3283,12 @@ export namespace Prisma {
       accounts: Prisma.$accountsPayload<ExtArgs>[]
       activities: Prisma.$activitiesPayload<ExtArgs>[]
       blogs: Prisma.$blogsPayload<ExtArgs>[]
-      userExperiences: Prisma.$user_experiencesPayload<ExtArgs>[]
+      experiences: Prisma.$experiencesPayload<ExtArgs>[]
       userSkills: Prisma.$user_skillsPayload<ExtArgs>[]
       refreshTokens: Prisma.$refresh_tokensPayload<ExtArgs>[]
       magicLinks: Prisma.$magic_linksPayload<ExtArgs>[]
       verificationCodes: Prisma.$verification_codesPayload<ExtArgs>[]
+      userExperiences: Prisma.$user_experiencesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -3687,11 +3699,12 @@ export namespace Prisma {
     accounts<T extends users$accountsArgs<ExtArgs> = {}>(args?: Subset<T, users$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$accountsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     activities<T extends users$activitiesArgs<ExtArgs> = {}>(args?: Subset<T, users$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$activitiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     blogs<T extends users$blogsArgs<ExtArgs> = {}>(args?: Subset<T, users$blogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$blogsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    userExperiences<T extends users$userExperiencesArgs<ExtArgs> = {}>(args?: Subset<T, users$userExperiencesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_experiencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    experiences<T extends users$experiencesArgs<ExtArgs> = {}>(args?: Subset<T, users$experiencesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$experiencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     userSkills<T extends users$userSkillsArgs<ExtArgs> = {}>(args?: Subset<T, users$userSkillsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_skillsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     refreshTokens<T extends users$refreshTokensArgs<ExtArgs> = {}>(args?: Subset<T, users$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$refresh_tokensPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     magicLinks<T extends users$magicLinksArgs<ExtArgs> = {}>(args?: Subset<T, users$magicLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$magic_linksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     verificationCodes<T extends users$verificationCodesArgs<ExtArgs> = {}>(args?: Subset<T, users$verificationCodesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$verification_codesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    userExperiences<T extends users$userExperiencesArgs<ExtArgs> = {}>(args?: Subset<T, users$userExperiencesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_experiencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4241,27 +4254,27 @@ export namespace Prisma {
   }
 
   /**
-   * users.userExperiences
+   * users.experiences
    */
-  export type users$userExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type users$experiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the user_experiences
+     * Select specific fields to fetch from the experiences
      */
-    select?: user_experiencesSelect<ExtArgs> | null
+    select?: experiencesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the user_experiences
+     * Omit specific fields from the experiences
      */
-    omit?: user_experiencesOmit<ExtArgs> | null
+    omit?: experiencesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: user_experiencesInclude<ExtArgs> | null
-    where?: user_experiencesWhereInput
-    orderBy?: user_experiencesOrderByWithRelationInput | user_experiencesOrderByWithRelationInput[]
-    cursor?: user_experiencesWhereUniqueInput
+    include?: experiencesInclude<ExtArgs> | null
+    where?: experiencesWhereInput
+    orderBy?: experiencesOrderByWithRelationInput | experiencesOrderByWithRelationInput[]
+    cursor?: experiencesWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: User_experiencesScalarFieldEnum | User_experiencesScalarFieldEnum[]
+    distinct?: ExperiencesScalarFieldEnum | ExperiencesScalarFieldEnum[]
   }
 
   /**
@@ -4358,6 +4371,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Verification_codesScalarFieldEnum | Verification_codesScalarFieldEnum[]
+  }
+
+  /**
+   * users.userExperiences
+   */
+  export type users$userExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_experiences
+     */
+    select?: user_experiencesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_experiences
+     */
+    omit?: user_experiencesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_experiencesInclude<ExtArgs> | null
+    where?: user_experiencesWhereInput
+    orderBy?: user_experiencesOrderByWithRelationInput | user_experiencesOrderByWithRelationInput[]
+    cursor?: user_experiencesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: User_experiencesScalarFieldEnum | User_experiencesScalarFieldEnum[]
   }
 
   /**
@@ -12337,11 +12374,13 @@ export namespace Prisma {
   export type ExperiencesAvgAggregateOutputType = {
     id: number | null
     durationMonths: number | null
+    ownerId: number | null
   }
 
   export type ExperiencesSumAggregateOutputType = {
     id: bigint | null
     durationMonths: number | null
+    ownerId: bigint | null
   }
 
   export type ExperiencesMinAggregateOutputType = {
@@ -12356,6 +12395,7 @@ export namespace Prisma {
     endDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    ownerId: bigint | null
   }
 
   export type ExperiencesMaxAggregateOutputType = {
@@ -12370,6 +12410,7 @@ export namespace Prisma {
     endDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    ownerId: bigint | null
   }
 
   export type ExperiencesCountAggregateOutputType = {
@@ -12384,6 +12425,7 @@ export namespace Prisma {
     endDate: number
     createdAt: number
     updatedAt: number
+    ownerId: number
     _all: number
   }
 
@@ -12391,11 +12433,13 @@ export namespace Prisma {
   export type ExperiencesAvgAggregateInputType = {
     id?: true
     durationMonths?: true
+    ownerId?: true
   }
 
   export type ExperiencesSumAggregateInputType = {
     id?: true
     durationMonths?: true
+    ownerId?: true
   }
 
   export type ExperiencesMinAggregateInputType = {
@@ -12410,6 +12454,7 @@ export namespace Prisma {
     endDate?: true
     createdAt?: true
     updatedAt?: true
+    ownerId?: true
   }
 
   export type ExperiencesMaxAggregateInputType = {
@@ -12424,6 +12469,7 @@ export namespace Prisma {
     endDate?: true
     createdAt?: true
     updatedAt?: true
+    ownerId?: true
   }
 
   export type ExperiencesCountAggregateInputType = {
@@ -12438,6 +12484,7 @@ export namespace Prisma {
     endDate?: true
     createdAt?: true
     updatedAt?: true
+    ownerId?: true
     _all?: true
   }
 
@@ -12539,6 +12586,7 @@ export namespace Prisma {
     endDate: Date | null
     createdAt: Date
     updatedAt: Date
+    ownerId: bigint
     _count: ExperiencesCountAggregateOutputType | null
     _avg: ExperiencesAvgAggregateOutputType | null
     _sum: ExperiencesSumAggregateOutputType | null
@@ -12572,7 +12620,9 @@ export namespace Prisma {
     endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    users?: boolean | experiences$usersArgs<ExtArgs>
+    ownerId?: boolean
+    owner?: boolean | usersDefaultArgs<ExtArgs>
+    userExperiences?: boolean | experiences$userExperiencesArgs<ExtArgs>
     _count?: boolean | ExperiencesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["experiences"]>
 
@@ -12588,6 +12638,8 @@ export namespace Prisma {
     endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    ownerId?: boolean
+    owner?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["experiences"]>
 
   export type experiencesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -12602,6 +12654,8 @@ export namespace Prisma {
     endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    ownerId?: boolean
+    owner?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["experiences"]>
 
   export type experiencesSelectScalar = {
@@ -12616,20 +12670,27 @@ export namespace Prisma {
     endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    ownerId?: boolean
   }
 
-  export type experiencesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "role" | "description" | "image" | "url" | "durationMonths" | "startDate" | "endDate" | "createdAt" | "updatedAt", ExtArgs["result"]["experiences"]>
+  export type experiencesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "role" | "description" | "image" | "url" | "durationMonths" | "startDate" | "endDate" | "createdAt" | "updatedAt" | "ownerId", ExtArgs["result"]["experiences"]>
   export type experiencesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | experiences$usersArgs<ExtArgs>
+    owner?: boolean | usersDefaultArgs<ExtArgs>
+    userExperiences?: boolean | experiences$userExperiencesArgs<ExtArgs>
     _count?: boolean | ExperiencesCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type experiencesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type experiencesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type experiencesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | usersDefaultArgs<ExtArgs>
+  }
+  export type experiencesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | usersDefaultArgs<ExtArgs>
+  }
 
   export type $experiencesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "experiences"
     objects: {
-      users: Prisma.$user_experiencesPayload<ExtArgs>[]
+      owner: Prisma.$usersPayload<ExtArgs>
+      userExperiences: Prisma.$user_experiencesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -12643,6 +12704,7 @@ export namespace Prisma {
       endDate: Date | null
       createdAt: Date
       updatedAt: Date
+      ownerId: bigint
     }, ExtArgs["result"]["experiences"]>
     composites: {}
   }
@@ -13037,7 +13099,8 @@ export namespace Prisma {
    */
   export interface Prisma__experiencesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    users<T extends experiences$usersArgs<ExtArgs> = {}>(args?: Subset<T, experiences$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_experiencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    owner<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    userExperiences<T extends experiences$userExperiencesArgs<ExtArgs> = {}>(args?: Subset<T, experiences$userExperiencesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_experiencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13078,6 +13141,7 @@ export namespace Prisma {
     readonly endDate: FieldRef<"experiences", 'DateTime'>
     readonly createdAt: FieldRef<"experiences", 'DateTime'>
     readonly updatedAt: FieldRef<"experiences", 'DateTime'>
+    readonly ownerId: FieldRef<"experiences", 'BigInt'>
   }
     
 
@@ -13327,6 +13391,10 @@ export namespace Prisma {
      */
     data: experiencesCreateManyInput | experiencesCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: experiencesIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -13397,6 +13465,10 @@ export namespace Prisma {
      * Limit how many experiences to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: experiencesIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -13466,9 +13538,9 @@ export namespace Prisma {
   }
 
   /**
-   * experiences.users
+   * experiences.userExperiences
    */
-  export type experiences$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type experiences$userExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the user_experiences
      */
@@ -25869,7 +25941,8 @@ export namespace Prisma {
     startDate: 'startDate',
     endDate: 'endDate',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    ownerId: 'ownerId'
   };
 
   export type ExperiencesScalarFieldEnum = (typeof ExperiencesScalarFieldEnum)[keyof typeof ExperiencesScalarFieldEnum]
@@ -26159,11 +26232,12 @@ export namespace Prisma {
     accounts?: AccountsListRelationFilter
     activities?: ActivitiesListRelationFilter
     blogs?: BlogsListRelationFilter
-    userExperiences?: User_experiencesListRelationFilter
+    experiences?: ExperiencesListRelationFilter
     userSkills?: User_skillsListRelationFilter
     refreshTokens?: Refresh_tokensListRelationFilter
     magicLinks?: Magic_linksListRelationFilter
     verificationCodes?: Verification_codesListRelationFilter
+    userExperiences?: User_experiencesListRelationFilter
   }
 
   export type usersOrderByWithRelationInput = {
@@ -26181,11 +26255,12 @@ export namespace Prisma {
     accounts?: accountsOrderByRelationAggregateInput
     activities?: activitiesOrderByRelationAggregateInput
     blogs?: blogsOrderByRelationAggregateInput
-    userExperiences?: user_experiencesOrderByRelationAggregateInput
+    experiences?: experiencesOrderByRelationAggregateInput
     userSkills?: user_skillsOrderByRelationAggregateInput
     refreshTokens?: refresh_tokensOrderByRelationAggregateInput
     magicLinks?: magic_linksOrderByRelationAggregateInput
     verificationCodes?: verification_codesOrderByRelationAggregateInput
+    userExperiences?: user_experiencesOrderByRelationAggregateInput
   }
 
   export type usersWhereUniqueInput = Prisma.AtLeast<{
@@ -26206,11 +26281,12 @@ export namespace Prisma {
     accounts?: AccountsListRelationFilter
     activities?: ActivitiesListRelationFilter
     blogs?: BlogsListRelationFilter
-    userExperiences?: User_experiencesListRelationFilter
+    experiences?: ExperiencesListRelationFilter
     userSkills?: User_skillsListRelationFilter
     refreshTokens?: Refresh_tokensListRelationFilter
     magicLinks?: Magic_linksListRelationFilter
     verificationCodes?: Verification_codesListRelationFilter
+    userExperiences?: User_experiencesListRelationFilter
   }, "id" | "email">
 
   export type usersOrderByWithAggregationInput = {
@@ -26729,7 +26805,9 @@ export namespace Prisma {
     endDate?: DateTimeNullableFilter<"experiences"> | Date | string | null
     createdAt?: DateTimeFilter<"experiences"> | Date | string
     updatedAt?: DateTimeFilter<"experiences"> | Date | string
-    users?: User_experiencesListRelationFilter
+    ownerId?: BigIntFilter<"experiences"> | bigint | number
+    owner?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    userExperiences?: User_experiencesListRelationFilter
   }
 
   export type experiencesOrderByWithRelationInput = {
@@ -26744,7 +26822,9 @@ export namespace Prisma {
     endDate?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    users?: user_experiencesOrderByRelationAggregateInput
+    ownerId?: SortOrder
+    owner?: usersOrderByWithRelationInput
+    userExperiences?: user_experiencesOrderByRelationAggregateInput
   }
 
   export type experiencesWhereUniqueInput = Prisma.AtLeast<{
@@ -26762,7 +26842,9 @@ export namespace Prisma {
     endDate?: DateTimeNullableFilter<"experiences"> | Date | string | null
     createdAt?: DateTimeFilter<"experiences"> | Date | string
     updatedAt?: DateTimeFilter<"experiences"> | Date | string
-    users?: User_experiencesListRelationFilter
+    ownerId?: BigIntFilter<"experiences"> | bigint | number
+    owner?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    userExperiences?: User_experiencesListRelationFilter
   }, "id" | "companyName">
 
   export type experiencesOrderByWithAggregationInput = {
@@ -26777,6 +26859,7 @@ export namespace Prisma {
     endDate?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ownerId?: SortOrder
     _count?: experiencesCountOrderByAggregateInput
     _avg?: experiencesAvgOrderByAggregateInput
     _max?: experiencesMaxOrderByAggregateInput
@@ -26799,6 +26882,7 @@ export namespace Prisma {
     endDate?: DateTimeNullableWithAggregatesFilter<"experiences"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"experiences"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"experiences"> | Date | string
+    ownerId?: BigIntWithAggregatesFilter<"experiences"> | bigint | number
   }
 
   export type user_experiencesWhereInput = {
@@ -27485,11 +27569,12 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateInput = {
@@ -27506,11 +27591,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersUpdateInput = {
@@ -27527,11 +27613,12 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateInput = {
@@ -27548,11 +27635,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersCreateManyInput = {
@@ -28082,7 +28170,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    users?: user_experiencesCreateNestedManyWithoutExperienceInput
+    owner: usersCreateNestedOneWithoutExperiencesInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutExperienceInput
   }
 
   export type experiencesUncheckedCreateInput = {
@@ -28097,7 +28186,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    users?: user_experiencesUncheckedCreateNestedManyWithoutExperienceInput
+    ownerId: bigint | number
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutExperienceInput
   }
 
   export type experiencesUpdateInput = {
@@ -28112,7 +28202,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    users?: user_experiencesUpdateManyWithoutExperienceNestedInput
+    owner?: usersUpdateOneRequiredWithoutExperiencesNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutExperienceNestedInput
   }
 
   export type experiencesUncheckedUpdateInput = {
@@ -28127,7 +28218,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    users?: user_experiencesUncheckedUpdateManyWithoutExperienceNestedInput
+    ownerId?: BigIntFieldUpdateOperationsInput | bigint | number
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutExperienceNestedInput
   }
 
   export type experiencesCreateManyInput = {
@@ -28142,6 +28234,7 @@ export namespace Prisma {
     endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    ownerId: bigint | number
   }
 
   export type experiencesUpdateManyMutationInput = {
@@ -28170,11 +28263,12 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type user_experiencesCreateInput = {
     user: usersCreateNestedOneWithoutUserExperiencesInput
-    experience: experiencesCreateNestedOneWithoutUsersInput
+    experience: experiencesCreateNestedOneWithoutUserExperiencesInput
   }
 
   export type user_experiencesUncheckedCreateInput = {
@@ -28184,7 +28278,7 @@ export namespace Prisma {
 
   export type user_experiencesUpdateInput = {
     user?: usersUpdateOneRequiredWithoutUserExperiencesNestedInput
-    experience?: experiencesUpdateOneRequiredWithoutUsersNestedInput
+    experience?: experiencesUpdateOneRequiredWithoutUserExperiencesNestedInput
   }
 
   export type user_experiencesUncheckedUpdateInput = {
@@ -28942,10 +29036,10 @@ export namespace Prisma {
     none?: blogsWhereInput
   }
 
-  export type User_experiencesListRelationFilter = {
-    every?: user_experiencesWhereInput
-    some?: user_experiencesWhereInput
-    none?: user_experiencesWhereInput
+  export type ExperiencesListRelationFilter = {
+    every?: experiencesWhereInput
+    some?: experiencesWhereInput
+    none?: experiencesWhereInput
   }
 
   export type User_skillsListRelationFilter = {
@@ -28972,6 +29066,12 @@ export namespace Prisma {
     none?: verification_codesWhereInput
   }
 
+  export type User_experiencesListRelationFilter = {
+    every?: user_experiencesWhereInput
+    some?: user_experiencesWhereInput
+    none?: user_experiencesWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -28993,7 +29093,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type user_experiencesOrderByRelationAggregateInput = {
+  export type experiencesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -29010,6 +29110,10 @@ export namespace Prisma {
   }
 
   export type verification_codesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type user_experiencesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -29582,11 +29686,13 @@ export namespace Prisma {
     endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type experiencesAvgOrderByAggregateInput = {
     id?: SortOrder
     durationMonths?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type experiencesMaxOrderByAggregateInput = {
@@ -29601,6 +29707,7 @@ export namespace Prisma {
     endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type experiencesMinOrderByAggregateInput = {
@@ -29615,11 +29722,13 @@ export namespace Prisma {
     endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type experiencesSumOrderByAggregateInput = {
     id?: SortOrder
     durationMonths?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -30124,11 +30233,11 @@ export namespace Prisma {
     connect?: blogsWhereUniqueInput | blogsWhereUniqueInput[]
   }
 
-  export type user_experiencesCreateNestedManyWithoutUserInput = {
-    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
-    createMany?: user_experiencesCreateManyUserInputEnvelope
-    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+  export type experiencesCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<experiencesCreateWithoutOwnerInput, experiencesUncheckedCreateWithoutOwnerInput> | experiencesCreateWithoutOwnerInput[] | experiencesUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: experiencesCreateOrConnectWithoutOwnerInput | experiencesCreateOrConnectWithoutOwnerInput[]
+    createMany?: experiencesCreateManyOwnerInputEnvelope
+    connect?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
   }
 
   export type user_skillsCreateNestedManyWithoutUserInput = {
@@ -30159,6 +30268,13 @@ export namespace Prisma {
     connect?: verification_codesWhereUniqueInput | verification_codesWhereUniqueInput[]
   }
 
+  export type user_experiencesCreateNestedManyWithoutUserInput = {
+    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
+    createMany?: user_experiencesCreateManyUserInputEnvelope
+    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+  }
+
   export type rate_limitsUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<rate_limitsCreateWithoutUserInput, rate_limitsUncheckedCreateWithoutUserInput> | rate_limitsCreateWithoutUserInput[] | rate_limitsUncheckedCreateWithoutUserInput[]
     connectOrCreate?: rate_limitsCreateOrConnectWithoutUserInput | rate_limitsCreateOrConnectWithoutUserInput[]
@@ -30187,11 +30303,11 @@ export namespace Prisma {
     connect?: blogsWhereUniqueInput | blogsWhereUniqueInput[]
   }
 
-  export type user_experiencesUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
-    createMany?: user_experiencesCreateManyUserInputEnvelope
-    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+  export type experiencesUncheckedCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<experiencesCreateWithoutOwnerInput, experiencesUncheckedCreateWithoutOwnerInput> | experiencesCreateWithoutOwnerInput[] | experiencesUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: experiencesCreateOrConnectWithoutOwnerInput | experiencesCreateOrConnectWithoutOwnerInput[]
+    createMany?: experiencesCreateManyOwnerInputEnvelope
+    connect?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
   }
 
   export type user_skillsUncheckedCreateNestedManyWithoutUserInput = {
@@ -30220,6 +30336,13 @@ export namespace Prisma {
     connectOrCreate?: verification_codesCreateOrConnectWithoutUserInput | verification_codesCreateOrConnectWithoutUserInput[]
     createMany?: verification_codesCreateManyUserInputEnvelope
     connect?: verification_codesWhereUniqueInput | verification_codesWhereUniqueInput[]
+  }
+
+  export type user_experiencesUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
+    createMany?: user_experiencesCreateManyUserInputEnvelope
+    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
   }
 
   export type BigIntFieldUpdateOperationsInput = {
@@ -30316,18 +30439,18 @@ export namespace Prisma {
     deleteMany?: blogsScalarWhereInput | blogsScalarWhereInput[]
   }
 
-  export type user_experiencesUpdateManyWithoutUserNestedInput = {
-    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
-    upsert?: user_experiencesUpsertWithWhereUniqueWithoutUserInput | user_experiencesUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: user_experiencesCreateManyUserInputEnvelope
-    set?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    disconnect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    delete?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    update?: user_experiencesUpdateWithWhereUniqueWithoutUserInput | user_experiencesUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: user_experiencesUpdateManyWithWhereWithoutUserInput | user_experiencesUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
+  export type experiencesUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<experiencesCreateWithoutOwnerInput, experiencesUncheckedCreateWithoutOwnerInput> | experiencesCreateWithoutOwnerInput[] | experiencesUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: experiencesCreateOrConnectWithoutOwnerInput | experiencesCreateOrConnectWithoutOwnerInput[]
+    upsert?: experiencesUpsertWithWhereUniqueWithoutOwnerInput | experiencesUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: experiencesCreateManyOwnerInputEnvelope
+    set?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    disconnect?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    delete?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    connect?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    update?: experiencesUpdateWithWhereUniqueWithoutOwnerInput | experiencesUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: experiencesUpdateManyWithWhereWithoutOwnerInput | experiencesUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: experiencesScalarWhereInput | experiencesScalarWhereInput[]
   }
 
   export type user_skillsUpdateManyWithoutUserNestedInput = {
@@ -30384,6 +30507,20 @@ export namespace Prisma {
     update?: verification_codesUpdateWithWhereUniqueWithoutUserInput | verification_codesUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: verification_codesUpdateManyWithWhereWithoutUserInput | verification_codesUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: verification_codesScalarWhereInput | verification_codesScalarWhereInput[]
+  }
+
+  export type user_experiencesUpdateManyWithoutUserNestedInput = {
+    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
+    upsert?: user_experiencesUpsertWithWhereUniqueWithoutUserInput | user_experiencesUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: user_experiencesCreateManyUserInputEnvelope
+    set?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    disconnect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    delete?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    update?: user_experiencesUpdateWithWhereUniqueWithoutUserInput | user_experiencesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: user_experiencesUpdateManyWithWhereWithoutUserInput | user_experiencesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
   }
 
   export type NullableBigIntFieldUpdateOperationsInput = {
@@ -30450,18 +30587,18 @@ export namespace Prisma {
     deleteMany?: blogsScalarWhereInput | blogsScalarWhereInput[]
   }
 
-  export type user_experiencesUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
-    upsert?: user_experiencesUpsertWithWhereUniqueWithoutUserInput | user_experiencesUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: user_experiencesCreateManyUserInputEnvelope
-    set?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    disconnect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    delete?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    update?: user_experiencesUpdateWithWhereUniqueWithoutUserInput | user_experiencesUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: user_experiencesUpdateManyWithWhereWithoutUserInput | user_experiencesUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
+  export type experiencesUncheckedUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<experiencesCreateWithoutOwnerInput, experiencesUncheckedCreateWithoutOwnerInput> | experiencesCreateWithoutOwnerInput[] | experiencesUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: experiencesCreateOrConnectWithoutOwnerInput | experiencesCreateOrConnectWithoutOwnerInput[]
+    upsert?: experiencesUpsertWithWhereUniqueWithoutOwnerInput | experiencesUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: experiencesCreateManyOwnerInputEnvelope
+    set?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    disconnect?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    delete?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    connect?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    update?: experiencesUpdateWithWhereUniqueWithoutOwnerInput | experiencesUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: experiencesUpdateManyWithWhereWithoutOwnerInput | experiencesUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: experiencesScalarWhereInput | experiencesScalarWhereInput[]
   }
 
   export type user_skillsUncheckedUpdateManyWithoutUserNestedInput = {
@@ -30518,6 +30655,20 @@ export namespace Prisma {
     update?: verification_codesUpdateWithWhereUniqueWithoutUserInput | verification_codesUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: verification_codesUpdateManyWithWhereWithoutUserInput | verification_codesUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: verification_codesScalarWhereInput | verification_codesScalarWhereInput[]
+  }
+
+  export type user_experiencesUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
+    upsert?: user_experiencesUpsertWithWhereUniqueWithoutUserInput | user_experiencesUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: user_experiencesCreateManyUserInputEnvelope
+    set?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    disconnect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    delete?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    update?: user_experiencesUpdateWithWhereUniqueWithoutUserInput | user_experiencesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: user_experiencesUpdateManyWithWhereWithoutUserInput | user_experiencesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
   }
 
   export type usersCreateNestedManyWithoutRoleInput = {
@@ -30790,6 +30941,12 @@ export namespace Prisma {
     update?: XOR<XOR<techUpdateToOneWithWhereWithoutProjectTechInput, techUpdateWithoutProjectTechInput>, techUncheckedUpdateWithoutProjectTechInput>
   }
 
+  export type usersCreateNestedOneWithoutExperiencesInput = {
+    create?: XOR<usersCreateWithoutExperiencesInput, usersUncheckedCreateWithoutExperiencesInput>
+    connectOrCreate?: usersCreateOrConnectWithoutExperiencesInput
+    connect?: usersWhereUniqueInput
+  }
+
   export type user_experiencesCreateNestedManyWithoutExperienceInput = {
     create?: XOR<user_experiencesCreateWithoutExperienceInput, user_experiencesUncheckedCreateWithoutExperienceInput> | user_experiencesCreateWithoutExperienceInput[] | user_experiencesUncheckedCreateWithoutExperienceInput[]
     connectOrCreate?: user_experiencesCreateOrConnectWithoutExperienceInput | user_experiencesCreateOrConnectWithoutExperienceInput[]
@@ -30810,6 +30967,14 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type usersUpdateOneRequiredWithoutExperiencesNestedInput = {
+    create?: XOR<usersCreateWithoutExperiencesInput, usersUncheckedCreateWithoutExperiencesInput>
+    connectOrCreate?: usersCreateOrConnectWithoutExperiencesInput
+    upsert?: usersUpsertWithoutExperiencesInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutExperiencesInput, usersUpdateWithoutExperiencesInput>, usersUncheckedUpdateWithoutExperiencesInput>
   }
 
   export type user_experiencesUpdateManyWithoutExperienceNestedInput = {
@@ -30846,9 +31011,9 @@ export namespace Prisma {
     connect?: usersWhereUniqueInput
   }
 
-  export type experiencesCreateNestedOneWithoutUsersInput = {
-    create?: XOR<experiencesCreateWithoutUsersInput, experiencesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: experiencesCreateOrConnectWithoutUsersInput
+  export type experiencesCreateNestedOneWithoutUserExperiencesInput = {
+    create?: XOR<experiencesCreateWithoutUserExperiencesInput, experiencesUncheckedCreateWithoutUserExperiencesInput>
+    connectOrCreate?: experiencesCreateOrConnectWithoutUserExperiencesInput
     connect?: experiencesWhereUniqueInput
   }
 
@@ -30860,12 +31025,12 @@ export namespace Prisma {
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUserExperiencesInput, usersUpdateWithoutUserExperiencesInput>, usersUncheckedUpdateWithoutUserExperiencesInput>
   }
 
-  export type experiencesUpdateOneRequiredWithoutUsersNestedInput = {
-    create?: XOR<experiencesCreateWithoutUsersInput, experiencesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: experiencesCreateOrConnectWithoutUsersInput
-    upsert?: experiencesUpsertWithoutUsersInput
+  export type experiencesUpdateOneRequiredWithoutUserExperiencesNestedInput = {
+    create?: XOR<experiencesCreateWithoutUserExperiencesInput, experiencesUncheckedCreateWithoutUserExperiencesInput>
+    connectOrCreate?: experiencesCreateOrConnectWithoutUserExperiencesInput
+    upsert?: experiencesUpsertWithoutUserExperiencesInput
     connect?: experiencesWhereUniqueInput
-    update?: XOR<XOR<experiencesUpdateToOneWithWhereWithoutUsersInput, experiencesUpdateWithoutUsersInput>, experiencesUncheckedUpdateWithoutUsersInput>
+    update?: XOR<XOR<experiencesUpdateToOneWithWhereWithoutUserExperiencesInput, experiencesUpdateWithoutUserExperiencesInput>, experiencesUncheckedUpdateWithoutUserExperiencesInput>
   }
 
   export type user_skillsCreateNestedManyWithoutSkillInput = {
@@ -31645,21 +31810,43 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type user_experiencesCreateWithoutUserInput = {
-    experience: experiencesCreateNestedOneWithoutUsersInput
+  export type experiencesCreateWithoutOwnerInput = {
+    id?: bigint | number
+    companyName: string
+    role?: string | null
+    description?: string | null
+    image?: string | null
+    url?: string | null
+    durationMonths?: number | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userExperiences?: user_experiencesCreateNestedManyWithoutExperienceInput
   }
 
-  export type user_experiencesUncheckedCreateWithoutUserInput = {
-    experienceId: bigint | number
+  export type experiencesUncheckedCreateWithoutOwnerInput = {
+    id?: bigint | number
+    companyName: string
+    role?: string | null
+    description?: string | null
+    image?: string | null
+    url?: string | null
+    durationMonths?: number | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutExperienceInput
   }
 
-  export type user_experiencesCreateOrConnectWithoutUserInput = {
-    where: user_experiencesWhereUniqueInput
-    create: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput>
+  export type experiencesCreateOrConnectWithoutOwnerInput = {
+    where: experiencesWhereUniqueInput
+    create: XOR<experiencesCreateWithoutOwnerInput, experiencesUncheckedCreateWithoutOwnerInput>
   }
 
-  export type user_experiencesCreateManyUserInputEnvelope = {
-    data: user_experiencesCreateManyUserInput | user_experiencesCreateManyUserInput[]
+  export type experiencesCreateManyOwnerInputEnvelope = {
+    data: experiencesCreateManyOwnerInput | experiencesCreateManyOwnerInput[]
     skipDuplicates?: boolean
   }
 
@@ -31770,6 +31957,24 @@ export namespace Prisma {
 
   export type verification_codesCreateManyUserInputEnvelope = {
     data: verification_codesCreateManyUserInput | verification_codesCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type user_experiencesCreateWithoutUserInput = {
+    experience: experiencesCreateNestedOneWithoutUserExperiencesInput
+  }
+
+  export type user_experiencesUncheckedCreateWithoutUserInput = {
+    experienceId: bigint | number
+  }
+
+  export type user_experiencesCreateOrConnectWithoutUserInput = {
+    where: user_experiencesWhereUniqueInput
+    create: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput>
+  }
+
+  export type user_experiencesCreateManyUserInputEnvelope = {
+    data: user_experiencesCreateManyUserInput | user_experiencesCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -31922,28 +32127,38 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"blogs"> | Date | string
   }
 
-  export type user_experiencesUpsertWithWhereUniqueWithoutUserInput = {
-    where: user_experiencesWhereUniqueInput
-    update: XOR<user_experiencesUpdateWithoutUserInput, user_experiencesUncheckedUpdateWithoutUserInput>
-    create: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput>
+  export type experiencesUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: experiencesWhereUniqueInput
+    update: XOR<experiencesUpdateWithoutOwnerInput, experiencesUncheckedUpdateWithoutOwnerInput>
+    create: XOR<experiencesCreateWithoutOwnerInput, experiencesUncheckedCreateWithoutOwnerInput>
   }
 
-  export type user_experiencesUpdateWithWhereUniqueWithoutUserInput = {
-    where: user_experiencesWhereUniqueInput
-    data: XOR<user_experiencesUpdateWithoutUserInput, user_experiencesUncheckedUpdateWithoutUserInput>
+  export type experiencesUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: experiencesWhereUniqueInput
+    data: XOR<experiencesUpdateWithoutOwnerInput, experiencesUncheckedUpdateWithoutOwnerInput>
   }
 
-  export type user_experiencesUpdateManyWithWhereWithoutUserInput = {
-    where: user_experiencesScalarWhereInput
-    data: XOR<user_experiencesUpdateManyMutationInput, user_experiencesUncheckedUpdateManyWithoutUserInput>
+  export type experiencesUpdateManyWithWhereWithoutOwnerInput = {
+    where: experiencesScalarWhereInput
+    data: XOR<experiencesUpdateManyMutationInput, experiencesUncheckedUpdateManyWithoutOwnerInput>
   }
 
-  export type user_experiencesScalarWhereInput = {
-    AND?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
-    OR?: user_experiencesScalarWhereInput[]
-    NOT?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
-    userId?: BigIntFilter<"user_experiences"> | bigint | number
-    experienceId?: BigIntFilter<"user_experiences"> | bigint | number
+  export type experiencesScalarWhereInput = {
+    AND?: experiencesScalarWhereInput | experiencesScalarWhereInput[]
+    OR?: experiencesScalarWhereInput[]
+    NOT?: experiencesScalarWhereInput | experiencesScalarWhereInput[]
+    id?: BigIntFilter<"experiences"> | bigint | number
+    companyName?: StringFilter<"experiences"> | string
+    role?: StringNullableFilter<"experiences"> | string | null
+    description?: StringNullableFilter<"experiences"> | string | null
+    image?: StringNullableFilter<"experiences"> | string | null
+    url?: StringNullableFilter<"experiences"> | string | null
+    durationMonths?: IntNullableFilter<"experiences"> | number | null
+    startDate?: DateTimeNullableFilter<"experiences"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"experiences"> | Date | string | null
+    createdAt?: DateTimeFilter<"experiences"> | Date | string
+    updatedAt?: DateTimeFilter<"experiences"> | Date | string
+    ownerId?: BigIntFilter<"experiences"> | bigint | number
   }
 
   export type user_skillsUpsertWithWhereUniqueWithoutUserInput = {
@@ -32060,6 +32275,30 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"verification_codes"> | Date | string
   }
 
+  export type user_experiencesUpsertWithWhereUniqueWithoutUserInput = {
+    where: user_experiencesWhereUniqueInput
+    update: XOR<user_experiencesUpdateWithoutUserInput, user_experiencesUncheckedUpdateWithoutUserInput>
+    create: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput>
+  }
+
+  export type user_experiencesUpdateWithWhereUniqueWithoutUserInput = {
+    where: user_experiencesWhereUniqueInput
+    data: XOR<user_experiencesUpdateWithoutUserInput, user_experiencesUncheckedUpdateWithoutUserInput>
+  }
+
+  export type user_experiencesUpdateManyWithWhereWithoutUserInput = {
+    where: user_experiencesScalarWhereInput
+    data: XOR<user_experiencesUpdateManyMutationInput, user_experiencesUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type user_experiencesScalarWhereInput = {
+    AND?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
+    OR?: user_experiencesScalarWhereInput[]
+    NOT?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
+    userId?: BigIntFilter<"user_experiences"> | bigint | number
+    experienceId?: BigIntFilter<"user_experiences"> | bigint | number
+  }
+
   export type usersCreateWithoutRoleInput = {
     id?: bigint | number
     email: string
@@ -32073,11 +32312,12 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutRoleInput = {
@@ -32093,11 +32333,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutRoleInput = {
@@ -32196,11 +32437,12 @@ export namespace Prisma {
     rate_limits?: rate_limitsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutAccountsInput = {
@@ -32216,11 +32458,12 @@ export namespace Prisma {
     rate_limits?: rate_limitsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutAccountsInput = {
@@ -32252,11 +32495,12 @@ export namespace Prisma {
     rate_limits?: rate_limitsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutAccountsInput = {
@@ -32272,11 +32516,12 @@ export namespace Prisma {
     rate_limits?: rate_limitsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersCreateWithoutActivitiesInput = {
@@ -32292,11 +32537,12 @@ export namespace Prisma {
     rate_limits?: rate_limitsCreateNestedManyWithoutUserInput
     accounts?: accountsCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutActivitiesInput = {
@@ -32312,11 +32558,12 @@ export namespace Prisma {
     rate_limits?: rate_limitsUncheckedCreateNestedManyWithoutUserInput
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutActivitiesInput = {
@@ -32348,11 +32595,12 @@ export namespace Prisma {
     rate_limits?: rate_limitsUpdateManyWithoutUserNestedInput
     accounts?: accountsUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutActivitiesInput = {
@@ -32368,11 +32616,12 @@ export namespace Prisma {
     rate_limits?: rate_limitsUncheckedUpdateManyWithoutUserNestedInput
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersCreateWithoutBlogsInput = {
@@ -32388,11 +32637,12 @@ export namespace Prisma {
     rate_limits?: rate_limitsCreateNestedManyWithoutUserInput
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutBlogsInput = {
@@ -32408,11 +32658,12 @@ export namespace Prisma {
     rate_limits?: rate_limitsUncheckedCreateNestedManyWithoutUserInput
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutBlogsInput = {
@@ -32462,11 +32713,12 @@ export namespace Prisma {
     rate_limits?: rate_limitsUpdateManyWithoutUserNestedInput
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutBlogsInput = {
@@ -32482,11 +32734,12 @@ export namespace Prisma {
     rate_limits?: rate_limitsUncheckedUpdateManyWithoutUserNestedInput
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type blog_techUpsertWithWhereUniqueWithoutBlogInput = {
@@ -32795,6 +33048,53 @@ export namespace Prisma {
     blogTech?: blog_techUncheckedUpdateManyWithoutTechNestedInput
   }
 
+  export type usersCreateWithoutExperiencesInput = {
+    id?: bigint | number
+    email: string
+    password?: string | null
+    name?: string | null
+    emailVerified?: Date | string | null
+    isDisabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    rate_limits?: rate_limitsCreateNestedManyWithoutUserInput
+    accounts?: accountsCreateNestedManyWithoutUserInput
+    activities?: activitiesCreateNestedManyWithoutUserInput
+    blogs?: blogsCreateNestedManyWithoutAuthorInput
+    userSkills?: user_skillsCreateNestedManyWithoutUserInput
+    refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
+    magicLinks?: magic_linksCreateNestedManyWithoutUserInput
+    verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+  }
+
+  export type usersUncheckedCreateWithoutExperiencesInput = {
+    id?: bigint | number
+    email: string
+    password?: string | null
+    name?: string | null
+    emailVerified?: Date | string | null
+    isDisabled?: boolean
+    roleId?: bigint | number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    rate_limits?: rate_limitsUncheckedCreateNestedManyWithoutUserInput
+    accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
+    activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
+    blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
+    userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
+    refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
+    magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
+    verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type usersCreateOrConnectWithoutExperiencesInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutExperiencesInput, usersUncheckedCreateWithoutExperiencesInput>
+  }
+
   export type user_experiencesCreateWithoutExperienceInput = {
     user: usersCreateNestedOneWithoutUserExperiencesInput
   }
@@ -32811,6 +33111,59 @@ export namespace Prisma {
   export type user_experiencesCreateManyExperienceInputEnvelope = {
     data: user_experiencesCreateManyExperienceInput | user_experiencesCreateManyExperienceInput[]
     skipDuplicates?: boolean
+  }
+
+  export type usersUpsertWithoutExperiencesInput = {
+    update: XOR<usersUpdateWithoutExperiencesInput, usersUncheckedUpdateWithoutExperiencesInput>
+    create: XOR<usersCreateWithoutExperiencesInput, usersUncheckedCreateWithoutExperiencesInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutExperiencesInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutExperiencesInput, usersUncheckedUpdateWithoutExperiencesInput>
+  }
+
+  export type usersUpdateWithoutExperiencesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDisabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    rate_limits?: rate_limitsUpdateManyWithoutUserNestedInput
+    accounts?: accountsUpdateManyWithoutUserNestedInput
+    activities?: activitiesUpdateManyWithoutUserNestedInput
+    blogs?: blogsUpdateManyWithoutAuthorNestedInput
+    userSkills?: user_skillsUpdateManyWithoutUserNestedInput
+    refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
+    magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
+    verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutExperiencesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDisabled?: BoolFieldUpdateOperationsInput | boolean
+    roleId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rate_limits?: rate_limitsUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
+    activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
+    blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
+    userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
+    refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
+    magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
+    verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type user_experiencesUpsertWithWhereUniqueWithoutExperienceInput = {
@@ -32843,6 +33196,7 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
@@ -32863,6 +33217,7 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
@@ -32874,7 +33229,7 @@ export namespace Prisma {
     create: XOR<usersCreateWithoutUserExperiencesInput, usersUncheckedCreateWithoutUserExperiencesInput>
   }
 
-  export type experiencesCreateWithoutUsersInput = {
+  export type experiencesCreateWithoutUserExperiencesInput = {
     id?: bigint | number
     companyName: string
     role?: string | null
@@ -32886,9 +33241,10 @@ export namespace Prisma {
     endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    owner: usersCreateNestedOneWithoutExperiencesInput
   }
 
-  export type experiencesUncheckedCreateWithoutUsersInput = {
+  export type experiencesUncheckedCreateWithoutUserExperiencesInput = {
     id?: bigint | number
     companyName: string
     role?: string | null
@@ -32900,11 +33256,12 @@ export namespace Prisma {
     endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    ownerId: bigint | number
   }
 
-  export type experiencesCreateOrConnectWithoutUsersInput = {
+  export type experiencesCreateOrConnectWithoutUserExperiencesInput = {
     where: experiencesWhereUniqueInput
-    create: XOR<experiencesCreateWithoutUsersInput, experiencesUncheckedCreateWithoutUsersInput>
+    create: XOR<experiencesCreateWithoutUserExperiencesInput, experiencesUncheckedCreateWithoutUserExperiencesInput>
   }
 
   export type usersUpsertWithoutUserExperiencesInput = {
@@ -32932,6 +33289,7 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
@@ -32952,24 +33310,25 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type experiencesUpsertWithoutUsersInput = {
-    update: XOR<experiencesUpdateWithoutUsersInput, experiencesUncheckedUpdateWithoutUsersInput>
-    create: XOR<experiencesCreateWithoutUsersInput, experiencesUncheckedCreateWithoutUsersInput>
+  export type experiencesUpsertWithoutUserExperiencesInput = {
+    update: XOR<experiencesUpdateWithoutUserExperiencesInput, experiencesUncheckedUpdateWithoutUserExperiencesInput>
+    create: XOR<experiencesCreateWithoutUserExperiencesInput, experiencesUncheckedCreateWithoutUserExperiencesInput>
     where?: experiencesWhereInput
   }
 
-  export type experiencesUpdateToOneWithWhereWithoutUsersInput = {
+  export type experiencesUpdateToOneWithWhereWithoutUserExperiencesInput = {
     where?: experiencesWhereInput
-    data: XOR<experiencesUpdateWithoutUsersInput, experiencesUncheckedUpdateWithoutUsersInput>
+    data: XOR<experiencesUpdateWithoutUserExperiencesInput, experiencesUncheckedUpdateWithoutUserExperiencesInput>
   }
 
-  export type experiencesUpdateWithoutUsersInput = {
+  export type experiencesUpdateWithoutUserExperiencesInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     companyName?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32981,9 +33340,10 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owner?: usersUpdateOneRequiredWithoutExperiencesNestedInput
   }
 
-  export type experiencesUncheckedUpdateWithoutUsersInput = {
+  export type experiencesUncheckedUpdateWithoutUserExperiencesInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     companyName?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32995,6 +33355,7 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type user_skillsCreateWithoutSkillInput = {
@@ -33068,10 +33429,11 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutUserSkillsInput = {
@@ -33088,10 +33450,11 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutUserSkillsInput = {
@@ -33149,10 +33512,11 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUserSkillsInput = {
@@ -33169,10 +33533,11 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type blog_techCreateWithoutTechInput = {
@@ -33257,10 +33622,11 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutVerificationCodesInput = {
@@ -33277,10 +33643,11 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutVerificationCodesInput = {
@@ -33313,10 +33680,11 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutVerificationCodesInput = {
@@ -33333,10 +33701,11 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersCreateWithoutMagicLinksInput = {
@@ -33353,10 +33722,11 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutMagicLinksInput = {
@@ -33373,10 +33743,11 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutMagicLinksInput = {
@@ -33409,10 +33780,11 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutMagicLinksInput = {
@@ -33429,10 +33801,11 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type refresh_tokensCreateWithoutReplacesInput = {
@@ -33504,10 +33877,11 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutRefreshTokensInput = {
@@ -33524,10 +33898,11 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutRefreshTokensInput = {
@@ -33607,10 +33982,11 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutRefreshTokensInput = {
@@ -33627,10 +34003,11 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type roles_permissionsCreateWithoutPermissionInput = {
@@ -33768,11 +34145,12 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
   }
 
   export type usersUncheckedCreateWithoutRate_limitsInput = {
@@ -33788,11 +34166,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type usersCreateOrConnectWithoutRate_limitsInput = {
@@ -33824,11 +34203,12 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutRate_limitsInput = {
@@ -33844,11 +34224,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type rate_limitsCreateManyUserInput = {
@@ -33895,8 +34276,18 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type user_experiencesCreateManyUserInput = {
-    experienceId: bigint | number
+  export type experiencesCreateManyOwnerInput = {
+    id?: bigint | number
+    companyName: string
+    role?: string | null
+    description?: string | null
+    image?: string | null
+    url?: string | null
+    durationMonths?: number | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type user_skillsCreateManyUserInput = {
@@ -33931,6 +34322,10 @@ export namespace Prisma {
     expiresAt: Date | string
     used?: boolean
     createdAt?: Date | string
+  }
+
+  export type user_experiencesCreateManyUserInput = {
+    experienceId: bigint | number
   }
 
   export type rate_limitsUpdateWithoutUserInput = {
@@ -34067,16 +34462,48 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type user_experiencesUpdateWithoutUserInput = {
-    experience?: experiencesUpdateOneRequiredWithoutUsersNestedInput
+  export type experiencesUpdateWithoutOwnerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    companyName?: StringFieldUpdateOperationsInput | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    durationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userExperiences?: user_experiencesUpdateManyWithoutExperienceNestedInput
   }
 
-  export type user_experiencesUncheckedUpdateWithoutUserInput = {
-    experienceId?: BigIntFieldUpdateOperationsInput | bigint | number
+  export type experiencesUncheckedUpdateWithoutOwnerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    companyName?: StringFieldUpdateOperationsInput | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    durationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutExperienceNestedInput
   }
 
-  export type user_experiencesUncheckedUpdateManyWithoutUserInput = {
-    experienceId?: BigIntFieldUpdateOperationsInput | bigint | number
+  export type experiencesUncheckedUpdateManyWithoutOwnerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    companyName?: StringFieldUpdateOperationsInput | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    durationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type user_skillsUpdateWithoutUserInput = {
@@ -34183,6 +34610,18 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type user_experiencesUpdateWithoutUserInput = {
+    experience?: experiencesUpdateOneRequiredWithoutUserExperiencesNestedInput
+  }
+
+  export type user_experiencesUncheckedUpdateWithoutUserInput = {
+    experienceId?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type user_experiencesUncheckedUpdateManyWithoutUserInput = {
+    experienceId?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
   export type usersCreateManyRoleInput = {
     id?: bigint | number
     email: string
@@ -34211,11 +34650,12 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateWithoutRoleInput = {
@@ -34231,11 +34671,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutRoleInput = {
