@@ -21,6 +21,7 @@ import { RateLimitGuard } from './rate-limit/rate-limit.guard';
 import { ExperienceModule } from './experience/experience.module';
 import { SkillsModule } from './skills/skills.module';
 import { TechModule } from './tech/tech.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [AuthModule,  PrismaModule, ResendModule,
@@ -33,6 +34,7 @@ import { TechModule } from './tech/tech.module';
      ExperienceModule,
      SkillsModule,
      TechModule,
+     FilesModule,
   ],
   controllers: [AppController, RateLimitController],
   providers: [AppService, PrismaService, AuthService, ResendService, RefreshTokenService, RateLimitGuard],

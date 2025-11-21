@@ -24,6 +24,7 @@ async function main() {
     user: ['delete_user', 'read_user'],
     comment: ['create_comment', 'update_comment', 'delete_comment', 'read_comment'],
     skill: ['create_skill', 'update_skill', 'delete_skill'],
+    files: ['upload_files', 'delete_files'],
     auth: [
       'signin',
       'signup',

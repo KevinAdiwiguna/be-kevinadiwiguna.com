@@ -36,6 +36,7 @@ model users {
   magicLinks        magic_links[]
   verificationCodes verification_codes[]
   userExperiences   user_experiences[]
+  files             files[]
 }
 
 model roles {
@@ -271,8 +272,8 @@ model roles_permissions {
 model rate_limits {
   id        BigInt   @id @default(autoincrement())
   userId    BigInt?
-  ip        String? // untuk anon user (signup, signin)
-  action    String // contoh: "send_otp", "signup", "signin", "verify_otp"
+  ip        String?
+  action    String
   count     Int      @default(1)
   expiresAt DateTime
   createdAt DateTime @default(now())
@@ -283,6 +284,18 @@ model rate_limits {
   @@index([userId])
   @@index([ip])
   @@index([action])
+}
+
+model files {
+  id        BigInt   @id @default(autoincrement())
+  key       String   @unique
+  url       String
+  mime      String
+  size      Int?
+  bucket    String   @default("kevinadiwiguna-assets") // supaya multi-bucket bisa
+  ownerId   BigInt?
+  owner     users?   @relation(fields: [ownerId], references: [id])
+  createdAt DateTime @default(now())
 }
 
 // model password_resets {

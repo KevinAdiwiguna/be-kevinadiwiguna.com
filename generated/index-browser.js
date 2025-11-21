@@ -308,6 +308,17 @@ exports.Prisma.Rate_limitsScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.FilesScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  url: 'url',
+  mime: 'mime',
+  size: 'size',
+  bucket: 'bucket',
+  ownerId: 'ownerId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -355,7 +366,8 @@ exports.Prisma.ModelName = {
   refresh_tokens: 'refresh_tokens',
   permissions: 'permissions',
   roles_permissions: 'roles_permissions',
-  rate_limits: 'rate_limits'
+  rate_limits: 'rate_limits',
+  files: 'files'
 };
 
 /**
