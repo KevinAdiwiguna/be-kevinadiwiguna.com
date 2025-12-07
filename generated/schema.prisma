@@ -292,7 +292,7 @@ model files {
   url       String
   mime      String
   size      Int?
-  bucket    String   @default("kevinadiwiguna-assets") // supaya multi-bucket bisa
+  bucket    String   @default("kevinadiwiguna-assets")
   ownerId   BigInt?
   owner     users?   @relation(fields: [ownerId], references: [id])
   createdAt DateTime @default(now())

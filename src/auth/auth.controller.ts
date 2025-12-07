@@ -17,19 +17,44 @@ export class AuthController {
     return this.authService.signUp(data);
   }
 
+
   @Post("signin")
-  async signIn(@Body() data: SignInDto, @Res({ passthrough: true }) response: Response) {
+  async signIn(
+    @Body() data: SignInDto,
+    @Res({ passthrough: true }) response: Response
+  ) {
+    const result = await this.authService.signIn(data);
 
-    const res = this.authService.signIn(data);
-
-    response.cookie('refreshToken', (await res).refreshToken, {
+    response.cookie("refreshToken", result.refreshToken, {
       httpOnly: true,
-      secure: false,
-      sameSite: 'strict',
-      maxAge: 86400 * 1000 * 2,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 1000 * 60 * 60 * 48,
+      path: "/",
     });
 
-    return res;
+
+    response.cookie("accessToken", result.accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 1000 * 30,
+    })
+
+
+    response.cookie("refreshTokenExpiresAt", result.refreshTokenExpiresAt, {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 1000 * 60 * 60 * 48,
+    })
+
+    return {
+      message: result.message,
+      user: result.user,
+      accessToken: result.accessToken,
+      refreshTokenExpiresAt: result.refreshTokenExpiresAt,
+    };
   }
 
   @Post('refresh')
@@ -47,7 +72,21 @@ export class AuthController {
       maxAge: 86400 * 1000 * 2,
     });
 
-    return {
+    response.cookie('accessToken', res.accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 1000 * 30,
+    });
+
+    response.cookie('refreshTokenExpiresAt', res.refreshTokenExpiresAt, {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 1000 * 60 * 60 * 48,
+    });
+
+    return { 
       accessToken: res.accessToken,
     }
   }

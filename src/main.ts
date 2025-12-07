@@ -4,12 +4,11 @@ import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 
 import cookieParser from "cookie-parser"
-import fastifyCookie from '@fastify/cookie';
 
-async function bootstrap() {;
-
-const app = await NestFactory.create(AppModule);
-app.use(cookieParser());
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.use(cookieParser());
+  app.enableCors();
   (BigInt.prototype as any).toJSON = function () {
     return this.toString();
   };
