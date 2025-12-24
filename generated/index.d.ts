@@ -113,6 +113,11 @@ export type roles_permissions = $Result.DefaultSelection<Prisma.$roles_permissio
  * 
  */
 export type rate_limits = $Result.DefaultSelection<Prisma.$rate_limitsPayload>
+/**
+ * Model files
+ * 
+ */
+export type files = $Result.DefaultSelection<Prisma.$filesPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -431,6 +436,16 @@ export class PrismaClient<
     * ```
     */
   get rate_limits(): Prisma.rate_limitsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.files`: Exposes CRUD operations for the **files** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Files
+    * const files = await prisma.files.findMany()
+    * ```
+    */
+  get files(): Prisma.filesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -891,7 +906,8 @@ export namespace Prisma {
     refresh_tokens: 'refresh_tokens',
     permissions: 'permissions',
     roles_permissions: 'roles_permissions',
-    rate_limits: 'rate_limits'
+    rate_limits: 'rate_limits',
+    files: 'files'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -910,7 +926,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "users" | "roles" | "accounts" | "activities" | "blogs" | "blog_tech" | "projects" | "project_tech" | "experiences" | "user_experiences" | "skills" | "user_skills" | "tech" | "heroes" | "verification_codes" | "magic_links" | "refresh_tokens" | "permissions" | "roles_permissions" | "rate_limits"
+      modelProps: "users" | "roles" | "accounts" | "activities" | "blogs" | "blog_tech" | "projects" | "project_tech" | "experiences" | "user_experiences" | "skills" | "user_skills" | "tech" | "heroes" | "verification_codes" | "magic_links" | "refresh_tokens" | "permissions" | "roles_permissions" | "rate_limits" | "files"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2394,6 +2410,80 @@ export namespace Prisma {
           }
         }
       }
+      files: {
+        payload: Prisma.$filesPayload<ExtArgs>
+        fields: Prisma.filesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.filesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$filesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.filesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$filesPayload>
+          }
+          findFirst: {
+            args: Prisma.filesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$filesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.filesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$filesPayload>
+          }
+          findMany: {
+            args: Prisma.filesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$filesPayload>[]
+          }
+          create: {
+            args: Prisma.filesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$filesPayload>
+          }
+          createMany: {
+            args: Prisma.filesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.filesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$filesPayload>[]
+          }
+          delete: {
+            args: Prisma.filesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$filesPayload>
+          }
+          update: {
+            args: Prisma.filesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$filesPayload>
+          }
+          deleteMany: {
+            args: Prisma.filesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.filesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.filesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$filesPayload>[]
+          }
+          upsert: {
+            args: Prisma.filesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$filesPayload>
+          }
+          aggregate: {
+            args: Prisma.FilesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFiles>
+          }
+          groupBy: {
+            args: Prisma.filesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FilesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.filesCountArgs<ExtArgs>
+            result: $Utils.Optional<FilesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2510,6 +2600,7 @@ export namespace Prisma {
     permissions?: permissionsOmit
     roles_permissions?: roles_permissionsOmit
     rate_limits?: rate_limitsOmit
+    files?: filesOmit
   }
 
   /* Types for Logging */
@@ -2594,11 +2685,13 @@ export namespace Prisma {
     accounts: number
     activities: number
     blogs: number
-    userExperiences: number
+    experiences: number
     userSkills: number
     refreshTokens: number
     magicLinks: number
     verificationCodes: number
+    userExperiences: number
+    files: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2606,11 +2699,13 @@ export namespace Prisma {
     accounts?: boolean | UsersCountOutputTypeCountAccountsArgs
     activities?: boolean | UsersCountOutputTypeCountActivitiesArgs
     blogs?: boolean | UsersCountOutputTypeCountBlogsArgs
-    userExperiences?: boolean | UsersCountOutputTypeCountUserExperiencesArgs
+    experiences?: boolean | UsersCountOutputTypeCountExperiencesArgs
     userSkills?: boolean | UsersCountOutputTypeCountUserSkillsArgs
     refreshTokens?: boolean | UsersCountOutputTypeCountRefreshTokensArgs
     magicLinks?: boolean | UsersCountOutputTypeCountMagicLinksArgs
     verificationCodes?: boolean | UsersCountOutputTypeCountVerificationCodesArgs
+    userExperiences?: boolean | UsersCountOutputTypeCountUserExperiencesArgs
+    files?: boolean | UsersCountOutputTypeCountFilesArgs
   }
 
   // Custom InputTypes
@@ -2655,8 +2750,8 @@ export namespace Prisma {
   /**
    * UsersCountOutputType without action
    */
-  export type UsersCountOutputTypeCountUserExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: user_experiencesWhereInput
+  export type UsersCountOutputTypeCountExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: experiencesWhereInput
   }
 
   /**
@@ -2685,6 +2780,20 @@ export namespace Prisma {
    */
   export type UsersCountOutputTypeCountVerificationCodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: verification_codesWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountUserExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: user_experiencesWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountFilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: filesWhereInput
   }
 
 
@@ -2795,11 +2904,11 @@ export namespace Prisma {
    */
 
   export type ExperiencesCountOutputType = {
-    users: number
+    userExperiences: number
   }
 
   export type ExperiencesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | ExperiencesCountOutputTypeCountUsersArgs
+    userExperiences?: boolean | ExperiencesCountOutputTypeCountUserExperiencesArgs
   }
 
   // Custom InputTypes
@@ -2816,7 +2925,7 @@ export namespace Prisma {
   /**
    * ExperiencesCountOutputType without action
    */
-  export type ExperiencesCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ExperiencesCountOutputTypeCountUserExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: user_experiencesWhereInput
   }
 
@@ -3197,11 +3306,13 @@ export namespace Prisma {
     accounts?: boolean | users$accountsArgs<ExtArgs>
     activities?: boolean | users$activitiesArgs<ExtArgs>
     blogs?: boolean | users$blogsArgs<ExtArgs>
-    userExperiences?: boolean | users$userExperiencesArgs<ExtArgs>
+    experiences?: boolean | users$experiencesArgs<ExtArgs>
     userSkills?: boolean | users$userSkillsArgs<ExtArgs>
     refreshTokens?: boolean | users$refreshTokensArgs<ExtArgs>
     magicLinks?: boolean | users$magicLinksArgs<ExtArgs>
     verificationCodes?: boolean | users$verificationCodesArgs<ExtArgs>
+    userExperiences?: boolean | users$userExperiencesArgs<ExtArgs>
+    files?: boolean | users$filesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
 
@@ -3250,11 +3361,13 @@ export namespace Prisma {
     accounts?: boolean | users$accountsArgs<ExtArgs>
     activities?: boolean | users$activitiesArgs<ExtArgs>
     blogs?: boolean | users$blogsArgs<ExtArgs>
-    userExperiences?: boolean | users$userExperiencesArgs<ExtArgs>
+    experiences?: boolean | users$experiencesArgs<ExtArgs>
     userSkills?: boolean | users$userSkillsArgs<ExtArgs>
     refreshTokens?: boolean | users$refreshTokensArgs<ExtArgs>
     magicLinks?: boolean | users$magicLinksArgs<ExtArgs>
     verificationCodes?: boolean | users$verificationCodesArgs<ExtArgs>
+    userExperiences?: boolean | users$userExperiencesArgs<ExtArgs>
+    files?: boolean | users$filesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type usersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3272,11 +3385,13 @@ export namespace Prisma {
       accounts: Prisma.$accountsPayload<ExtArgs>[]
       activities: Prisma.$activitiesPayload<ExtArgs>[]
       blogs: Prisma.$blogsPayload<ExtArgs>[]
-      userExperiences: Prisma.$user_experiencesPayload<ExtArgs>[]
+      experiences: Prisma.$experiencesPayload<ExtArgs>[]
       userSkills: Prisma.$user_skillsPayload<ExtArgs>[]
       refreshTokens: Prisma.$refresh_tokensPayload<ExtArgs>[]
       magicLinks: Prisma.$magic_linksPayload<ExtArgs>[]
       verificationCodes: Prisma.$verification_codesPayload<ExtArgs>[]
+      userExperiences: Prisma.$user_experiencesPayload<ExtArgs>[]
+      files: Prisma.$filesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -3687,11 +3802,13 @@ export namespace Prisma {
     accounts<T extends users$accountsArgs<ExtArgs> = {}>(args?: Subset<T, users$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$accountsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     activities<T extends users$activitiesArgs<ExtArgs> = {}>(args?: Subset<T, users$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$activitiesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     blogs<T extends users$blogsArgs<ExtArgs> = {}>(args?: Subset<T, users$blogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$blogsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    userExperiences<T extends users$userExperiencesArgs<ExtArgs> = {}>(args?: Subset<T, users$userExperiencesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_experiencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    experiences<T extends users$experiencesArgs<ExtArgs> = {}>(args?: Subset<T, users$experiencesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$experiencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     userSkills<T extends users$userSkillsArgs<ExtArgs> = {}>(args?: Subset<T, users$userSkillsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_skillsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     refreshTokens<T extends users$refreshTokensArgs<ExtArgs> = {}>(args?: Subset<T, users$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$refresh_tokensPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     magicLinks<T extends users$magicLinksArgs<ExtArgs> = {}>(args?: Subset<T, users$magicLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$magic_linksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     verificationCodes<T extends users$verificationCodesArgs<ExtArgs> = {}>(args?: Subset<T, users$verificationCodesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$verification_codesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    userExperiences<T extends users$userExperiencesArgs<ExtArgs> = {}>(args?: Subset<T, users$userExperiencesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_experiencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    files<T extends users$filesArgs<ExtArgs> = {}>(args?: Subset<T, users$filesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$filesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4241,27 +4358,27 @@ export namespace Prisma {
   }
 
   /**
-   * users.userExperiences
+   * users.experiences
    */
-  export type users$userExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type users$experiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the user_experiences
+     * Select specific fields to fetch from the experiences
      */
-    select?: user_experiencesSelect<ExtArgs> | null
+    select?: experiencesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the user_experiences
+     * Omit specific fields from the experiences
      */
-    omit?: user_experiencesOmit<ExtArgs> | null
+    omit?: experiencesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: user_experiencesInclude<ExtArgs> | null
-    where?: user_experiencesWhereInput
-    orderBy?: user_experiencesOrderByWithRelationInput | user_experiencesOrderByWithRelationInput[]
-    cursor?: user_experiencesWhereUniqueInput
+    include?: experiencesInclude<ExtArgs> | null
+    where?: experiencesWhereInput
+    orderBy?: experiencesOrderByWithRelationInput | experiencesOrderByWithRelationInput[]
+    cursor?: experiencesWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: User_experiencesScalarFieldEnum | User_experiencesScalarFieldEnum[]
+    distinct?: ExperiencesScalarFieldEnum | ExperiencesScalarFieldEnum[]
   }
 
   /**
@@ -4358,6 +4475,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Verification_codesScalarFieldEnum | Verification_codesScalarFieldEnum[]
+  }
+
+  /**
+   * users.userExperiences
+   */
+  export type users$userExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_experiences
+     */
+    select?: user_experiencesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_experiences
+     */
+    omit?: user_experiencesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_experiencesInclude<ExtArgs> | null
+    where?: user_experiencesWhereInput
+    orderBy?: user_experiencesOrderByWithRelationInput | user_experiencesOrderByWithRelationInput[]
+    cursor?: user_experiencesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: User_experiencesScalarFieldEnum | User_experiencesScalarFieldEnum[]
+  }
+
+  /**
+   * users.files
+   */
+  export type users$filesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesInclude<ExtArgs> | null
+    where?: filesWhereInput
+    orderBy?: filesOrderByWithRelationInput | filesOrderByWithRelationInput[]
+    cursor?: filesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FilesScalarFieldEnum | FilesScalarFieldEnum[]
   }
 
   /**
@@ -12337,11 +12502,13 @@ export namespace Prisma {
   export type ExperiencesAvgAggregateOutputType = {
     id: number | null
     durationMonths: number | null
+    ownerId: number | null
   }
 
   export type ExperiencesSumAggregateOutputType = {
     id: bigint | null
     durationMonths: number | null
+    ownerId: bigint | null
   }
 
   export type ExperiencesMinAggregateOutputType = {
@@ -12356,6 +12523,7 @@ export namespace Prisma {
     endDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    ownerId: bigint | null
   }
 
   export type ExperiencesMaxAggregateOutputType = {
@@ -12370,6 +12538,7 @@ export namespace Prisma {
     endDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    ownerId: bigint | null
   }
 
   export type ExperiencesCountAggregateOutputType = {
@@ -12384,6 +12553,7 @@ export namespace Prisma {
     endDate: number
     createdAt: number
     updatedAt: number
+    ownerId: number
     _all: number
   }
 
@@ -12391,11 +12561,13 @@ export namespace Prisma {
   export type ExperiencesAvgAggregateInputType = {
     id?: true
     durationMonths?: true
+    ownerId?: true
   }
 
   export type ExperiencesSumAggregateInputType = {
     id?: true
     durationMonths?: true
+    ownerId?: true
   }
 
   export type ExperiencesMinAggregateInputType = {
@@ -12410,6 +12582,7 @@ export namespace Prisma {
     endDate?: true
     createdAt?: true
     updatedAt?: true
+    ownerId?: true
   }
 
   export type ExperiencesMaxAggregateInputType = {
@@ -12424,6 +12597,7 @@ export namespace Prisma {
     endDate?: true
     createdAt?: true
     updatedAt?: true
+    ownerId?: true
   }
 
   export type ExperiencesCountAggregateInputType = {
@@ -12438,6 +12612,7 @@ export namespace Prisma {
     endDate?: true
     createdAt?: true
     updatedAt?: true
+    ownerId?: true
     _all?: true
   }
 
@@ -12539,6 +12714,7 @@ export namespace Prisma {
     endDate: Date | null
     createdAt: Date
     updatedAt: Date
+    ownerId: bigint
     _count: ExperiencesCountAggregateOutputType | null
     _avg: ExperiencesAvgAggregateOutputType | null
     _sum: ExperiencesSumAggregateOutputType | null
@@ -12572,7 +12748,9 @@ export namespace Prisma {
     endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    users?: boolean | experiences$usersArgs<ExtArgs>
+    ownerId?: boolean
+    owner?: boolean | usersDefaultArgs<ExtArgs>
+    userExperiences?: boolean | experiences$userExperiencesArgs<ExtArgs>
     _count?: boolean | ExperiencesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["experiences"]>
 
@@ -12588,6 +12766,8 @@ export namespace Prisma {
     endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    ownerId?: boolean
+    owner?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["experiences"]>
 
   export type experiencesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -12602,6 +12782,8 @@ export namespace Prisma {
     endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    ownerId?: boolean
+    owner?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["experiences"]>
 
   export type experiencesSelectScalar = {
@@ -12616,20 +12798,27 @@ export namespace Prisma {
     endDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    ownerId?: boolean
   }
 
-  export type experiencesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "role" | "description" | "image" | "url" | "durationMonths" | "startDate" | "endDate" | "createdAt" | "updatedAt", ExtArgs["result"]["experiences"]>
+  export type experiencesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "role" | "description" | "image" | "url" | "durationMonths" | "startDate" | "endDate" | "createdAt" | "updatedAt" | "ownerId", ExtArgs["result"]["experiences"]>
   export type experiencesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | experiences$usersArgs<ExtArgs>
+    owner?: boolean | usersDefaultArgs<ExtArgs>
+    userExperiences?: boolean | experiences$userExperiencesArgs<ExtArgs>
     _count?: boolean | ExperiencesCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type experiencesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type experiencesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type experiencesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | usersDefaultArgs<ExtArgs>
+  }
+  export type experiencesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | usersDefaultArgs<ExtArgs>
+  }
 
   export type $experiencesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "experiences"
     objects: {
-      users: Prisma.$user_experiencesPayload<ExtArgs>[]
+      owner: Prisma.$usersPayload<ExtArgs>
+      userExperiences: Prisma.$user_experiencesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -12643,6 +12832,7 @@ export namespace Prisma {
       endDate: Date | null
       createdAt: Date
       updatedAt: Date
+      ownerId: bigint
     }, ExtArgs["result"]["experiences"]>
     composites: {}
   }
@@ -13037,7 +13227,8 @@ export namespace Prisma {
    */
   export interface Prisma__experiencesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    users<T extends experiences$usersArgs<ExtArgs> = {}>(args?: Subset<T, experiences$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_experiencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    owner<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    userExperiences<T extends experiences$userExperiencesArgs<ExtArgs> = {}>(args?: Subset<T, experiences$userExperiencesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_experiencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13078,6 +13269,7 @@ export namespace Prisma {
     readonly endDate: FieldRef<"experiences", 'DateTime'>
     readonly createdAt: FieldRef<"experiences", 'DateTime'>
     readonly updatedAt: FieldRef<"experiences", 'DateTime'>
+    readonly ownerId: FieldRef<"experiences", 'BigInt'>
   }
     
 
@@ -13327,6 +13519,10 @@ export namespace Prisma {
      */
     data: experiencesCreateManyInput | experiencesCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: experiencesIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -13397,6 +13593,10 @@ export namespace Prisma {
      * Limit how many experiences to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: experiencesIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -13466,9 +13666,9 @@ export namespace Prisma {
   }
 
   /**
-   * experiences.users
+   * experiences.userExperiences
    */
-  export type experiences$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type experiences$userExperiencesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the user_experiences
      */
@@ -25742,6 +25942,1164 @@ export namespace Prisma {
 
 
   /**
+   * Model files
+   */
+
+  export type AggregateFiles = {
+    _count: FilesCountAggregateOutputType | null
+    _avg: FilesAvgAggregateOutputType | null
+    _sum: FilesSumAggregateOutputType | null
+    _min: FilesMinAggregateOutputType | null
+    _max: FilesMaxAggregateOutputType | null
+  }
+
+  export type FilesAvgAggregateOutputType = {
+    id: number | null
+    size: number | null
+    ownerId: number | null
+  }
+
+  export type FilesSumAggregateOutputType = {
+    id: bigint | null
+    size: number | null
+    ownerId: bigint | null
+  }
+
+  export type FilesMinAggregateOutputType = {
+    id: bigint | null
+    key: string | null
+    url: string | null
+    mime: string | null
+    size: number | null
+    bucket: string | null
+    ownerId: bigint | null
+    createdAt: Date | null
+  }
+
+  export type FilesMaxAggregateOutputType = {
+    id: bigint | null
+    key: string | null
+    url: string | null
+    mime: string | null
+    size: number | null
+    bucket: string | null
+    ownerId: bigint | null
+    createdAt: Date | null
+  }
+
+  export type FilesCountAggregateOutputType = {
+    id: number
+    key: number
+    url: number
+    mime: number
+    size: number
+    bucket: number
+    ownerId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FilesAvgAggregateInputType = {
+    id?: true
+    size?: true
+    ownerId?: true
+  }
+
+  export type FilesSumAggregateInputType = {
+    id?: true
+    size?: true
+    ownerId?: true
+  }
+
+  export type FilesMinAggregateInputType = {
+    id?: true
+    key?: true
+    url?: true
+    mime?: true
+    size?: true
+    bucket?: true
+    ownerId?: true
+    createdAt?: true
+  }
+
+  export type FilesMaxAggregateInputType = {
+    id?: true
+    key?: true
+    url?: true
+    mime?: true
+    size?: true
+    bucket?: true
+    ownerId?: true
+    createdAt?: true
+  }
+
+  export type FilesCountAggregateInputType = {
+    id?: true
+    key?: true
+    url?: true
+    mime?: true
+    size?: true
+    bucket?: true
+    ownerId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FilesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which files to aggregate.
+     */
+    where?: filesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of files to fetch.
+     */
+    orderBy?: filesOrderByWithRelationInput | filesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: filesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` files from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` files.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned files
+    **/
+    _count?: true | FilesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FilesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FilesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FilesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FilesMaxAggregateInputType
+  }
+
+  export type GetFilesAggregateType<T extends FilesAggregateArgs> = {
+        [P in keyof T & keyof AggregateFiles]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFiles[P]>
+      : GetScalarType<T[P], AggregateFiles[P]>
+  }
+
+
+
+
+  export type filesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: filesWhereInput
+    orderBy?: filesOrderByWithAggregationInput | filesOrderByWithAggregationInput[]
+    by: FilesScalarFieldEnum[] | FilesScalarFieldEnum
+    having?: filesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FilesCountAggregateInputType | true
+    _avg?: FilesAvgAggregateInputType
+    _sum?: FilesSumAggregateInputType
+    _min?: FilesMinAggregateInputType
+    _max?: FilesMaxAggregateInputType
+  }
+
+  export type FilesGroupByOutputType = {
+    id: bigint
+    key: string
+    url: string
+    mime: string
+    size: number | null
+    bucket: string
+    ownerId: bigint | null
+    createdAt: Date
+    _count: FilesCountAggregateOutputType | null
+    _avg: FilesAvgAggregateOutputType | null
+    _sum: FilesSumAggregateOutputType | null
+    _min: FilesMinAggregateOutputType | null
+    _max: FilesMaxAggregateOutputType | null
+  }
+
+  type GetFilesGroupByPayload<T extends filesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FilesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FilesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FilesGroupByOutputType[P]>
+            : GetScalarType<T[P], FilesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type filesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    url?: boolean
+    mime?: boolean
+    size?: boolean
+    bucket?: boolean
+    ownerId?: boolean
+    createdAt?: boolean
+    owner?: boolean | files$ownerArgs<ExtArgs>
+  }, ExtArgs["result"]["files"]>
+
+  export type filesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    url?: boolean
+    mime?: boolean
+    size?: boolean
+    bucket?: boolean
+    ownerId?: boolean
+    createdAt?: boolean
+    owner?: boolean | files$ownerArgs<ExtArgs>
+  }, ExtArgs["result"]["files"]>
+
+  export type filesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    key?: boolean
+    url?: boolean
+    mime?: boolean
+    size?: boolean
+    bucket?: boolean
+    ownerId?: boolean
+    createdAt?: boolean
+    owner?: boolean | files$ownerArgs<ExtArgs>
+  }, ExtArgs["result"]["files"]>
+
+  export type filesSelectScalar = {
+    id?: boolean
+    key?: boolean
+    url?: boolean
+    mime?: boolean
+    size?: boolean
+    bucket?: boolean
+    ownerId?: boolean
+    createdAt?: boolean
+  }
+
+  export type filesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "url" | "mime" | "size" | "bucket" | "ownerId" | "createdAt", ExtArgs["result"]["files"]>
+  export type filesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | files$ownerArgs<ExtArgs>
+  }
+  export type filesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | files$ownerArgs<ExtArgs>
+  }
+  export type filesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | files$ownerArgs<ExtArgs>
+  }
+
+  export type $filesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "files"
+    objects: {
+      owner: Prisma.$usersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: bigint
+      key: string
+      url: string
+      mime: string
+      size: number | null
+      bucket: string
+      ownerId: bigint | null
+      createdAt: Date
+    }, ExtArgs["result"]["files"]>
+    composites: {}
+  }
+
+  type filesGetPayload<S extends boolean | null | undefined | filesDefaultArgs> = $Result.GetResult<Prisma.$filesPayload, S>
+
+  type filesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<filesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FilesCountAggregateInputType | true
+    }
+
+  export interface filesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['files'], meta: { name: 'files' } }
+    /**
+     * Find zero or one Files that matches the filter.
+     * @param {filesFindUniqueArgs} args - Arguments to find a Files
+     * @example
+     * // Get one Files
+     * const files = await prisma.files.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends filesFindUniqueArgs>(args: SelectSubset<T, filesFindUniqueArgs<ExtArgs>>): Prisma__filesClient<$Result.GetResult<Prisma.$filesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Files that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {filesFindUniqueOrThrowArgs} args - Arguments to find a Files
+     * @example
+     * // Get one Files
+     * const files = await prisma.files.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends filesFindUniqueOrThrowArgs>(args: SelectSubset<T, filesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__filesClient<$Result.GetResult<Prisma.$filesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Files that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {filesFindFirstArgs} args - Arguments to find a Files
+     * @example
+     * // Get one Files
+     * const files = await prisma.files.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends filesFindFirstArgs>(args?: SelectSubset<T, filesFindFirstArgs<ExtArgs>>): Prisma__filesClient<$Result.GetResult<Prisma.$filesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Files that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {filesFindFirstOrThrowArgs} args - Arguments to find a Files
+     * @example
+     * // Get one Files
+     * const files = await prisma.files.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends filesFindFirstOrThrowArgs>(args?: SelectSubset<T, filesFindFirstOrThrowArgs<ExtArgs>>): Prisma__filesClient<$Result.GetResult<Prisma.$filesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Files that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {filesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Files
+     * const files = await prisma.files.findMany()
+     * 
+     * // Get first 10 Files
+     * const files = await prisma.files.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const filesWithIdOnly = await prisma.files.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends filesFindManyArgs>(args?: SelectSubset<T, filesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$filesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Files.
+     * @param {filesCreateArgs} args - Arguments to create a Files.
+     * @example
+     * // Create one Files
+     * const Files = await prisma.files.create({
+     *   data: {
+     *     // ... data to create a Files
+     *   }
+     * })
+     * 
+     */
+    create<T extends filesCreateArgs>(args: SelectSubset<T, filesCreateArgs<ExtArgs>>): Prisma__filesClient<$Result.GetResult<Prisma.$filesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Files.
+     * @param {filesCreateManyArgs} args - Arguments to create many Files.
+     * @example
+     * // Create many Files
+     * const files = await prisma.files.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends filesCreateManyArgs>(args?: SelectSubset<T, filesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Files and returns the data saved in the database.
+     * @param {filesCreateManyAndReturnArgs} args - Arguments to create many Files.
+     * @example
+     * // Create many Files
+     * const files = await prisma.files.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Files and only return the `id`
+     * const filesWithIdOnly = await prisma.files.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends filesCreateManyAndReturnArgs>(args?: SelectSubset<T, filesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$filesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Files.
+     * @param {filesDeleteArgs} args - Arguments to delete one Files.
+     * @example
+     * // Delete one Files
+     * const Files = await prisma.files.delete({
+     *   where: {
+     *     // ... filter to delete one Files
+     *   }
+     * })
+     * 
+     */
+    delete<T extends filesDeleteArgs>(args: SelectSubset<T, filesDeleteArgs<ExtArgs>>): Prisma__filesClient<$Result.GetResult<Prisma.$filesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Files.
+     * @param {filesUpdateArgs} args - Arguments to update one Files.
+     * @example
+     * // Update one Files
+     * const files = await prisma.files.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends filesUpdateArgs>(args: SelectSubset<T, filesUpdateArgs<ExtArgs>>): Prisma__filesClient<$Result.GetResult<Prisma.$filesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Files.
+     * @param {filesDeleteManyArgs} args - Arguments to filter Files to delete.
+     * @example
+     * // Delete a few Files
+     * const { count } = await prisma.files.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends filesDeleteManyArgs>(args?: SelectSubset<T, filesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Files.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {filesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Files
+     * const files = await prisma.files.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends filesUpdateManyArgs>(args: SelectSubset<T, filesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Files and returns the data updated in the database.
+     * @param {filesUpdateManyAndReturnArgs} args - Arguments to update many Files.
+     * @example
+     * // Update many Files
+     * const files = await prisma.files.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Files and only return the `id`
+     * const filesWithIdOnly = await prisma.files.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends filesUpdateManyAndReturnArgs>(args: SelectSubset<T, filesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$filesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Files.
+     * @param {filesUpsertArgs} args - Arguments to update or create a Files.
+     * @example
+     * // Update or create a Files
+     * const files = await prisma.files.upsert({
+     *   create: {
+     *     // ... data to create a Files
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Files we want to update
+     *   }
+     * })
+     */
+    upsert<T extends filesUpsertArgs>(args: SelectSubset<T, filesUpsertArgs<ExtArgs>>): Prisma__filesClient<$Result.GetResult<Prisma.$filesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Files.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {filesCountArgs} args - Arguments to filter Files to count.
+     * @example
+     * // Count the number of Files
+     * const count = await prisma.files.count({
+     *   where: {
+     *     // ... the filter for the Files we want to count
+     *   }
+     * })
+    **/
+    count<T extends filesCountArgs>(
+      args?: Subset<T, filesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FilesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Files.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FilesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FilesAggregateArgs>(args: Subset<T, FilesAggregateArgs>): Prisma.PrismaPromise<GetFilesAggregateType<T>>
+
+    /**
+     * Group by Files.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {filesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends filesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: filesGroupByArgs['orderBy'] }
+        : { orderBy?: filesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, filesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFilesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the files model
+   */
+  readonly fields: filesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for files.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__filesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    owner<T extends files$ownerArgs<ExtArgs> = {}>(args?: Subset<T, files$ownerArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the files model
+   */
+  interface filesFieldRefs {
+    readonly id: FieldRef<"files", 'BigInt'>
+    readonly key: FieldRef<"files", 'String'>
+    readonly url: FieldRef<"files", 'String'>
+    readonly mime: FieldRef<"files", 'String'>
+    readonly size: FieldRef<"files", 'Int'>
+    readonly bucket: FieldRef<"files", 'String'>
+    readonly ownerId: FieldRef<"files", 'BigInt'>
+    readonly createdAt: FieldRef<"files", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * files findUnique
+   */
+  export type filesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesInclude<ExtArgs> | null
+    /**
+     * Filter, which files to fetch.
+     */
+    where: filesWhereUniqueInput
+  }
+
+  /**
+   * files findUniqueOrThrow
+   */
+  export type filesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesInclude<ExtArgs> | null
+    /**
+     * Filter, which files to fetch.
+     */
+    where: filesWhereUniqueInput
+  }
+
+  /**
+   * files findFirst
+   */
+  export type filesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesInclude<ExtArgs> | null
+    /**
+     * Filter, which files to fetch.
+     */
+    where?: filesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of files to fetch.
+     */
+    orderBy?: filesOrderByWithRelationInput | filesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for files.
+     */
+    cursor?: filesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` files from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` files.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of files.
+     */
+    distinct?: FilesScalarFieldEnum | FilesScalarFieldEnum[]
+  }
+
+  /**
+   * files findFirstOrThrow
+   */
+  export type filesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesInclude<ExtArgs> | null
+    /**
+     * Filter, which files to fetch.
+     */
+    where?: filesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of files to fetch.
+     */
+    orderBy?: filesOrderByWithRelationInput | filesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for files.
+     */
+    cursor?: filesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` files from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` files.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of files.
+     */
+    distinct?: FilesScalarFieldEnum | FilesScalarFieldEnum[]
+  }
+
+  /**
+   * files findMany
+   */
+  export type filesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesInclude<ExtArgs> | null
+    /**
+     * Filter, which files to fetch.
+     */
+    where?: filesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of files to fetch.
+     */
+    orderBy?: filesOrderByWithRelationInput | filesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing files.
+     */
+    cursor?: filesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` files from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` files.
+     */
+    skip?: number
+    distinct?: FilesScalarFieldEnum | FilesScalarFieldEnum[]
+  }
+
+  /**
+   * files create
+   */
+  export type filesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a files.
+     */
+    data: XOR<filesCreateInput, filesUncheckedCreateInput>
+  }
+
+  /**
+   * files createMany
+   */
+  export type filesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many files.
+     */
+    data: filesCreateManyInput | filesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * files createManyAndReturn
+   */
+  export type filesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * The data used to create many files.
+     */
+    data: filesCreateManyInput | filesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * files update
+   */
+  export type filesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a files.
+     */
+    data: XOR<filesUpdateInput, filesUncheckedUpdateInput>
+    /**
+     * Choose, which files to update.
+     */
+    where: filesWhereUniqueInput
+  }
+
+  /**
+   * files updateMany
+   */
+  export type filesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update files.
+     */
+    data: XOR<filesUpdateManyMutationInput, filesUncheckedUpdateManyInput>
+    /**
+     * Filter which files to update
+     */
+    where?: filesWhereInput
+    /**
+     * Limit how many files to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * files updateManyAndReturn
+   */
+  export type filesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * The data used to update files.
+     */
+    data: XOR<filesUpdateManyMutationInput, filesUncheckedUpdateManyInput>
+    /**
+     * Filter which files to update
+     */
+    where?: filesWhereInput
+    /**
+     * Limit how many files to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * files upsert
+   */
+  export type filesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the files to update in case it exists.
+     */
+    where: filesWhereUniqueInput
+    /**
+     * In case the files found by the `where` argument doesn't exist, create a new files with this data.
+     */
+    create: XOR<filesCreateInput, filesUncheckedCreateInput>
+    /**
+     * In case the files was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<filesUpdateInput, filesUncheckedUpdateInput>
+  }
+
+  /**
+   * files delete
+   */
+  export type filesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesInclude<ExtArgs> | null
+    /**
+     * Filter which files to delete.
+     */
+    where: filesWhereUniqueInput
+  }
+
+  /**
+   * files deleteMany
+   */
+  export type filesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which files to delete
+     */
+    where?: filesWhereInput
+    /**
+     * Limit how many files to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * files.owner
+   */
+  export type files$ownerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    where?: usersWhereInput
+  }
+
+  /**
+   * files without action
+   */
+  export type filesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the files
+     */
+    select?: filesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the files
+     */
+    omit?: filesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: filesInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -25869,7 +27227,8 @@ export namespace Prisma {
     startDate: 'startDate',
     endDate: 'endDate',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    ownerId: 'ownerId'
   };
 
   export type ExperiencesScalarFieldEnum = (typeof ExperiencesScalarFieldEnum)[keyof typeof ExperiencesScalarFieldEnum]
@@ -25999,6 +27358,20 @@ export namespace Prisma {
   };
 
   export type Rate_limitsScalarFieldEnum = (typeof Rate_limitsScalarFieldEnum)[keyof typeof Rate_limitsScalarFieldEnum]
+
+
+  export const FilesScalarFieldEnum: {
+    id: 'id',
+    key: 'key',
+    url: 'url',
+    mime: 'mime',
+    size: 'size',
+    bucket: 'bucket',
+    ownerId: 'ownerId',
+    createdAt: 'createdAt'
+  };
+
+  export type FilesScalarFieldEnum = (typeof FilesScalarFieldEnum)[keyof typeof FilesScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -26159,11 +27532,13 @@ export namespace Prisma {
     accounts?: AccountsListRelationFilter
     activities?: ActivitiesListRelationFilter
     blogs?: BlogsListRelationFilter
-    userExperiences?: User_experiencesListRelationFilter
+    experiences?: ExperiencesListRelationFilter
     userSkills?: User_skillsListRelationFilter
     refreshTokens?: Refresh_tokensListRelationFilter
     magicLinks?: Magic_linksListRelationFilter
     verificationCodes?: Verification_codesListRelationFilter
+    userExperiences?: User_experiencesListRelationFilter
+    files?: FilesListRelationFilter
   }
 
   export type usersOrderByWithRelationInput = {
@@ -26181,11 +27556,13 @@ export namespace Prisma {
     accounts?: accountsOrderByRelationAggregateInput
     activities?: activitiesOrderByRelationAggregateInput
     blogs?: blogsOrderByRelationAggregateInput
-    userExperiences?: user_experiencesOrderByRelationAggregateInput
+    experiences?: experiencesOrderByRelationAggregateInput
     userSkills?: user_skillsOrderByRelationAggregateInput
     refreshTokens?: refresh_tokensOrderByRelationAggregateInput
     magicLinks?: magic_linksOrderByRelationAggregateInput
     verificationCodes?: verification_codesOrderByRelationAggregateInput
+    userExperiences?: user_experiencesOrderByRelationAggregateInput
+    files?: filesOrderByRelationAggregateInput
   }
 
   export type usersWhereUniqueInput = Prisma.AtLeast<{
@@ -26206,11 +27583,13 @@ export namespace Prisma {
     accounts?: AccountsListRelationFilter
     activities?: ActivitiesListRelationFilter
     blogs?: BlogsListRelationFilter
-    userExperiences?: User_experiencesListRelationFilter
+    experiences?: ExperiencesListRelationFilter
     userSkills?: User_skillsListRelationFilter
     refreshTokens?: Refresh_tokensListRelationFilter
     magicLinks?: Magic_linksListRelationFilter
     verificationCodes?: Verification_codesListRelationFilter
+    userExperiences?: User_experiencesListRelationFilter
+    files?: FilesListRelationFilter
   }, "id" | "email">
 
   export type usersOrderByWithAggregationInput = {
@@ -26729,7 +28108,9 @@ export namespace Prisma {
     endDate?: DateTimeNullableFilter<"experiences"> | Date | string | null
     createdAt?: DateTimeFilter<"experiences"> | Date | string
     updatedAt?: DateTimeFilter<"experiences"> | Date | string
-    users?: User_experiencesListRelationFilter
+    ownerId?: BigIntFilter<"experiences"> | bigint | number
+    owner?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    userExperiences?: User_experiencesListRelationFilter
   }
 
   export type experiencesOrderByWithRelationInput = {
@@ -26744,7 +28125,9 @@ export namespace Prisma {
     endDate?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    users?: user_experiencesOrderByRelationAggregateInput
+    ownerId?: SortOrder
+    owner?: usersOrderByWithRelationInput
+    userExperiences?: user_experiencesOrderByRelationAggregateInput
   }
 
   export type experiencesWhereUniqueInput = Prisma.AtLeast<{
@@ -26762,7 +28145,9 @@ export namespace Prisma {
     endDate?: DateTimeNullableFilter<"experiences"> | Date | string | null
     createdAt?: DateTimeFilter<"experiences"> | Date | string
     updatedAt?: DateTimeFilter<"experiences"> | Date | string
-    users?: User_experiencesListRelationFilter
+    ownerId?: BigIntFilter<"experiences"> | bigint | number
+    owner?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    userExperiences?: User_experiencesListRelationFilter
   }, "id" | "companyName">
 
   export type experiencesOrderByWithAggregationInput = {
@@ -26777,6 +28162,7 @@ export namespace Prisma {
     endDate?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ownerId?: SortOrder
     _count?: experiencesCountOrderByAggregateInput
     _avg?: experiencesAvgOrderByAggregateInput
     _max?: experiencesMaxOrderByAggregateInput
@@ -26799,6 +28185,7 @@ export namespace Prisma {
     endDate?: DateTimeNullableWithAggregatesFilter<"experiences"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"experiences"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"experiences"> | Date | string
+    ownerId?: BigIntWithAggregatesFilter<"experiences"> | bigint | number
   }
 
   export type user_experiencesWhereInput = {
@@ -27471,6 +28858,78 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"rate_limits"> | Date | string
   }
 
+  export type filesWhereInput = {
+    AND?: filesWhereInput | filesWhereInput[]
+    OR?: filesWhereInput[]
+    NOT?: filesWhereInput | filesWhereInput[]
+    id?: BigIntFilter<"files"> | bigint | number
+    key?: StringFilter<"files"> | string
+    url?: StringFilter<"files"> | string
+    mime?: StringFilter<"files"> | string
+    size?: IntNullableFilter<"files"> | number | null
+    bucket?: StringFilter<"files"> | string
+    ownerId?: BigIntNullableFilter<"files"> | bigint | number | null
+    createdAt?: DateTimeFilter<"files"> | Date | string
+    owner?: XOR<UsersNullableScalarRelationFilter, usersWhereInput> | null
+  }
+
+  export type filesOrderByWithRelationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    url?: SortOrder
+    mime?: SortOrder
+    size?: SortOrderInput | SortOrder
+    bucket?: SortOrder
+    ownerId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    owner?: usersOrderByWithRelationInput
+  }
+
+  export type filesWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    key?: string
+    AND?: filesWhereInput | filesWhereInput[]
+    OR?: filesWhereInput[]
+    NOT?: filesWhereInput | filesWhereInput[]
+    url?: StringFilter<"files"> | string
+    mime?: StringFilter<"files"> | string
+    size?: IntNullableFilter<"files"> | number | null
+    bucket?: StringFilter<"files"> | string
+    ownerId?: BigIntNullableFilter<"files"> | bigint | number | null
+    createdAt?: DateTimeFilter<"files"> | Date | string
+    owner?: XOR<UsersNullableScalarRelationFilter, usersWhereInput> | null
+  }, "id" | "key">
+
+  export type filesOrderByWithAggregationInput = {
+    id?: SortOrder
+    key?: SortOrder
+    url?: SortOrder
+    mime?: SortOrder
+    size?: SortOrderInput | SortOrder
+    bucket?: SortOrder
+    ownerId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: filesCountOrderByAggregateInput
+    _avg?: filesAvgOrderByAggregateInput
+    _max?: filesMaxOrderByAggregateInput
+    _min?: filesMinOrderByAggregateInput
+    _sum?: filesSumOrderByAggregateInput
+  }
+
+  export type filesScalarWhereWithAggregatesInput = {
+    AND?: filesScalarWhereWithAggregatesInput | filesScalarWhereWithAggregatesInput[]
+    OR?: filesScalarWhereWithAggregatesInput[]
+    NOT?: filesScalarWhereWithAggregatesInput | filesScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"files"> | bigint | number
+    key?: StringWithAggregatesFilter<"files"> | string
+    url?: StringWithAggregatesFilter<"files"> | string
+    mime?: StringWithAggregatesFilter<"files"> | string
+    size?: IntNullableWithAggregatesFilter<"files"> | number | null
+    bucket?: StringWithAggregatesFilter<"files"> | string
+    ownerId?: BigIntNullableWithAggregatesFilter<"files"> | bigint | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"files"> | Date | string
+  }
+
   export type usersCreateInput = {
     id?: bigint | number
     email: string
@@ -27485,11 +28944,13 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    files?: filesCreateNestedManyWithoutOwnerInput
   }
 
   export type usersUncheckedCreateInput = {
@@ -27506,11 +28967,13 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    files?: filesUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type usersUpdateInput = {
@@ -27527,11 +28990,13 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    files?: filesUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersUncheckedUpdateInput = {
@@ -27548,11 +29013,13 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    files?: filesUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersCreateManyInput = {
@@ -28082,7 +29549,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    users?: user_experiencesCreateNestedManyWithoutExperienceInput
+    owner: usersCreateNestedOneWithoutExperiencesInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutExperienceInput
   }
 
   export type experiencesUncheckedCreateInput = {
@@ -28097,7 +29565,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    users?: user_experiencesUncheckedCreateNestedManyWithoutExperienceInput
+    ownerId: bigint | number
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutExperienceInput
   }
 
   export type experiencesUpdateInput = {
@@ -28112,7 +29581,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    users?: user_experiencesUpdateManyWithoutExperienceNestedInput
+    owner?: usersUpdateOneRequiredWithoutExperiencesNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutExperienceNestedInput
   }
 
   export type experiencesUncheckedUpdateInput = {
@@ -28127,7 +29597,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    users?: user_experiencesUncheckedUpdateManyWithoutExperienceNestedInput
+    ownerId?: BigIntFieldUpdateOperationsInput | bigint | number
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutExperienceNestedInput
   }
 
   export type experiencesCreateManyInput = {
@@ -28142,6 +29613,7 @@ export namespace Prisma {
     endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    ownerId: bigint | number
   }
 
   export type experiencesUpdateManyMutationInput = {
@@ -28170,11 +29642,12 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type user_experiencesCreateInput = {
     user: usersCreateNestedOneWithoutUserExperiencesInput
-    experience: experiencesCreateNestedOneWithoutUsersInput
+    experience: experiencesCreateNestedOneWithoutUserExperiencesInput
   }
 
   export type user_experiencesUncheckedCreateInput = {
@@ -28184,7 +29657,7 @@ export namespace Prisma {
 
   export type user_experiencesUpdateInput = {
     user?: usersUpdateOneRequiredWithoutUserExperiencesNestedInput
-    experience?: experiencesUpdateOneRequiredWithoutUsersNestedInput
+    experience?: experiencesUpdateOneRequiredWithoutUserExperiencesNestedInput
   }
 
   export type user_experiencesUncheckedUpdateInput = {
@@ -28834,6 +30307,82 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type filesCreateInput = {
+    id?: bigint | number
+    key: string
+    url: string
+    mime: string
+    size?: number | null
+    bucket?: string
+    createdAt?: Date | string
+    owner?: usersCreateNestedOneWithoutFilesInput
+  }
+
+  export type filesUncheckedCreateInput = {
+    id?: bigint | number
+    key: string
+    url: string
+    mime: string
+    size?: number | null
+    bucket?: string
+    ownerId?: bigint | number | null
+    createdAt?: Date | string
+  }
+
+  export type filesUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    key?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mime?: StringFieldUpdateOperationsInput | string
+    size?: NullableIntFieldUpdateOperationsInput | number | null
+    bucket?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owner?: usersUpdateOneWithoutFilesNestedInput
+  }
+
+  export type filesUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    key?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mime?: StringFieldUpdateOperationsInput | string
+    size?: NullableIntFieldUpdateOperationsInput | number | null
+    bucket?: StringFieldUpdateOperationsInput | string
+    ownerId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type filesCreateManyInput = {
+    id?: bigint | number
+    key: string
+    url: string
+    mime: string
+    size?: number | null
+    bucket?: string
+    ownerId?: bigint | number | null
+    createdAt?: Date | string
+  }
+
+  export type filesUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    key?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mime?: StringFieldUpdateOperationsInput | string
+    size?: NullableIntFieldUpdateOperationsInput | number | null
+    bucket?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type filesUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    key?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mime?: StringFieldUpdateOperationsInput | string
+    size?: NullableIntFieldUpdateOperationsInput | number | null
+    bucket?: StringFieldUpdateOperationsInput | string
+    ownerId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type BigIntFilter<$PrismaModel = never> = {
     equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
@@ -28942,10 +30491,10 @@ export namespace Prisma {
     none?: blogsWhereInput
   }
 
-  export type User_experiencesListRelationFilter = {
-    every?: user_experiencesWhereInput
-    some?: user_experiencesWhereInput
-    none?: user_experiencesWhereInput
+  export type ExperiencesListRelationFilter = {
+    every?: experiencesWhereInput
+    some?: experiencesWhereInput
+    none?: experiencesWhereInput
   }
 
   export type User_skillsListRelationFilter = {
@@ -28972,6 +30521,18 @@ export namespace Prisma {
     none?: verification_codesWhereInput
   }
 
+  export type User_experiencesListRelationFilter = {
+    every?: user_experiencesWhereInput
+    some?: user_experiencesWhereInput
+    none?: user_experiencesWhereInput
+  }
+
+  export type FilesListRelationFilter = {
+    every?: filesWhereInput
+    some?: filesWhereInput
+    none?: filesWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -28993,7 +30554,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type user_experiencesOrderByRelationAggregateInput = {
+  export type experiencesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -29010,6 +30571,14 @@ export namespace Prisma {
   }
 
   export type verification_codesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type user_experiencesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type filesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -29582,11 +31151,13 @@ export namespace Prisma {
     endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type experiencesAvgOrderByAggregateInput = {
     id?: SortOrder
     durationMonths?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type experiencesMaxOrderByAggregateInput = {
@@ -29601,6 +31172,7 @@ export namespace Prisma {
     endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type experiencesMinOrderByAggregateInput = {
@@ -29615,11 +31187,13 @@ export namespace Prisma {
     endDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type experiencesSumOrderByAggregateInput = {
     id?: SortOrder
     durationMonths?: SortOrder
+    ownerId?: SortOrder
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -30090,6 +31664,51 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type filesCountOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    url?: SortOrder
+    mime?: SortOrder
+    size?: SortOrder
+    bucket?: SortOrder
+    ownerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type filesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    size?: SortOrder
+    ownerId?: SortOrder
+  }
+
+  export type filesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    url?: SortOrder
+    mime?: SortOrder
+    size?: SortOrder
+    bucket?: SortOrder
+    ownerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type filesMinOrderByAggregateInput = {
+    id?: SortOrder
+    key?: SortOrder
+    url?: SortOrder
+    mime?: SortOrder
+    size?: SortOrder
+    bucket?: SortOrder
+    ownerId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type filesSumOrderByAggregateInput = {
+    id?: SortOrder
+    size?: SortOrder
+    ownerId?: SortOrder
+  }
+
   export type rolesCreateNestedOneWithoutUsersInput = {
     create?: XOR<rolesCreateWithoutUsersInput, rolesUncheckedCreateWithoutUsersInput>
     connectOrCreate?: rolesCreateOrConnectWithoutUsersInput
@@ -30124,11 +31743,11 @@ export namespace Prisma {
     connect?: blogsWhereUniqueInput | blogsWhereUniqueInput[]
   }
 
-  export type user_experiencesCreateNestedManyWithoutUserInput = {
-    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
-    createMany?: user_experiencesCreateManyUserInputEnvelope
-    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+  export type experiencesCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<experiencesCreateWithoutOwnerInput, experiencesUncheckedCreateWithoutOwnerInput> | experiencesCreateWithoutOwnerInput[] | experiencesUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: experiencesCreateOrConnectWithoutOwnerInput | experiencesCreateOrConnectWithoutOwnerInput[]
+    createMany?: experiencesCreateManyOwnerInputEnvelope
+    connect?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
   }
 
   export type user_skillsCreateNestedManyWithoutUserInput = {
@@ -30159,6 +31778,20 @@ export namespace Prisma {
     connect?: verification_codesWhereUniqueInput | verification_codesWhereUniqueInput[]
   }
 
+  export type user_experiencesCreateNestedManyWithoutUserInput = {
+    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
+    createMany?: user_experiencesCreateManyUserInputEnvelope
+    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+  }
+
+  export type filesCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<filesCreateWithoutOwnerInput, filesUncheckedCreateWithoutOwnerInput> | filesCreateWithoutOwnerInput[] | filesUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: filesCreateOrConnectWithoutOwnerInput | filesCreateOrConnectWithoutOwnerInput[]
+    createMany?: filesCreateManyOwnerInputEnvelope
+    connect?: filesWhereUniqueInput | filesWhereUniqueInput[]
+  }
+
   export type rate_limitsUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<rate_limitsCreateWithoutUserInput, rate_limitsUncheckedCreateWithoutUserInput> | rate_limitsCreateWithoutUserInput[] | rate_limitsUncheckedCreateWithoutUserInput[]
     connectOrCreate?: rate_limitsCreateOrConnectWithoutUserInput | rate_limitsCreateOrConnectWithoutUserInput[]
@@ -30187,11 +31820,11 @@ export namespace Prisma {
     connect?: blogsWhereUniqueInput | blogsWhereUniqueInput[]
   }
 
-  export type user_experiencesUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
-    createMany?: user_experiencesCreateManyUserInputEnvelope
-    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+  export type experiencesUncheckedCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<experiencesCreateWithoutOwnerInput, experiencesUncheckedCreateWithoutOwnerInput> | experiencesCreateWithoutOwnerInput[] | experiencesUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: experiencesCreateOrConnectWithoutOwnerInput | experiencesCreateOrConnectWithoutOwnerInput[]
+    createMany?: experiencesCreateManyOwnerInputEnvelope
+    connect?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
   }
 
   export type user_skillsUncheckedCreateNestedManyWithoutUserInput = {
@@ -30220,6 +31853,20 @@ export namespace Prisma {
     connectOrCreate?: verification_codesCreateOrConnectWithoutUserInput | verification_codesCreateOrConnectWithoutUserInput[]
     createMany?: verification_codesCreateManyUserInputEnvelope
     connect?: verification_codesWhereUniqueInput | verification_codesWhereUniqueInput[]
+  }
+
+  export type user_experiencesUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
+    createMany?: user_experiencesCreateManyUserInputEnvelope
+    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+  }
+
+  export type filesUncheckedCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<filesCreateWithoutOwnerInput, filesUncheckedCreateWithoutOwnerInput> | filesCreateWithoutOwnerInput[] | filesUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: filesCreateOrConnectWithoutOwnerInput | filesCreateOrConnectWithoutOwnerInput[]
+    createMany?: filesCreateManyOwnerInputEnvelope
+    connect?: filesWhereUniqueInput | filesWhereUniqueInput[]
   }
 
   export type BigIntFieldUpdateOperationsInput = {
@@ -30316,18 +31963,18 @@ export namespace Prisma {
     deleteMany?: blogsScalarWhereInput | blogsScalarWhereInput[]
   }
 
-  export type user_experiencesUpdateManyWithoutUserNestedInput = {
-    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
-    upsert?: user_experiencesUpsertWithWhereUniqueWithoutUserInput | user_experiencesUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: user_experiencesCreateManyUserInputEnvelope
-    set?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    disconnect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    delete?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    update?: user_experiencesUpdateWithWhereUniqueWithoutUserInput | user_experiencesUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: user_experiencesUpdateManyWithWhereWithoutUserInput | user_experiencesUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
+  export type experiencesUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<experiencesCreateWithoutOwnerInput, experiencesUncheckedCreateWithoutOwnerInput> | experiencesCreateWithoutOwnerInput[] | experiencesUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: experiencesCreateOrConnectWithoutOwnerInput | experiencesCreateOrConnectWithoutOwnerInput[]
+    upsert?: experiencesUpsertWithWhereUniqueWithoutOwnerInput | experiencesUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: experiencesCreateManyOwnerInputEnvelope
+    set?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    disconnect?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    delete?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    connect?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    update?: experiencesUpdateWithWhereUniqueWithoutOwnerInput | experiencesUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: experiencesUpdateManyWithWhereWithoutOwnerInput | experiencesUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: experiencesScalarWhereInput | experiencesScalarWhereInput[]
   }
 
   export type user_skillsUpdateManyWithoutUserNestedInput = {
@@ -30384,6 +32031,34 @@ export namespace Prisma {
     update?: verification_codesUpdateWithWhereUniqueWithoutUserInput | verification_codesUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: verification_codesUpdateManyWithWhereWithoutUserInput | verification_codesUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: verification_codesScalarWhereInput | verification_codesScalarWhereInput[]
+  }
+
+  export type user_experiencesUpdateManyWithoutUserNestedInput = {
+    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
+    upsert?: user_experiencesUpsertWithWhereUniqueWithoutUserInput | user_experiencesUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: user_experiencesCreateManyUserInputEnvelope
+    set?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    disconnect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    delete?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    update?: user_experiencesUpdateWithWhereUniqueWithoutUserInput | user_experiencesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: user_experiencesUpdateManyWithWhereWithoutUserInput | user_experiencesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
+  }
+
+  export type filesUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<filesCreateWithoutOwnerInput, filesUncheckedCreateWithoutOwnerInput> | filesCreateWithoutOwnerInput[] | filesUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: filesCreateOrConnectWithoutOwnerInput | filesCreateOrConnectWithoutOwnerInput[]
+    upsert?: filesUpsertWithWhereUniqueWithoutOwnerInput | filesUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: filesCreateManyOwnerInputEnvelope
+    set?: filesWhereUniqueInput | filesWhereUniqueInput[]
+    disconnect?: filesWhereUniqueInput | filesWhereUniqueInput[]
+    delete?: filesWhereUniqueInput | filesWhereUniqueInput[]
+    connect?: filesWhereUniqueInput | filesWhereUniqueInput[]
+    update?: filesUpdateWithWhereUniqueWithoutOwnerInput | filesUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: filesUpdateManyWithWhereWithoutOwnerInput | filesUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: filesScalarWhereInput | filesScalarWhereInput[]
   }
 
   export type NullableBigIntFieldUpdateOperationsInput = {
@@ -30450,18 +32125,18 @@ export namespace Prisma {
     deleteMany?: blogsScalarWhereInput | blogsScalarWhereInput[]
   }
 
-  export type user_experiencesUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
-    upsert?: user_experiencesUpsertWithWhereUniqueWithoutUserInput | user_experiencesUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: user_experiencesCreateManyUserInputEnvelope
-    set?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    disconnect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    delete?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
-    update?: user_experiencesUpdateWithWhereUniqueWithoutUserInput | user_experiencesUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: user_experiencesUpdateManyWithWhereWithoutUserInput | user_experiencesUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
+  export type experiencesUncheckedUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<experiencesCreateWithoutOwnerInput, experiencesUncheckedCreateWithoutOwnerInput> | experiencesCreateWithoutOwnerInput[] | experiencesUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: experiencesCreateOrConnectWithoutOwnerInput | experiencesCreateOrConnectWithoutOwnerInput[]
+    upsert?: experiencesUpsertWithWhereUniqueWithoutOwnerInput | experiencesUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: experiencesCreateManyOwnerInputEnvelope
+    set?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    disconnect?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    delete?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    connect?: experiencesWhereUniqueInput | experiencesWhereUniqueInput[]
+    update?: experiencesUpdateWithWhereUniqueWithoutOwnerInput | experiencesUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: experiencesUpdateManyWithWhereWithoutOwnerInput | experiencesUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: experiencesScalarWhereInput | experiencesScalarWhereInput[]
   }
 
   export type user_skillsUncheckedUpdateManyWithoutUserNestedInput = {
@@ -30518,6 +32193,34 @@ export namespace Prisma {
     update?: verification_codesUpdateWithWhereUniqueWithoutUserInput | verification_codesUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: verification_codesUpdateManyWithWhereWithoutUserInput | verification_codesUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: verification_codesScalarWhereInput | verification_codesScalarWhereInput[]
+  }
+
+  export type user_experiencesUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput> | user_experiencesCreateWithoutUserInput[] | user_experiencesUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: user_experiencesCreateOrConnectWithoutUserInput | user_experiencesCreateOrConnectWithoutUserInput[]
+    upsert?: user_experiencesUpsertWithWhereUniqueWithoutUserInput | user_experiencesUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: user_experiencesCreateManyUserInputEnvelope
+    set?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    disconnect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    delete?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    connect?: user_experiencesWhereUniqueInput | user_experiencesWhereUniqueInput[]
+    update?: user_experiencesUpdateWithWhereUniqueWithoutUserInput | user_experiencesUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: user_experiencesUpdateManyWithWhereWithoutUserInput | user_experiencesUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
+  }
+
+  export type filesUncheckedUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<filesCreateWithoutOwnerInput, filesUncheckedCreateWithoutOwnerInput> | filesCreateWithoutOwnerInput[] | filesUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: filesCreateOrConnectWithoutOwnerInput | filesCreateOrConnectWithoutOwnerInput[]
+    upsert?: filesUpsertWithWhereUniqueWithoutOwnerInput | filesUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: filesCreateManyOwnerInputEnvelope
+    set?: filesWhereUniqueInput | filesWhereUniqueInput[]
+    disconnect?: filesWhereUniqueInput | filesWhereUniqueInput[]
+    delete?: filesWhereUniqueInput | filesWhereUniqueInput[]
+    connect?: filesWhereUniqueInput | filesWhereUniqueInput[]
+    update?: filesUpdateWithWhereUniqueWithoutOwnerInput | filesUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: filesUpdateManyWithWhereWithoutOwnerInput | filesUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: filesScalarWhereInput | filesScalarWhereInput[]
   }
 
   export type usersCreateNestedManyWithoutRoleInput = {
@@ -30790,6 +32493,12 @@ export namespace Prisma {
     update?: XOR<XOR<techUpdateToOneWithWhereWithoutProjectTechInput, techUpdateWithoutProjectTechInput>, techUncheckedUpdateWithoutProjectTechInput>
   }
 
+  export type usersCreateNestedOneWithoutExperiencesInput = {
+    create?: XOR<usersCreateWithoutExperiencesInput, usersUncheckedCreateWithoutExperiencesInput>
+    connectOrCreate?: usersCreateOrConnectWithoutExperiencesInput
+    connect?: usersWhereUniqueInput
+  }
+
   export type user_experiencesCreateNestedManyWithoutExperienceInput = {
     create?: XOR<user_experiencesCreateWithoutExperienceInput, user_experiencesUncheckedCreateWithoutExperienceInput> | user_experiencesCreateWithoutExperienceInput[] | user_experiencesUncheckedCreateWithoutExperienceInput[]
     connectOrCreate?: user_experiencesCreateOrConnectWithoutExperienceInput | user_experiencesCreateOrConnectWithoutExperienceInput[]
@@ -30810,6 +32519,14 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type usersUpdateOneRequiredWithoutExperiencesNestedInput = {
+    create?: XOR<usersCreateWithoutExperiencesInput, usersUncheckedCreateWithoutExperiencesInput>
+    connectOrCreate?: usersCreateOrConnectWithoutExperiencesInput
+    upsert?: usersUpsertWithoutExperiencesInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutExperiencesInput, usersUpdateWithoutExperiencesInput>, usersUncheckedUpdateWithoutExperiencesInput>
   }
 
   export type user_experiencesUpdateManyWithoutExperienceNestedInput = {
@@ -30846,9 +32563,9 @@ export namespace Prisma {
     connect?: usersWhereUniqueInput
   }
 
-  export type experiencesCreateNestedOneWithoutUsersInput = {
-    create?: XOR<experiencesCreateWithoutUsersInput, experiencesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: experiencesCreateOrConnectWithoutUsersInput
+  export type experiencesCreateNestedOneWithoutUserExperiencesInput = {
+    create?: XOR<experiencesCreateWithoutUserExperiencesInput, experiencesUncheckedCreateWithoutUserExperiencesInput>
+    connectOrCreate?: experiencesCreateOrConnectWithoutUserExperiencesInput
     connect?: experiencesWhereUniqueInput
   }
 
@@ -30860,12 +32577,12 @@ export namespace Prisma {
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUserExperiencesInput, usersUpdateWithoutUserExperiencesInput>, usersUncheckedUpdateWithoutUserExperiencesInput>
   }
 
-  export type experiencesUpdateOneRequiredWithoutUsersNestedInput = {
-    create?: XOR<experiencesCreateWithoutUsersInput, experiencesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: experiencesCreateOrConnectWithoutUsersInput
-    upsert?: experiencesUpsertWithoutUsersInput
+  export type experiencesUpdateOneRequiredWithoutUserExperiencesNestedInput = {
+    create?: XOR<experiencesCreateWithoutUserExperiencesInput, experiencesUncheckedCreateWithoutUserExperiencesInput>
+    connectOrCreate?: experiencesCreateOrConnectWithoutUserExperiencesInput
+    upsert?: experiencesUpsertWithoutUserExperiencesInput
     connect?: experiencesWhereUniqueInput
-    update?: XOR<XOR<experiencesUpdateToOneWithWhereWithoutUsersInput, experiencesUpdateWithoutUsersInput>, experiencesUncheckedUpdateWithoutUsersInput>
+    update?: XOR<XOR<experiencesUpdateToOneWithWhereWithoutUserExperiencesInput, experiencesUpdateWithoutUserExperiencesInput>, experiencesUncheckedUpdateWithoutUserExperiencesInput>
   }
 
   export type user_skillsCreateNestedManyWithoutSkillInput = {
@@ -31216,6 +32933,22 @@ export namespace Prisma {
     delete?: usersWhereInput | boolean
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutRate_limitsInput, usersUpdateWithoutRate_limitsInput>, usersUncheckedUpdateWithoutRate_limitsInput>
+  }
+
+  export type usersCreateNestedOneWithoutFilesInput = {
+    create?: XOR<usersCreateWithoutFilesInput, usersUncheckedCreateWithoutFilesInput>
+    connectOrCreate?: usersCreateOrConnectWithoutFilesInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersUpdateOneWithoutFilesNestedInput = {
+    create?: XOR<usersCreateWithoutFilesInput, usersUncheckedCreateWithoutFilesInput>
+    connectOrCreate?: usersCreateOrConnectWithoutFilesInput
+    upsert?: usersUpsertWithoutFilesInput
+    disconnect?: usersWhereInput | boolean
+    delete?: usersWhereInput | boolean
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutFilesInput, usersUpdateWithoutFilesInput>, usersUncheckedUpdateWithoutFilesInput>
   }
 
   export type NestedBigIntFilter<$PrismaModel = never> = {
@@ -31645,21 +33378,43 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type user_experiencesCreateWithoutUserInput = {
-    experience: experiencesCreateNestedOneWithoutUsersInput
+  export type experiencesCreateWithoutOwnerInput = {
+    id?: bigint | number
+    companyName: string
+    role?: string | null
+    description?: string | null
+    image?: string | null
+    url?: string | null
+    durationMonths?: number | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userExperiences?: user_experiencesCreateNestedManyWithoutExperienceInput
   }
 
-  export type user_experiencesUncheckedCreateWithoutUserInput = {
-    experienceId: bigint | number
+  export type experiencesUncheckedCreateWithoutOwnerInput = {
+    id?: bigint | number
+    companyName: string
+    role?: string | null
+    description?: string | null
+    image?: string | null
+    url?: string | null
+    durationMonths?: number | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutExperienceInput
   }
 
-  export type user_experiencesCreateOrConnectWithoutUserInput = {
-    where: user_experiencesWhereUniqueInput
-    create: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput>
+  export type experiencesCreateOrConnectWithoutOwnerInput = {
+    where: experiencesWhereUniqueInput
+    create: XOR<experiencesCreateWithoutOwnerInput, experiencesUncheckedCreateWithoutOwnerInput>
   }
 
-  export type user_experiencesCreateManyUserInputEnvelope = {
-    data: user_experiencesCreateManyUserInput | user_experiencesCreateManyUserInput[]
+  export type experiencesCreateManyOwnerInputEnvelope = {
+    data: experiencesCreateManyOwnerInput | experiencesCreateManyOwnerInput[]
     skipDuplicates?: boolean
   }
 
@@ -31770,6 +33525,54 @@ export namespace Prisma {
 
   export type verification_codesCreateManyUserInputEnvelope = {
     data: verification_codesCreateManyUserInput | verification_codesCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type user_experiencesCreateWithoutUserInput = {
+    experience: experiencesCreateNestedOneWithoutUserExperiencesInput
+  }
+
+  export type user_experiencesUncheckedCreateWithoutUserInput = {
+    experienceId: bigint | number
+  }
+
+  export type user_experiencesCreateOrConnectWithoutUserInput = {
+    where: user_experiencesWhereUniqueInput
+    create: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput>
+  }
+
+  export type user_experiencesCreateManyUserInputEnvelope = {
+    data: user_experiencesCreateManyUserInput | user_experiencesCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type filesCreateWithoutOwnerInput = {
+    id?: bigint | number
+    key: string
+    url: string
+    mime: string
+    size?: number | null
+    bucket?: string
+    createdAt?: Date | string
+  }
+
+  export type filesUncheckedCreateWithoutOwnerInput = {
+    id?: bigint | number
+    key: string
+    url: string
+    mime: string
+    size?: number | null
+    bucket?: string
+    createdAt?: Date | string
+  }
+
+  export type filesCreateOrConnectWithoutOwnerInput = {
+    where: filesWhereUniqueInput
+    create: XOR<filesCreateWithoutOwnerInput, filesUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type filesCreateManyOwnerInputEnvelope = {
+    data: filesCreateManyOwnerInput | filesCreateManyOwnerInput[]
     skipDuplicates?: boolean
   }
 
@@ -31922,28 +33725,38 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"blogs"> | Date | string
   }
 
-  export type user_experiencesUpsertWithWhereUniqueWithoutUserInput = {
-    where: user_experiencesWhereUniqueInput
-    update: XOR<user_experiencesUpdateWithoutUserInput, user_experiencesUncheckedUpdateWithoutUserInput>
-    create: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput>
+  export type experiencesUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: experiencesWhereUniqueInput
+    update: XOR<experiencesUpdateWithoutOwnerInput, experiencesUncheckedUpdateWithoutOwnerInput>
+    create: XOR<experiencesCreateWithoutOwnerInput, experiencesUncheckedCreateWithoutOwnerInput>
   }
 
-  export type user_experiencesUpdateWithWhereUniqueWithoutUserInput = {
-    where: user_experiencesWhereUniqueInput
-    data: XOR<user_experiencesUpdateWithoutUserInput, user_experiencesUncheckedUpdateWithoutUserInput>
+  export type experiencesUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: experiencesWhereUniqueInput
+    data: XOR<experiencesUpdateWithoutOwnerInput, experiencesUncheckedUpdateWithoutOwnerInput>
   }
 
-  export type user_experiencesUpdateManyWithWhereWithoutUserInput = {
-    where: user_experiencesScalarWhereInput
-    data: XOR<user_experiencesUpdateManyMutationInput, user_experiencesUncheckedUpdateManyWithoutUserInput>
+  export type experiencesUpdateManyWithWhereWithoutOwnerInput = {
+    where: experiencesScalarWhereInput
+    data: XOR<experiencesUpdateManyMutationInput, experiencesUncheckedUpdateManyWithoutOwnerInput>
   }
 
-  export type user_experiencesScalarWhereInput = {
-    AND?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
-    OR?: user_experiencesScalarWhereInput[]
-    NOT?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
-    userId?: BigIntFilter<"user_experiences"> | bigint | number
-    experienceId?: BigIntFilter<"user_experiences"> | bigint | number
+  export type experiencesScalarWhereInput = {
+    AND?: experiencesScalarWhereInput | experiencesScalarWhereInput[]
+    OR?: experiencesScalarWhereInput[]
+    NOT?: experiencesScalarWhereInput | experiencesScalarWhereInput[]
+    id?: BigIntFilter<"experiences"> | bigint | number
+    companyName?: StringFilter<"experiences"> | string
+    role?: StringNullableFilter<"experiences"> | string | null
+    description?: StringNullableFilter<"experiences"> | string | null
+    image?: StringNullableFilter<"experiences"> | string | null
+    url?: StringNullableFilter<"experiences"> | string | null
+    durationMonths?: IntNullableFilter<"experiences"> | number | null
+    startDate?: DateTimeNullableFilter<"experiences"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"experiences"> | Date | string | null
+    createdAt?: DateTimeFilter<"experiences"> | Date | string
+    updatedAt?: DateTimeFilter<"experiences"> | Date | string
+    ownerId?: BigIntFilter<"experiences"> | bigint | number
   }
 
   export type user_skillsUpsertWithWhereUniqueWithoutUserInput = {
@@ -32060,6 +33873,60 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"verification_codes"> | Date | string
   }
 
+  export type user_experiencesUpsertWithWhereUniqueWithoutUserInput = {
+    where: user_experiencesWhereUniqueInput
+    update: XOR<user_experiencesUpdateWithoutUserInput, user_experiencesUncheckedUpdateWithoutUserInput>
+    create: XOR<user_experiencesCreateWithoutUserInput, user_experiencesUncheckedCreateWithoutUserInput>
+  }
+
+  export type user_experiencesUpdateWithWhereUniqueWithoutUserInput = {
+    where: user_experiencesWhereUniqueInput
+    data: XOR<user_experiencesUpdateWithoutUserInput, user_experiencesUncheckedUpdateWithoutUserInput>
+  }
+
+  export type user_experiencesUpdateManyWithWhereWithoutUserInput = {
+    where: user_experiencesScalarWhereInput
+    data: XOR<user_experiencesUpdateManyMutationInput, user_experiencesUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type user_experiencesScalarWhereInput = {
+    AND?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
+    OR?: user_experiencesScalarWhereInput[]
+    NOT?: user_experiencesScalarWhereInput | user_experiencesScalarWhereInput[]
+    userId?: BigIntFilter<"user_experiences"> | bigint | number
+    experienceId?: BigIntFilter<"user_experiences"> | bigint | number
+  }
+
+  export type filesUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: filesWhereUniqueInput
+    update: XOR<filesUpdateWithoutOwnerInput, filesUncheckedUpdateWithoutOwnerInput>
+    create: XOR<filesCreateWithoutOwnerInput, filesUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type filesUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: filesWhereUniqueInput
+    data: XOR<filesUpdateWithoutOwnerInput, filesUncheckedUpdateWithoutOwnerInput>
+  }
+
+  export type filesUpdateManyWithWhereWithoutOwnerInput = {
+    where: filesScalarWhereInput
+    data: XOR<filesUpdateManyMutationInput, filesUncheckedUpdateManyWithoutOwnerInput>
+  }
+
+  export type filesScalarWhereInput = {
+    AND?: filesScalarWhereInput | filesScalarWhereInput[]
+    OR?: filesScalarWhereInput[]
+    NOT?: filesScalarWhereInput | filesScalarWhereInput[]
+    id?: BigIntFilter<"files"> | bigint | number
+    key?: StringFilter<"files"> | string
+    url?: StringFilter<"files"> | string
+    mime?: StringFilter<"files"> | string
+    size?: IntNullableFilter<"files"> | number | null
+    bucket?: StringFilter<"files"> | string
+    ownerId?: BigIntNullableFilter<"files"> | bigint | number | null
+    createdAt?: DateTimeFilter<"files"> | Date | string
+  }
+
   export type usersCreateWithoutRoleInput = {
     id?: bigint | number
     email: string
@@ -32073,11 +33940,13 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    files?: filesCreateNestedManyWithoutOwnerInput
   }
 
   export type usersUncheckedCreateWithoutRoleInput = {
@@ -32093,11 +33962,13 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    files?: filesUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type usersCreateOrConnectWithoutRoleInput = {
@@ -32196,11 +34067,13 @@ export namespace Prisma {
     rate_limits?: rate_limitsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    files?: filesCreateNestedManyWithoutOwnerInput
   }
 
   export type usersUncheckedCreateWithoutAccountsInput = {
@@ -32216,11 +34089,13 @@ export namespace Prisma {
     rate_limits?: rate_limitsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    files?: filesUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type usersCreateOrConnectWithoutAccountsInput = {
@@ -32252,11 +34127,13 @@ export namespace Prisma {
     rate_limits?: rate_limitsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    files?: filesUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersUncheckedUpdateWithoutAccountsInput = {
@@ -32272,11 +34149,13 @@ export namespace Prisma {
     rate_limits?: rate_limitsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    files?: filesUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersCreateWithoutActivitiesInput = {
@@ -32292,11 +34171,13 @@ export namespace Prisma {
     rate_limits?: rate_limitsCreateNestedManyWithoutUserInput
     accounts?: accountsCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    files?: filesCreateNestedManyWithoutOwnerInput
   }
 
   export type usersUncheckedCreateWithoutActivitiesInput = {
@@ -32312,11 +34193,13 @@ export namespace Prisma {
     rate_limits?: rate_limitsUncheckedCreateNestedManyWithoutUserInput
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    files?: filesUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type usersCreateOrConnectWithoutActivitiesInput = {
@@ -32348,11 +34231,13 @@ export namespace Prisma {
     rate_limits?: rate_limitsUpdateManyWithoutUserNestedInput
     accounts?: accountsUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    files?: filesUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersUncheckedUpdateWithoutActivitiesInput = {
@@ -32368,11 +34253,13 @@ export namespace Prisma {
     rate_limits?: rate_limitsUncheckedUpdateManyWithoutUserNestedInput
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    files?: filesUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersCreateWithoutBlogsInput = {
@@ -32388,11 +34275,13 @@ export namespace Prisma {
     rate_limits?: rate_limitsCreateNestedManyWithoutUserInput
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    files?: filesCreateNestedManyWithoutOwnerInput
   }
 
   export type usersUncheckedCreateWithoutBlogsInput = {
@@ -32408,11 +34297,13 @@ export namespace Prisma {
     rate_limits?: rate_limitsUncheckedCreateNestedManyWithoutUserInput
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    files?: filesUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type usersCreateOrConnectWithoutBlogsInput = {
@@ -32462,11 +34353,13 @@ export namespace Prisma {
     rate_limits?: rate_limitsUpdateManyWithoutUserNestedInput
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    files?: filesUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersUncheckedUpdateWithoutBlogsInput = {
@@ -32482,11 +34375,13 @@ export namespace Prisma {
     rate_limits?: rate_limitsUncheckedUpdateManyWithoutUserNestedInput
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    files?: filesUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type blog_techUpsertWithWhereUniqueWithoutBlogInput = {
@@ -32795,6 +34690,55 @@ export namespace Prisma {
     blogTech?: blog_techUncheckedUpdateManyWithoutTechNestedInput
   }
 
+  export type usersCreateWithoutExperiencesInput = {
+    id?: bigint | number
+    email: string
+    password?: string | null
+    name?: string | null
+    emailVerified?: Date | string | null
+    isDisabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    rate_limits?: rate_limitsCreateNestedManyWithoutUserInput
+    accounts?: accountsCreateNestedManyWithoutUserInput
+    activities?: activitiesCreateNestedManyWithoutUserInput
+    blogs?: blogsCreateNestedManyWithoutAuthorInput
+    userSkills?: user_skillsCreateNestedManyWithoutUserInput
+    refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
+    magicLinks?: magic_linksCreateNestedManyWithoutUserInput
+    verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    files?: filesCreateNestedManyWithoutOwnerInput
+  }
+
+  export type usersUncheckedCreateWithoutExperiencesInput = {
+    id?: bigint | number
+    email: string
+    password?: string | null
+    name?: string | null
+    emailVerified?: Date | string | null
+    isDisabled?: boolean
+    roleId?: bigint | number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    rate_limits?: rate_limitsUncheckedCreateNestedManyWithoutUserInput
+    accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
+    activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
+    blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
+    userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
+    refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
+    magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
+    verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    files?: filesUncheckedCreateNestedManyWithoutOwnerInput
+  }
+
+  export type usersCreateOrConnectWithoutExperiencesInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutExperiencesInput, usersUncheckedCreateWithoutExperiencesInput>
+  }
+
   export type user_experiencesCreateWithoutExperienceInput = {
     user: usersCreateNestedOneWithoutUserExperiencesInput
   }
@@ -32811,6 +34755,61 @@ export namespace Prisma {
   export type user_experiencesCreateManyExperienceInputEnvelope = {
     data: user_experiencesCreateManyExperienceInput | user_experiencesCreateManyExperienceInput[]
     skipDuplicates?: boolean
+  }
+
+  export type usersUpsertWithoutExperiencesInput = {
+    update: XOR<usersUpdateWithoutExperiencesInput, usersUncheckedUpdateWithoutExperiencesInput>
+    create: XOR<usersCreateWithoutExperiencesInput, usersUncheckedCreateWithoutExperiencesInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutExperiencesInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutExperiencesInput, usersUncheckedUpdateWithoutExperiencesInput>
+  }
+
+  export type usersUpdateWithoutExperiencesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDisabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    rate_limits?: rate_limitsUpdateManyWithoutUserNestedInput
+    accounts?: accountsUpdateManyWithoutUserNestedInput
+    activities?: activitiesUpdateManyWithoutUserNestedInput
+    blogs?: blogsUpdateManyWithoutAuthorNestedInput
+    userSkills?: user_skillsUpdateManyWithoutUserNestedInput
+    refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
+    magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
+    verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    files?: filesUpdateManyWithoutOwnerNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutExperiencesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDisabled?: BoolFieldUpdateOperationsInput | boolean
+    roleId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rate_limits?: rate_limitsUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
+    activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
+    blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
+    userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
+    refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
+    magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
+    verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    files?: filesUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type user_experiencesUpsertWithWhereUniqueWithoutExperienceInput = {
@@ -32843,10 +34842,12 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    files?: filesCreateNestedManyWithoutOwnerInput
   }
 
   export type usersUncheckedCreateWithoutUserExperiencesInput = {
@@ -32863,10 +34864,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    files?: filesUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type usersCreateOrConnectWithoutUserExperiencesInput = {
@@ -32874,7 +34877,7 @@ export namespace Prisma {
     create: XOR<usersCreateWithoutUserExperiencesInput, usersUncheckedCreateWithoutUserExperiencesInput>
   }
 
-  export type experiencesCreateWithoutUsersInput = {
+  export type experiencesCreateWithoutUserExperiencesInput = {
     id?: bigint | number
     companyName: string
     role?: string | null
@@ -32886,9 +34889,10 @@ export namespace Prisma {
     endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    owner: usersCreateNestedOneWithoutExperiencesInput
   }
 
-  export type experiencesUncheckedCreateWithoutUsersInput = {
+  export type experiencesUncheckedCreateWithoutUserExperiencesInput = {
     id?: bigint | number
     companyName: string
     role?: string | null
@@ -32900,11 +34904,12 @@ export namespace Prisma {
     endDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    ownerId: bigint | number
   }
 
-  export type experiencesCreateOrConnectWithoutUsersInput = {
+  export type experiencesCreateOrConnectWithoutUserExperiencesInput = {
     where: experiencesWhereUniqueInput
-    create: XOR<experiencesCreateWithoutUsersInput, experiencesUncheckedCreateWithoutUsersInput>
+    create: XOR<experiencesCreateWithoutUserExperiencesInput, experiencesUncheckedCreateWithoutUserExperiencesInput>
   }
 
   export type usersUpsertWithoutUserExperiencesInput = {
@@ -32932,10 +34937,12 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    files?: filesUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUserExperiencesInput = {
@@ -32952,24 +34959,26 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    files?: filesUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
-  export type experiencesUpsertWithoutUsersInput = {
-    update: XOR<experiencesUpdateWithoutUsersInput, experiencesUncheckedUpdateWithoutUsersInput>
-    create: XOR<experiencesCreateWithoutUsersInput, experiencesUncheckedCreateWithoutUsersInput>
+  export type experiencesUpsertWithoutUserExperiencesInput = {
+    update: XOR<experiencesUpdateWithoutUserExperiencesInput, experiencesUncheckedUpdateWithoutUserExperiencesInput>
+    create: XOR<experiencesCreateWithoutUserExperiencesInput, experiencesUncheckedCreateWithoutUserExperiencesInput>
     where?: experiencesWhereInput
   }
 
-  export type experiencesUpdateToOneWithWhereWithoutUsersInput = {
+  export type experiencesUpdateToOneWithWhereWithoutUserExperiencesInput = {
     where?: experiencesWhereInput
-    data: XOR<experiencesUpdateWithoutUsersInput, experiencesUncheckedUpdateWithoutUsersInput>
+    data: XOR<experiencesUpdateWithoutUserExperiencesInput, experiencesUncheckedUpdateWithoutUserExperiencesInput>
   }
 
-  export type experiencesUpdateWithoutUsersInput = {
+  export type experiencesUpdateWithoutUserExperiencesInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     companyName?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32981,9 +34990,10 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owner?: usersUpdateOneRequiredWithoutExperiencesNestedInput
   }
 
-  export type experiencesUncheckedUpdateWithoutUsersInput = {
+  export type experiencesUncheckedUpdateWithoutUserExperiencesInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     companyName?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32995,6 +35005,7 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ownerId?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type user_skillsCreateWithoutSkillInput = {
@@ -33068,10 +35079,12 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    files?: filesCreateNestedManyWithoutOwnerInput
   }
 
   export type usersUncheckedCreateWithoutUserSkillsInput = {
@@ -33088,10 +35101,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    files?: filesUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type usersCreateOrConnectWithoutUserSkillsInput = {
@@ -33149,10 +35164,12 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    files?: filesUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersUncheckedUpdateWithoutUserSkillsInput = {
@@ -33169,10 +35186,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    files?: filesUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type blog_techCreateWithoutTechInput = {
@@ -33257,10 +35276,12 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    files?: filesCreateNestedManyWithoutOwnerInput
   }
 
   export type usersUncheckedCreateWithoutVerificationCodesInput = {
@@ -33277,10 +35298,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    files?: filesUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type usersCreateOrConnectWithoutVerificationCodesInput = {
@@ -33313,10 +35336,12 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    files?: filesUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersUncheckedUpdateWithoutVerificationCodesInput = {
@@ -33333,10 +35358,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    files?: filesUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersCreateWithoutMagicLinksInput = {
@@ -33353,10 +35380,12 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    files?: filesCreateNestedManyWithoutOwnerInput
   }
 
   export type usersUncheckedCreateWithoutMagicLinksInput = {
@@ -33373,10 +35402,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    files?: filesUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type usersCreateOrConnectWithoutMagicLinksInput = {
@@ -33409,10 +35440,12 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    files?: filesUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersUncheckedUpdateWithoutMagicLinksInput = {
@@ -33429,10 +35462,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    files?: filesUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type refresh_tokensCreateWithoutReplacesInput = {
@@ -33504,10 +35539,12 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    files?: filesCreateNestedManyWithoutOwnerInput
   }
 
   export type usersUncheckedCreateWithoutRefreshTokensInput = {
@@ -33524,10 +35561,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    files?: filesUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type usersCreateOrConnectWithoutRefreshTokensInput = {
@@ -33607,10 +35646,12 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    files?: filesUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersUncheckedUpdateWithoutRefreshTokensInput = {
@@ -33627,10 +35668,12 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    files?: filesUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type roles_permissionsCreateWithoutPermissionInput = {
@@ -33768,11 +35811,13 @@ export namespace Prisma {
     accounts?: accountsCreateNestedManyWithoutUserInput
     activities?: activitiesCreateNestedManyWithoutUserInput
     blogs?: blogsCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+    files?: filesCreateNestedManyWithoutOwnerInput
   }
 
   export type usersUncheckedCreateWithoutRate_limitsInput = {
@@ -33788,11 +35833,13 @@ export namespace Prisma {
     accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
     activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
     blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
-    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
     userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
     magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
     verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+    files?: filesUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type usersCreateOrConnectWithoutRate_limitsInput = {
@@ -33824,11 +35871,13 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    files?: filesUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersUncheckedUpdateWithoutRate_limitsInput = {
@@ -33844,11 +35893,117 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    files?: filesUncheckedUpdateManyWithoutOwnerNestedInput
+  }
+
+  export type usersCreateWithoutFilesInput = {
+    id?: bigint | number
+    email: string
+    password?: string | null
+    name?: string | null
+    emailVerified?: Date | string | null
+    isDisabled?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role?: rolesCreateNestedOneWithoutUsersInput
+    rate_limits?: rate_limitsCreateNestedManyWithoutUserInput
+    accounts?: accountsCreateNestedManyWithoutUserInput
+    activities?: activitiesCreateNestedManyWithoutUserInput
+    blogs?: blogsCreateNestedManyWithoutAuthorInput
+    experiences?: experiencesCreateNestedManyWithoutOwnerInput
+    userSkills?: user_skillsCreateNestedManyWithoutUserInput
+    refreshTokens?: refresh_tokensCreateNestedManyWithoutUserInput
+    magicLinks?: magic_linksCreateNestedManyWithoutUserInput
+    verificationCodes?: verification_codesCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesCreateNestedManyWithoutUserInput
+  }
+
+  export type usersUncheckedCreateWithoutFilesInput = {
+    id?: bigint | number
+    email: string
+    password?: string | null
+    name?: string | null
+    emailVerified?: Date | string | null
+    isDisabled?: boolean
+    roleId?: bigint | number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    rate_limits?: rate_limitsUncheckedCreateNestedManyWithoutUserInput
+    accounts?: accountsUncheckedCreateNestedManyWithoutUserInput
+    activities?: activitiesUncheckedCreateNestedManyWithoutUserInput
+    blogs?: blogsUncheckedCreateNestedManyWithoutAuthorInput
+    experiences?: experiencesUncheckedCreateNestedManyWithoutOwnerInput
+    userSkills?: user_skillsUncheckedCreateNestedManyWithoutUserInput
+    refreshTokens?: refresh_tokensUncheckedCreateNestedManyWithoutUserInput
+    magicLinks?: magic_linksUncheckedCreateNestedManyWithoutUserInput
+    verificationCodes?: verification_codesUncheckedCreateNestedManyWithoutUserInput
+    userExperiences?: user_experiencesUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type usersCreateOrConnectWithoutFilesInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutFilesInput, usersUncheckedCreateWithoutFilesInput>
+  }
+
+  export type usersUpsertWithoutFilesInput = {
+    update: XOR<usersUpdateWithoutFilesInput, usersUncheckedUpdateWithoutFilesInput>
+    create: XOR<usersCreateWithoutFilesInput, usersUncheckedCreateWithoutFilesInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutFilesInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutFilesInput, usersUncheckedUpdateWithoutFilesInput>
+  }
+
+  export type usersUpdateWithoutFilesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDisabled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: rolesUpdateOneWithoutUsersNestedInput
+    rate_limits?: rate_limitsUpdateManyWithoutUserNestedInput
+    accounts?: accountsUpdateManyWithoutUserNestedInput
+    activities?: activitiesUpdateManyWithoutUserNestedInput
+    blogs?: blogsUpdateManyWithoutAuthorNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
+    userSkills?: user_skillsUpdateManyWithoutUserNestedInput
+    refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
+    magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
+    verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutFilesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isDisabled?: BoolFieldUpdateOperationsInput | boolean
+    roleId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rate_limits?: rate_limitsUncheckedUpdateManyWithoutUserNestedInput
+    accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
+    activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
+    blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
+    userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
+    refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
+    magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
+    verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type rate_limitsCreateManyUserInput = {
@@ -33895,8 +36050,18 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type user_experiencesCreateManyUserInput = {
-    experienceId: bigint | number
+  export type experiencesCreateManyOwnerInput = {
+    id?: bigint | number
+    companyName: string
+    role?: string | null
+    description?: string | null
+    image?: string | null
+    url?: string | null
+    durationMonths?: number | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type user_skillsCreateManyUserInput = {
@@ -33930,6 +36095,20 @@ export namespace Prisma {
     context: string
     expiresAt: Date | string
     used?: boolean
+    createdAt?: Date | string
+  }
+
+  export type user_experiencesCreateManyUserInput = {
+    experienceId: bigint | number
+  }
+
+  export type filesCreateManyOwnerInput = {
+    id?: bigint | number
+    key: string
+    url: string
+    mime: string
+    size?: number | null
+    bucket?: string
     createdAt?: Date | string
   }
 
@@ -34067,16 +36246,48 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type user_experiencesUpdateWithoutUserInput = {
-    experience?: experiencesUpdateOneRequiredWithoutUsersNestedInput
+  export type experiencesUpdateWithoutOwnerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    companyName?: StringFieldUpdateOperationsInput | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    durationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userExperiences?: user_experiencesUpdateManyWithoutExperienceNestedInput
   }
 
-  export type user_experiencesUncheckedUpdateWithoutUserInput = {
-    experienceId?: BigIntFieldUpdateOperationsInput | bigint | number
+  export type experiencesUncheckedUpdateWithoutOwnerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    companyName?: StringFieldUpdateOperationsInput | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    durationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutExperienceNestedInput
   }
 
-  export type user_experiencesUncheckedUpdateManyWithoutUserInput = {
-    experienceId?: BigIntFieldUpdateOperationsInput | bigint | number
+  export type experiencesUncheckedUpdateManyWithoutOwnerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    companyName?: StringFieldUpdateOperationsInput | string
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    durationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type user_skillsUpdateWithoutUserInput = {
@@ -34183,6 +36394,48 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type user_experiencesUpdateWithoutUserInput = {
+    experience?: experiencesUpdateOneRequiredWithoutUserExperiencesNestedInput
+  }
+
+  export type user_experiencesUncheckedUpdateWithoutUserInput = {
+    experienceId?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type user_experiencesUncheckedUpdateManyWithoutUserInput = {
+    experienceId?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type filesUpdateWithoutOwnerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    key?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mime?: StringFieldUpdateOperationsInput | string
+    size?: NullableIntFieldUpdateOperationsInput | number | null
+    bucket?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type filesUncheckedUpdateWithoutOwnerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    key?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mime?: StringFieldUpdateOperationsInput | string
+    size?: NullableIntFieldUpdateOperationsInput | number | null
+    bucket?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type filesUncheckedUpdateManyWithoutOwnerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    key?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    mime?: StringFieldUpdateOperationsInput | string
+    size?: NullableIntFieldUpdateOperationsInput | number | null
+    bucket?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type usersCreateManyRoleInput = {
     id?: bigint | number
     email: string
@@ -34211,11 +36464,13 @@ export namespace Prisma {
     accounts?: accountsUpdateManyWithoutUserNestedInput
     activities?: activitiesUpdateManyWithoutUserNestedInput
     blogs?: blogsUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUpdateManyWithoutUserNestedInput
+    files?: filesUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersUncheckedUpdateWithoutRoleInput = {
@@ -34231,11 +36486,13 @@ export namespace Prisma {
     accounts?: accountsUncheckedUpdateManyWithoutUserNestedInput
     activities?: activitiesUncheckedUpdateManyWithoutUserNestedInput
     blogs?: blogsUncheckedUpdateManyWithoutAuthorNestedInput
-    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    experiences?: experiencesUncheckedUpdateManyWithoutOwnerNestedInput
     userSkills?: user_skillsUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: refresh_tokensUncheckedUpdateManyWithoutUserNestedInput
     magicLinks?: magic_linksUncheckedUpdateManyWithoutUserNestedInput
     verificationCodes?: verification_codesUncheckedUpdateManyWithoutUserNestedInput
+    userExperiences?: user_experiencesUncheckedUpdateManyWithoutUserNestedInput
+    files?: filesUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutRoleInput = {

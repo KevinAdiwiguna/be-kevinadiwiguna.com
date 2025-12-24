@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { randomBytes } from 'crypto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { RefreshTokenPromiseResponse } from 'src/types/auth-response.types';
+import { RefreshTokenPromiseResponse } from 'src/commons/types/auth-response.types';
 
 @Injectable()
 export class RefreshTokenService {

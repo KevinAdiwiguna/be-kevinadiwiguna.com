@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
 import { PrismaService } from './prisma/prisma.service';
 import { ResendService } from './resend/resend.service';
@@ -14,10 +13,13 @@ import { RateLimitModule } from './rate-limit/rate-limit.module';
 import { HerosModule } from './heros/heros.module';
 import { ResendModule } from './resend/resend.module';
 
-import { AppController } from './app.controller';
 import { RateLimitController } from './rate-limit/rate-limit.controller';
 
-import { RateLimitGuard } from './rate-limit/rate-limit.guard';
+import { RateLimitGuard } from './commons/guards/rate-limit.guard';
+import { ExperienceModule } from './experience/experience.module';
+import { SkillsModule } from './skills/skills.module';
+import { TechModule } from './tech/tech.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [AuthModule,  PrismaModule, ResendModule,
@@ -27,9 +29,13 @@ import { RateLimitGuard } from './rate-limit/rate-limit.guard';
      OtpModule,
      RateLimitModule,
      HerosModule,
+     ExperienceModule,
+     SkillsModule,
+     TechModule,
+     FilesModule,
   ],
-  controllers: [AppController, RateLimitController],
-  providers: [AppService, PrismaService, AuthService, ResendService, RefreshTokenService, RateLimitGuard],
+  controllers: [RateLimitController],
+  providers: [PrismaService, AuthService, ResendService, RefreshTokenService, RateLimitGuard],
   exports: [RateLimitGuard]
 })
 export class AppModule {}

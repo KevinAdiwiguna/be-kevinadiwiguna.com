@@ -1,8 +1,8 @@
 import { Injectable, CanActivate, ExecutionContext, HttpException, HttpStatus } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { RateLimitService } from './rate-limit.service';
+import { RateLimitService } from '../../rate-limit/rate-limit.service';
 import { Request } from 'express';
-import { JwtPayload } from 'src/types/jwt.types';
+import { JwtPayload } from 'src/commons/types/jwt.types';
 
 @Injectable()
 export class RateLimitGuard implements CanActivate {

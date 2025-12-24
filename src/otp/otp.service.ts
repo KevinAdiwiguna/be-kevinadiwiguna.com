@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, NotFoundException, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/commons/guards/jwt-auth.guard';
 
 import { VerifyEmailDto } from 'src/otp/dto/verify-email.dto';
 

@@ -9,7 +9,7 @@ import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { RefreshTokenService } from 'src/refresh-token/refresh-token.service';
 
-import { SignUpPromiseResponse } from 'src/types/auth-response.types';
+import { SignUpPromiseResponse } from 'src/commons/types/auth-response.types';
 
 @Injectable()
 export class AuthService {
