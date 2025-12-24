@@ -353,7 +353,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/kevinadiwiguna/personal-app-be/generated",
+      "value": "/home/kevinadiwiguna/Desktop/be-kevinadiwiguna.com/generated",
       "fromEnvVar": null
     },
     "config": {
@@ -368,7 +368,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/kevinadiwiguna/personal-app-be/prisma/schema.prisma",
+    "sourceFilePath": "/home/kevinadiwiguna/Desktop/be-kevinadiwiguna.com/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

@@ -9,11 +9,11 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { FilesService } from './files.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { PermissionsGuard } from 'src/auth/permission.guard';
-import { RateLimitGuard } from 'src/rate-limit/rate-limit.guard';
-import { Permission } from 'src/auth/permission.decorator';
-import { RateLimit } from 'src/rate-limit/rate-limit.decorator';
+import { JwtAuthGuard } from 'src/commons/guards/jwt-auth.guard';
+import { PermissionsGuard } from 'src/commons/guards/permission.guard';
+import { RateLimitGuard } from 'src/commons/guards/rate-limit.guard';
+import { Permission } from 'src/commons/decorators/permission.decorator';
+import { RateLimit } from 'src/commons/decorators/rate-limit.decorator';
 
 @Controller('files')
 export class FilesController {

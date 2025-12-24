@@ -12,11 +12,11 @@ import {
 import { ExperienceService } from './experience.service';
 import { CreateExperienceDto } from './dto/create-experience.dto';
 import { UpdateExperienceDto } from './dto/update-experience.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { PermissionsGuard } from 'src/auth/permission.guard';
-import { Permission } from 'src/auth/permission.decorator';
-import { RateLimitGuard } from 'src/rate-limit/rate-limit.guard';
-import { RateLimit } from 'src/rate-limit/rate-limit.decorator';
+import { JwtAuthGuard } from 'src/commons/guards/jwt-auth.guard';
+import { PermissionsGuard } from 'src/commons/guards/permission.guard';
+import { Permission } from 'src/commons/decorators/permission.decorator';
+import { RateLimitGuard } from 'src/commons/guards/rate-limit.guard';
+import { RateLimit } from 'src/commons/decorators/rate-limit.decorator';
 
 @Controller('experience')
 export class ExperienceController {

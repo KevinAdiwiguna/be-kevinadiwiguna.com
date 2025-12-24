@@ -2,12 +2,12 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, UseGua
 import { HerosService } from './heros.service';
 import { CreateHeroDto } from './dto/create-hero.dto';
 import { UpdateHeroDto } from './dto/update-hero.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { PermissionsGuard } from 'src/auth/permission.guard';
-import { Permission } from 'src/auth/permission.decorator';
-import { EmptyDto } from 'src/types/Emty.dto';
-import { RateLimit } from 'src/rate-limit/rate-limit.decorator';
-import { RateLimitGuard } from 'src/rate-limit/rate-limit.guard';
+import { JwtAuthGuard } from 'src/commons/guards/jwt-auth.guard';
+import { PermissionsGuard } from 'src/commons/guards/permission.guard';
+import { Permission } from 'src/commons/decorators/permission.decorator';
+import { EmptyDto } from 'src/commons/dto/Emty.dto';
+import { RateLimit } from 'src/commons/decorators/rate-limit.decorator';
+import { RateLimitGuard } from 'src/commons/guards/rate-limit.guard';
 
 @Controller('heros')
 export class HerosController {

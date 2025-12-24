@@ -3,9 +3,9 @@ import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { OtpService } from './otp.service';
 
 import { VerifyEmailDto } from './dto/verify-email.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { RateLimitGuard } from 'src/rate-limit/rate-limit.guard';
-import { RateLimit } from 'src/rate-limit/rate-limit.decorator';
+import { JwtAuthGuard } from 'src/commons/guards/jwt-auth.guard';
+import { RateLimitGuard } from 'src/commons/guards/rate-limit.guard';
+import { RateLimit } from 'src/commons/decorators/rate-limit.decorator';
 
 @Controller('otp')
 export class OtpController {

@@ -5,10 +5,10 @@ import { SkillsService } from './skills.service';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
 
-import { Permission } from 'src/auth/permission.decorator';
+import { Permission } from 'src/commons/decorators/permission.decorator';
 
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { PermissionsGuard } from 'src/auth/permission.guard';
+import { JwtAuthGuard } from 'src/commons/guards/jwt-auth.guard';
+import { PermissionsGuard } from 'src/commons/guards/permission.guard';
 
 @Controller('skills')
 export class SkillsController {

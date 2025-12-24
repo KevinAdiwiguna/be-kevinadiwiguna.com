@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { SignUpDto } from './dto/sign-up.dto';
 import { SignInDto } from './dto/sign-in.dto';
 
-import { JwtAuthGuard } from './jwt-auth.guard';
+import { JwtAuthGuard } from '../commons/guards/jwt-auth.guard';
 
 import type { Response, Request } from 'express';
 
