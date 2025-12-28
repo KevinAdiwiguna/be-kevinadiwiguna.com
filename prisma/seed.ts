@@ -1,85 +1,192 @@
-import { PrismaClient } from '../generated/client';
+import { PrismaClient } from "../generated/client";
 
 const prisma = new PrismaClient();
 
-async function main() {
-  console.log("🌱 Seeding roles...");
-  const roles = ['owner', 'admin', 'moderator', 'user'];
+const ROLES = {
+  SUPERADMIN: "superadmin",
+  ADMIN: "admin",
+  EDITOR: "editor",
+  USER: "user",
+} as const;
 
-  for (const role of roles) {
+
+const PERMISSIONS = {
+  BLOG: {
+    CREATE: "blog:create",
+    READ: "blog:read",
+    UPDATE: "blog:update",
+    DELETE: "blog:delete",
+  },
+  PROJECT: {
+    CREATE: "project:create",
+    READ: "project:read",
+    UPDATE: "project:update",
+    DELETE: "project:delete",
+  },
+  EXPERIENCE: {
+    CREATE: "experience:create",
+    READ: "experience:read",
+    UPDATE: "experience:update",
+    DELETE: "experience:delete",
+  },
+  HERO: {
+    CREATE: "hero:create",
+    READ: "hero:read",
+    UPDATE: "hero:update",
+    DELETE: "hero:delete",
+  },
+  USER: {
+    READ: "user:read",
+    DELETE: "user:delete",
+  },
+  COMMENT: {
+    CREATE: "comment:create",
+    READ: "comment:read",
+    UPDATE: "comment:update",
+    DELETE: "comment:delete",
+  },
+  SKILL: {
+    CREATE: "skill:create",
+    UPDATE: "skill:update",
+    DELETE: "skill:delete",
+  },
+  FILE: {
+    UPLOAD: "file:upload",
+    DELETE: "file:delete",
+  },
+  AUTH: {
+    SIGNIN: "auth:signin",
+    SIGNUP: "auth:signup",
+    SEND_OTP: "auth:send_otp",
+    VERIFY_OTP: "auth:verify_otp",
+    SIGNOUT_SINGLE: "auth:signout_single",
+    SIGNOUT_ALL: "auth:signout_all",
+  },
+} as const;
+
+
+const ROLE_PERMISSIONS: Record<string, string[]> = {
+  [ROLES.SUPERADMIN]: [
+    ...Object.values(PERMISSIONS).flatMap((group) =>
+      Object.values(group)
+    ),
+  ],
+
+  [ROLES.ADMIN]: [
+    PERMISSIONS.BLOG.CREATE,
+    PERMISSIONS.BLOG.READ,
+    PERMISSIONS.BLOG.UPDATE,
+    PERMISSIONS.BLOG.DELETE,
+
+    PERMISSIONS.PROJECT.CREATE,
+    PERMISSIONS.PROJECT.READ,
+    PERMISSIONS.PROJECT.UPDATE,
+    PERMISSIONS.PROJECT.DELETE,
+
+    PERMISSIONS.EXPERIENCE.CREATE,
+    PERMISSIONS.EXPERIENCE.READ,
+    PERMISSIONS.EXPERIENCE.UPDATE,
+    PERMISSIONS.EXPERIENCE.DELETE,
+
+    PERMISSIONS.HERO.CREATE,
+    PERMISSIONS.HERO.READ,
+    PERMISSIONS.HERO.UPDATE,
+    PERMISSIONS.HERO.DELETE,
+
+    PERMISSIONS.USER.READ,
+
+    PERMISSIONS.FILE.UPLOAD,
+    PERMISSIONS.FILE.DELETE,
+  ],
+
+  [ROLES.EDITOR]: [
+    PERMISSIONS.BLOG.CREATE,
+    PERMISSIONS.BLOG.READ,
+    PERMISSIONS.BLOG.UPDATE,
+
+    PERMISSIONS.PROJECT.READ,
+    PERMISSIONS.EXPERIENCE.READ,
+
+    PERMISSIONS.COMMENT.CREATE,
+    PERMISSIONS.COMMENT.READ,
+  ],
+
+  [ROLES.USER]: [
+    PERMISSIONS.BLOG.READ,
+    PERMISSIONS.PROJECT.READ,
+    PERMISSIONS.EXPERIENCE.READ,
+    PERMISSIONS.HERO.READ,
+
+    PERMISSIONS.COMMENT.CREATE,
+    PERMISSIONS.COMMENT.READ,
+  ],
+};
+
+
+async function main() {
+  console.log("RBAC seed started...");
+
+  for (const roleName of Object.values(ROLES)) {
     await prisma.roles.upsert({
-      where: { name: role },
+      where: { name: roleName },
       update: {},
-      create: { name: role },
+      create: { name: roleName },
     });
   }
 
-  console.log("🌱 Seeding permissions...");
+  const ALL_PERMISSIONS = Object.values(PERMISSIONS).flatMap((group) =>
+    Object.values(group)
+  );
 
-  const permissions = {
-    experience: ["create_experience", "read_experience", "read_experience_id", "update_experience", "delete_experience"],
-    hero: ['create_hero', 'update_hero', 'delete_hero', 'read_hero', "read_hero_id"],
-    blog: ['create_blog', 'update_blog', 'delete_blog', 'read_blog'],
-    project: ['create_project', 'update_project', 'delete_project', 'read_project'],
-    user: ['delete_user', 'read_user'],
-    comment: ['create_comment', 'update_comment', 'delete_comment', 'read_comment'],
-    skill: ['create_skill', 'update_skill', 'delete_skill'],
-    files: ['upload_files', 'delete_files'],
-    auth: [
-      'signin',
-      'signup',
-      'send_otp',
-      'verify_otp',
-      'signout_single_device',
-      'signout_all_device',
-    ],
-  };
-
-  const allPermissionValues = Object.values(permissions).flat();
-
-  for (const perm of allPermissionValues) {
+  for (const perm of ALL_PERMISSIONS) {
     await prisma.permissions.upsert({
       where: { name: perm },
       update: {},
       create: {
         name: perm,
-        label: perm.replace(/_/g, ' '),
+        label: perm.replace(":", " "),
       },
     });
   }
 
-  console.log("🌱 Assigning ALL permissions to ALL roles...");
+  for (const [roleName, perms] of Object.entries(ROLE_PERMISSIONS)) {
+    const role = await prisma.roles.findUnique({
+      where: { name: roleName },
+    });
 
-  const allRoles = await prisma.roles.findMany();
-  const allPermissions = await prisma.permissions.findMany();
+    if (!role) continue;
 
-  for (const role of allRoles) {
-    for (const perm of allPermissions) {
+    for (const permName of perms) {
+      const permission = await prisma.permissions.findUnique({
+        where: { name: permName },
+      });
+
+      if (!permission) continue;
+
       await prisma.roles_permissions.upsert({
         where: {
           roleId_permissionId: {
             roleId: role.id,
-            permissionId: perm.id,
+            permissionId: permission.id,
           },
         },
         update: {},
         create: {
           roleId: role.id,
-          permissionId: perm.id,
+          permissionId: permission.id,
         },
       });
     }
   }
 
-  console.log("🎉 Seeding completed!");
+  console.log("🎉 RBAC seed completed");
 }
 
+
 main()
-  .then(async () => {
-    await prisma.$disconnect();
-  })
-  .catch(async (e) => {
-    console.error(e);
+  .then(() => prisma.$disconnect())
+  .catch(async (err) => {
+    console.error(err);
     await prisma.$disconnect();
     process.exit(1);
   });
