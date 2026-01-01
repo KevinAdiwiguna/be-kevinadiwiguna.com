@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Param, Patch, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Patch,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 
 import { SkillsService } from './skills.service';
 
@@ -9,13 +18,15 @@ import { Permission } from 'src/commons/decorators/permission.decorator';
 
 import { JwtAuthGuard } from 'src/commons/guards/jwt-auth.guard';
 import { PermissionsGuard } from 'src/commons/guards/permission.guard';
+import { RateLimit } from 'src/commons/decorators/rate-limit.decorator';
 
 @Controller('skills')
 export class SkillsController {
   constructor(private readonly skillsService: SkillsService) {}
 
   @UseGuards(JwtAuthGuard, PermissionsGuard)
-  @Permission('create_skill')
+  @Permission('skill:create')
+  @RateLimit(30, 1)
   @Post()
   create(@Body() dto: CreateSkillDto) {
     return this.skillsService.create(dto);
@@ -32,14 +43,14 @@ export class SkillsController {
   }
 
   @UseGuards(JwtAuthGuard, PermissionsGuard)
-  @Permission('update_skill')
+  @Permission('skill:update')
   @Patch(':id')
   update(@Param('id') id: bigint, @Body() dto: UpdateSkillDto) {
     return this.skillsService.update(id, dto);
   }
 
   @UseGuards(JwtAuthGuard, PermissionsGuard)
-  @Permission('delete_skill')
+  @Permission('skill:delete')
   @Delete(':id')
   remove(@Param('id') id: bigint) {
     return this.skillsService.remove(id);

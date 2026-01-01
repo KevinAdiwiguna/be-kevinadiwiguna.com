@@ -16,14 +16,15 @@ export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwtService: JwtService,
-    private refreshToken: RefreshTokenService
-  ) { }
+    private refreshToken: RefreshTokenService,
+  ) {}
 
   async signIn(data: SignInDto) {
     const user = await this.prisma.users.findUnique({
       where: { email: data.email },
       include: { role: true },
     });
+
 
     if (!user) {
       throw new BadRequestException('Invalid email or password');
@@ -35,16 +36,30 @@ export class AuthService {
     }
 
     const payload = {
-      sub: user.id,
+      sub: user.id.toString(),
       email: user.email,
       role: user.role?.name,
-      roleId: user.roleId
+      roleId: user.roleId?.toString(),
     };
-    
-    // const accessToken = await this.jwtService.signAsync(payload);
-    const accessToken = await this.jwtService.signAsync(payload, { expiresIn: '30s' });
 
-    const refreshToken = await this.refreshToken.createRefreshToken(user.id);
+    const accessToken = await this.jwtService.signAsync(payload, {
+      secret: process.env.JWT_ACCESS_SECRET,
+      expiresIn: '30s',
+    });
+
+    const refreshToken = await this.jwtService.signAsync(payload, {
+      secret: process.env.JWT_REFRESH_SECRET,
+      expiresIn: '2d',
+    });
+
+    const expiresAt = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
+    await this.prisma.refresh_tokens.create({
+      data: {
+        userId: user.id,
+        token: refreshToken,
+        expiresAt,
+      },
+    });
 
     const { password, ...safeUser } = user;
 
@@ -52,30 +67,32 @@ export class AuthService {
       message: 'Signed in successfully',
       user: safeUser,
       accessToken,
-      refreshToken: refreshToken.token,
-      refreshTokenExpiresAt: refreshToken.expiresAt.toISOString(),
+      refreshToken,
+      refreshTokenExpiresAt: expiresAt.toISOString(),
     };
   }
 
   async signUp(data: SignUpDto): Promise<SignUpPromiseResponse> {
     const getExistingUser = await this.prisma.users.findUnique({
       where: {
-        email: data.email
-      }
-    })
+        email: data.email,
+      },
+    });
 
     if (getExistingUser) {
       throw new BadRequestException('Email already registered');
     }
 
-    const hash = await bcrypt.hash(data.password, 10)
+    const hash = await bcrypt.hash(data.password, 10);
 
     const userRole = await this.prisma.roles.findUnique({
       where: { name: 'user' },
     });
 
     if (!userRole) {
-      throw new BadRequestException('Default role not found. please contact the developer.');
+      throw new BadRequestException(
+        'Default role not found. please contact the developer.',
+      );
     }
 
     const user = await this.prisma.users.create({
@@ -98,7 +115,7 @@ export class AuthService {
   }
 
   async refreshAccessToken(oldToken: string) {
-    return this.refreshToken.refreshAccessToken(oldToken)
+    return this.refreshToken.refreshAccessToken(oldToken);
   }
 
   async revokeRefreshToken(token: string) {

@@ -1,24 +1,30 @@
-import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class PermissionsGuard implements CanActivate {
-  constructor(private reflector: Reflector, private prisma: PrismaService) {}
+  constructor(
+    private reflector: Reflector,
+    private prisma: PrismaService,
+  ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const requiredPermission = this.reflector.get<string>(
       'permission',
       context.getHandler(),
     );
-    if (!requiredPermission) return true; 
+    if (!requiredPermission) return true;
 
     const request = context.switchToHttp().getRequest();
     const user = request.user;
 
     if (!user) return false;
-
-  
 
     const role = await this.prisma.roles.findUnique({
       where: { id: user.roleId },
@@ -26,10 +32,10 @@ export class PermissionsGuard implements CanActivate {
     });
 
     const geVerified = await this.prisma.users.findFirst({
-      where: {id: user.sub}
-    })
+      where: { id: user.sub },
+    });
 
-      if (!geVerified?.emailVerified) {
+    if (!geVerified?.emailVerified) {
       throw new ForbiddenException('Email not verified');
     }
 
@@ -37,7 +43,8 @@ export class PermissionsGuard implements CanActivate {
       (p) => p.permission.name === requiredPermission,
     );
 
-    if (!hasPermission) throw new ForbiddenException('Insufficient permissions');
+    if (!hasPermission)
+      throw new ForbiddenException('Insufficient permissions');
     return true;
   }
 }

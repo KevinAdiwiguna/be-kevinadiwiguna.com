@@ -20,6 +20,9 @@ import { ExperienceModule } from './experience/experience.module';
 import { SkillsModule } from './skills/skills.module';
 import { TechModule } from './tech/tech.module';
 import { FilesModule } from './files/files.module';
+import { UsersModule } from './superuser/users/users.module';
+import { RolesModule } from './superuser/roles/roles.module';
+import { PermissionsModule } from './superuser/permissions/permissions.module';
 
 @Module({
   imports: [AuthModule,  PrismaModule, ResendModule,
@@ -33,6 +36,9 @@ import { FilesModule } from './files/files.module';
      SkillsModule,
      TechModule,
      FilesModule,
+     UsersModule,
+     RolesModule,
+     PermissionsModule,
   ],
   controllers: [RateLimitController],
   providers: [PrismaService, AuthService, ResendService, RefreshTokenService, RateLimitGuard],

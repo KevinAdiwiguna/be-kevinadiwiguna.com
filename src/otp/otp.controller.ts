@@ -6,6 +6,8 @@ import { VerifyEmailDto } from './dto/verify-email.dto';
 import { JwtAuthGuard } from 'src/commons/guards/jwt-auth.guard';
 import { RateLimitGuard } from 'src/commons/guards/rate-limit.guard';
 import { RateLimit } from 'src/commons/decorators/rate-limit.decorator';
+import { Permission } from 'src/commons/decorators/permission.decorator';
+import { response } from 'express';
 
 @Controller('otp')
 export class OtpController {
@@ -13,6 +15,7 @@ export class OtpController {
 
     @UseGuards(JwtAuthGuard, RateLimitGuard)
     @RateLimit(5, 1)
+    @Permission('otp:send_otp')
     @Post('request-verification')
     async requestVerification(@Req() req) {
         const email = req.user.email;
@@ -21,6 +24,7 @@ export class OtpController {
 
     @UseGuards(JwtAuthGuard, RateLimitGuard)
     @RateLimit(5, 1)
+    @Permission('otp:verify_otp')
     @Post('verify-email')
     async verify(@Req() req, @Body() dto: VerifyEmailDto) {
         const email = req.user.email;

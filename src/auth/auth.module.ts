@@ -10,7 +10,9 @@ import { AuthService } from './auth.service';
 import { ResendModule } from 'src/resend/resend.module';
 import { ResendService } from 'src/resend/resend.service';
 import { RefreshTokenService } from 'src/refresh-token/refresh-token.service';
-import { JwtStrategy } from './jwt.strategy';
+import { JwtAuthStrategy } from 'src/commons/strategy/jwt-auth.strategy';
+import { JwtAccessStrategy } from 'src/commons/strategy/jwt-access.strategy';
+
 
 @Module({
   imports: [
@@ -23,7 +25,7 @@ import { JwtStrategy } from './jwt.strategy';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, ResendService, RefreshTokenService, JwtStrategy ],
+  providers: [AuthService, ResendService, RefreshTokenService, JwtAuthStrategy, JwtAccessStrategy],
 })
 
 export class AuthModule { }
