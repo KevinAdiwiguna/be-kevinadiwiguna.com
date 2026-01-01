@@ -3,12 +3,19 @@ import { ValidationPipe } from '@nestjs/common';
 
 import { AppModule } from './app.module';
 
-import cookieParser from "cookie-parser"
+import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieParser());
-  app.enableCors();
+  app.enableCors({
+    origin: ['http://localhost:3000', "http://127.0.0.1:3000"],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    secure: false,
+  });
+
   (BigInt.prototype as any).toJSON = function () {
     return this.toString();
   };
