@@ -1,131 +1,84 @@
-import { PrismaClient } from "../generated/client";
+import { PrismaClient } from '../generated/client';
+import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
 const ROLES = {
-  SUPERADMIN: "superadmin",
-  ADMIN: "admin",
-  EDITOR: "editor",
-  USER: "user",
+  SUPERADMIN: 'superadmin',
+  ADMIN: 'admin',
+  EDITOR: 'editor',
+  USER: 'user',
 } as const;
 
+const ACTIONS = ['create', 'read', 'update', 'delete'] as const;
+type Action = (typeof ACTIONS)[number];
+
+const CRUD = (resource: string) =>
+  Object.fromEntries(
+    ACTIONS.map((a) => [a.toUpperCase(), `${resource}:${a}`]),
+  ) as Record<Uppercase<Action>, string>;
+
+const flattenPermissions = (obj: Record<string, any>): string[] =>
+  Object.values(obj).flatMap((v) =>
+    typeof v === 'string' ? v : Object.values(v),
+  );
 
 const PERMISSIONS = {
-  BLOG: {
-    CREATE: "blog:create",
-    READ: "blog:read",
-    UPDATE: "blog:update",
-    DELETE: "blog:delete",
-  },
-  PROJECT: {
-    CREATE: "project:create",
-    READ: "project:read",
-    UPDATE: "project:update",
-    DELETE: "project:delete",
-  },
-  EXPERIENCE: {
-    CREATE: "experience:create",
-    READ: "experience:read",
-    UPDATE: "experience:update",
-    DELETE: "experience:delete",
-  },
-  HERO: {
-    CREATE: "hero:create",
-    READ: "hero:read",
-    UPDATE: "hero:update",
-    DELETE: "hero:delete",
-  },
-  USER: {
-    READ: "user:read",
-    DELETE: "user:delete",
-  },
-  COMMENT: {
-    CREATE: "comment:create",
-    READ: "comment:read",
-    UPDATE: "comment:update",
-    DELETE: "comment:delete",
-  },
-  SKILL: {
-    CREATE: "skill:create",
-    UPDATE: "skill:update",
-    DELETE: "skill:delete",
-  },
-  FILE: {
-    UPLOAD: "file:upload",
-    DELETE: "file:delete",
-  },
   AUTH: {
-    SIGNIN: "auth:signin",
-    SIGNUP: "auth:signup",
-    SEND_OTP: "auth:send_otp",
-    VERIFY_OTP: "auth:verify_otp",
-    SIGNOUT_SINGLE: "auth:signout_single",
-    SIGNOUT_ALL: "auth:signout_all",
+    SIGNIN: 'auth:signin',
+    SIGNUP: 'auth:signup',
+    SIGNOUT_SINGLE: 'auth:signout_single',
+    SIGNOUT_ALL: 'auth:signout_all',
+  },
+
+  OTP: {
+    SEND_OTP: 'otp:send_otp',
+    VERIFY_OTP: 'otp:verify_otp',
+  },
+
+  USERS: {
+    READ: 'users:read',
+    READ_ID: 'users:read_id',
+    UPDATE_ROLE: 'users:update_role',
+    DELETE: 'users:delete',
+    VERIFY: 'users:verify',
+  },
+
+  ROLES: {
+    CREATE: 'roles:create',
+    READ: 'roles:read',
+    READ_ID: 'roles:read_id',
+    UPDATE_PERMISSIONS: 'roles:update_permissions',
+    DELETE: 'roles:delete',
+  },
+
+  PERMISSIONS: {
+    READ: 'permission:read',
+  },
+
+  SKILL: {
+    CREATE: 'skill:create',
+    UPDATE: 'skill:update',
+    DELETE: 'skill:delete',
+  },
+
+  FILE: {
+    UPLOAD: 'file:upload',
+    DELETE: 'file:delete',
   },
 } as const;
 
-
 const ROLE_PERMISSIONS: Record<string, string[]> = {
-  [ROLES.SUPERADMIN]: [
-    ...Object.values(PERMISSIONS).flatMap((group) =>
-      Object.values(group)
-    ),
-  ],
+  [ROLES.SUPERADMIN]: flattenPermissions(PERMISSIONS),
 
-  [ROLES.ADMIN]: [
-    PERMISSIONS.BLOG.CREATE,
-    PERMISSIONS.BLOG.READ,
-    PERMISSIONS.BLOG.UPDATE,
-    PERMISSIONS.BLOG.DELETE,
+  [ROLES.ADMIN]: [],
 
-    PERMISSIONS.PROJECT.CREATE,
-    PERMISSIONS.PROJECT.READ,
-    PERMISSIONS.PROJECT.UPDATE,
-    PERMISSIONS.PROJECT.DELETE,
+  [ROLES.EDITOR]: [],
 
-    PERMISSIONS.EXPERIENCE.CREATE,
-    PERMISSIONS.EXPERIENCE.READ,
-    PERMISSIONS.EXPERIENCE.UPDATE,
-    PERMISSIONS.EXPERIENCE.DELETE,
-
-    PERMISSIONS.HERO.CREATE,
-    PERMISSIONS.HERO.READ,
-    PERMISSIONS.HERO.UPDATE,
-    PERMISSIONS.HERO.DELETE,
-
-    PERMISSIONS.USER.READ,
-
-    PERMISSIONS.FILE.UPLOAD,
-    PERMISSIONS.FILE.DELETE,
-  ],
-
-  [ROLES.EDITOR]: [
-    PERMISSIONS.BLOG.CREATE,
-    PERMISSIONS.BLOG.READ,
-    PERMISSIONS.BLOG.UPDATE,
-
-    PERMISSIONS.PROJECT.READ,
-    PERMISSIONS.EXPERIENCE.READ,
-
-    PERMISSIONS.COMMENT.CREATE,
-    PERMISSIONS.COMMENT.READ,
-  ],
-
-  [ROLES.USER]: [
-    PERMISSIONS.BLOG.READ,
-    PERMISSIONS.PROJECT.READ,
-    PERMISSIONS.EXPERIENCE.READ,
-    PERMISSIONS.HERO.READ,
-
-    PERMISSIONS.COMMENT.CREATE,
-    PERMISSIONS.COMMENT.READ,
-  ],
+  [ROLES.USER]: [],
 };
 
-
 async function main() {
-  console.log("RBAC seed started...");
-
   for (const roleName of Object.values(ROLES)) {
     await prisma.roles.upsert({
       where: { name: roleName },
@@ -134,9 +87,7 @@ async function main() {
     });
   }
 
-  const ALL_PERMISSIONS = Object.values(PERMISSIONS).flatMap((group) =>
-    Object.values(group)
-  );
+  const ALL_PERMISSIONS = Array.from(new Set(flattenPermissions(PERMISSIONS)));
 
   for (const perm of ALL_PERMISSIONS) {
     await prisma.permissions.upsert({
@@ -144,7 +95,10 @@ async function main() {
       update: {},
       create: {
         name: perm,
-        label: perm.replace(":", " "),
+        label: perm
+          .split(':')
+          .map((s) => s.replace('_', ' '))
+          .join(' → '),
       },
     });
   }
@@ -179,9 +133,48 @@ async function main() {
     }
   }
 
-  console.log("🎉 RBAC seed completed");
-}
+  const userRole = await prisma.roles.findUnique({
+    where: { name: ROLES.USER },
+  });
 
+  if (userRole) {
+    const password = await bcrypt.hash('admin123', 10);
+
+    const users = [
+      {
+        email: 'admin1@mail.com',
+        name: 'admin1',
+        roleId: 1,
+      },
+      {
+        email: 'admin2@mail.com',
+        name: 'admin2',
+        roleId: 1,
+      },
+      {
+        email: 'admin3@mail.com',
+        name: 'admin3',
+        roleId: 4,
+      },
+    ];
+
+    await Promise.all(
+      users.map((user) =>
+        prisma.users.upsert({
+          where: { email: user.email },
+          update: {},
+          create: {
+            email: user.email,
+            name: user.name,
+            password,
+            roleId: user.roleId,
+            emailVerified: new Date(),
+          },
+        }),
+      ),
+    );
+  }
+}
 
 main()
   .then(() => prisma.$disconnect())
