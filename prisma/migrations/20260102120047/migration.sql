@@ -114,6 +114,7 @@ CREATE TABLE "experiences" (
     "endDate" TIMESTAMP(3),
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "ownerId" BIGINT NOT NULL,
 
     CONSTRAINT "experiences_pkey" PRIMARY KEY ("id")
 );
@@ -212,6 +213,52 @@ CREATE TABLE "refresh_tokens" (
     CONSTRAINT "refresh_tokens_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "permissions" (
+    "id" BIGSERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "label" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "permissions_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "roles_permissions" (
+    "roleId" BIGINT NOT NULL,
+    "permissionId" BIGINT NOT NULL,
+
+    CONSTRAINT "roles_permissions_pkey" PRIMARY KEY ("roleId","permissionId")
+);
+
+-- CreateTable
+CREATE TABLE "rate_limits" (
+    "id" BIGSERIAL NOT NULL,
+    "userId" BIGINT,
+    "ip" TEXT,
+    "action" TEXT NOT NULL,
+    "count" INTEGER NOT NULL DEFAULT 1,
+    "expiresAt" TIMESTAMP(3) NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "rate_limits_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "files" (
+    "id" BIGSERIAL NOT NULL,
+    "key" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    "mime" TEXT NOT NULL,
+    "size" INTEGER,
+    "bucket" TEXT NOT NULL DEFAULT 'kevinadiwiguna-assets',
+    "ownerId" BIGINT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "files_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
@@ -240,9 +287,6 @@ CREATE UNIQUE INDEX "skills_name_key" ON "skills"("name");
 CREATE UNIQUE INDEX "tech_name_key" ON "tech"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "heroes_isPrimary_key" ON "heroes"("isPrimary");
-
--- CreateIndex
 CREATE INDEX "verification_codes_userId_idx" ON "verification_codes"("userId");
 
 -- CreateIndex
@@ -256,6 +300,21 @@ CREATE INDEX "magic_links_tokenHash_idx" ON "magic_links"("tokenHash");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "refresh_tokens_token_key" ON "refresh_tokens"("token");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "permissions_name_key" ON "permissions"("name");
+
+-- CreateIndex
+CREATE INDEX "rate_limits_userId_idx" ON "rate_limits"("userId");
+
+-- CreateIndex
+CREATE INDEX "rate_limits_ip_idx" ON "rate_limits"("ip");
+
+-- CreateIndex
+CREATE INDEX "rate_limits_action_idx" ON "rate_limits"("action");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "files_key_key" ON "files"("key");
 
 -- AddForeignKey
 ALTER TABLE "users" ADD CONSTRAINT "users_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "roles"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -282,6 +341,9 @@ ALTER TABLE "project_tech" ADD CONSTRAINT "project_tech_projectId_fkey" FOREIGN 
 ALTER TABLE "project_tech" ADD CONSTRAINT "project_tech_techId_fkey" FOREIGN KEY ("techId") REFERENCES "tech"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "experiences" ADD CONSTRAINT "experiences_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "user_experiences" ADD CONSTRAINT "user_experiences_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -304,3 +366,15 @@ ALTER TABLE "refresh_tokens" ADD CONSTRAINT "refresh_tokens_replacedById_fkey" F
 
 -- AddForeignKey
 ALTER TABLE "refresh_tokens" ADD CONSTRAINT "refresh_tokens_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "roles_permissions" ADD CONSTRAINT "roles_permissions_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "roles"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "roles_permissions" ADD CONSTRAINT "roles_permissions_permissionId_fkey" FOREIGN KEY ("permissionId") REFERENCES "permissions"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "rate_limits" ADD CONSTRAINT "rate_limits_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "files" ADD CONSTRAINT "files_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;

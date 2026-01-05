@@ -5,21 +5,39 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class HerosService {
-  constructor(private prisma: PrismaService) { }
-  
+  constructor(private prisma: PrismaService) {}
+
   async create(createHeroDto: CreateHeroDto) {
-    if (createHeroDto.isPrimary) {
-      await this.prisma.heroes.updateMany({
-        where: { isPrimary: true },
-        data: { isPrimary: false },
+    const countHero = await this.prisma.heroes.count();
+
+    if (countHero === 0) {
+      return this.prisma.heroes.create({
+        data: { ...createHeroDto, isPrimary: true },
       });
     }
 
-    return this.prisma.heroes.create({ data: createHeroDto });
+    if (createHeroDto.isPrimary) {
+      return this.prisma.$transaction(async (tx) => {
+        await tx.heroes.updateMany({
+          where: { isPrimary: true },
+          data: { isPrimary: false },
+        });
+
+        return tx.heroes.create({
+          data: { ...createHeroDto, isPrimary: true },
+        });
+      });
+    }
+
+    return this.prisma.heroes.create({
+      data: { ...createHeroDto, isPrimary: false },
+    });
   }
 
   async findAll() {
-    return await this.prisma.heroes.findMany({ orderBy: { createdAt: 'desc' } });
+    return await this.prisma.heroes.findMany({
+      orderBy: { createdAt: 'desc' },
+    });
   }
 
   async findOne(id: bigint) {
@@ -29,7 +47,9 @@ export class HerosService {
   }
 
   async findPrimary() {
-    const hero = await this.prisma.heroes.findFirst({ where: { isPrimary: true } });
+    const hero = await this.prisma.heroes.findFirst({
+      where: { isPrimary: true },
+    });
     if (!hero) throw new NotFoundException('Hero not found');
     return hero;
   }
@@ -44,12 +64,12 @@ export class HerosService {
         id: { not: id },
       },
     });
-    
+
     let temp = false;
     if (getPrimary) {
-      temp = false
+      temp = false;
     } else {
-      temp = dto.isPrimary as boolean
+      temp = dto.isPrimary as boolean;
     }
 
     const update = await this.prisma.heroes.update({
@@ -60,10 +80,10 @@ export class HerosService {
         cvLink: dto.cvLink,
         githubLink: dto.githubLink,
         phoneNumber: dto.phoneNumber,
-        isPrimary: temp
-      }
-    })
-    return update
+        isPrimary: temp,
+      },
+    });
+    return update;
   }
 
   async remove(id: bigint) {
@@ -72,4 +92,24 @@ export class HerosService {
     return this.prisma.heroes.delete({ where: { id } });
   }
 
+  async setPrimary(id: bigint) {
+    const hero = await this.prisma.heroes.findUnique({
+      where: { id },
+    });
+
+    if (!hero) {
+      throw new NotFoundException('Hero not found');
+    }
+
+    return this.prisma.$transaction([
+      this.prisma.heroes.updateMany({
+        where: { isPrimary: true },
+        data: { isPrimary: false },
+      }),
+      this.prisma.heroes.update({
+        where: { id },
+        data: { isPrimary: true },
+      }),
+    ]);
+  }
 }

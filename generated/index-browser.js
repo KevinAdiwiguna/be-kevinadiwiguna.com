@@ -245,6 +245,7 @@ exports.Prisma.TechScalarFieldEnum = {
 exports.Prisma.HeroesScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  imageUrl: 'imageUrl',
   description: 'description',
   githubLink: 'githubLink',
   cvLink: 'cvLink',

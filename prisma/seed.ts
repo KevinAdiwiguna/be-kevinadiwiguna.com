@@ -56,6 +56,15 @@ const PERMISSIONS = {
     READ: 'permission:read',
   },
 
+  HEROS: {
+    CREATE: 'hero:create',
+    READ: 'hero:read',
+    READ_ID: 'hero:read_id',
+    UPDATE: 'hero:update',
+    DELETE: 'hero:delete',
+    SET_PRIMARY: 'hero:set_primary',
+  },
+
   SKILL: {
     CREATE: 'skill:create',
     UPDATE: 'skill:update',
@@ -63,8 +72,17 @@ const PERMISSIONS = {
   },
 
   FILE: {
+    READ: 'file:read',
     UPLOAD: 'file:upload',
+    UPLOAD_MANY: 'file:upload_many',
     DELETE: 'file:delete',
+  },
+
+  EXPERIENCE: {
+    READ_ID: 'experience:read_id',
+    CREATE: 'experience:create',
+    UPDATE: 'experience:update',
+    DELETE: 'experience:delete',
   },
 } as const;
 
@@ -79,6 +97,19 @@ const ROLE_PERMISSIONS: Record<string, string[]> = {
 };
 
 async function main() {
+  await prisma.heroes.create({
+    data: {
+      title: 'Kevin Adiwiguna',
+      description:
+        '<p>Passionate <span style="color: lab(71.5903 -21.6132 -39.8504);"><strong>Web &amp; Mobile Developer</strong></span> with 3+ years of professional experience. Specializing in creating innovative solutions using modern technologies. Proven track record of delivering high-quality digital experiences.</p>',
+      isPrimary: true,
+      cvLink:
+        'https://drive.google.com/uc?export=download&id=1h1b0k1bXK3v1Yt4a5b6c7d8e9f0g1h2i',
+      githubLink: 'https://github.com/kevinadiwiguna',
+      phoneNumber: '085253711498',
+      imageUrl: 'https://cdn.kevinadiwiguna.com/uploads/me.jpg',
+    },
+  });
   for (const roleName of Object.values(ROLES)) {
     await prisma.roles.upsert({
       where: { name: roleName },
@@ -174,6 +205,73 @@ async function main() {
       ),
     );
   }
+
+  const ownerId = BigInt(1);
+
+  await prisma.experiences.createMany({
+    data: [
+      {
+        companyName: 'Unboxlabs.id',
+        role: 'Frontend Developer',
+        description:
+          "Unboxlabs.id is a web technology bootcamp that has successfully developed various landing pages, increasing user engagement and attracting new clients, thereby expanding Unboxlabs' reach.",
+        image: 'https://cdn.kevinadiwiguna.com/experiences/unbxlabs.png',
+        url: 'https://www.unboxlabs.id',
+        durationMonths: 8,
+        startDate: new Date('2023-01-01'),
+        endDate: new Date('2023-08-31'),
+        ownerId,
+      },
+      {
+        companyName: 'Sebarin.id',
+        role: 'Frontend Developer',
+        description:
+          'Managed and optimized digital invitation templates to enhance usability and client satisfaction. Successfully maintained product functionality with stable performance for users.',
+        image: 'https://cdn.kevinadiwiguna.com/experiences/sebarin.jpg',
+        url: 'https://www.sebarin.id',
+        durationMonths: 1,
+        startDate: new Date('2023-09-01'),
+        endDate: new Date('2023-09-30'),
+        ownerId,
+      },
+      {
+        companyName: 'cloudgakkai',
+        role: 'Frontend Developer',
+        description:
+          "Contributed to showcasing innovative products in the technology and creative industries. Led a software engineering team to complete projects on time and within budget, achieving high levels of client satisfaction. Developed the product 'Sebarin' from concept to launch and presented the project outcomes as the Team Leader.",
+        image: 'https://cdn.kevinadiwiguna.com/experiences/cloudgakkai.jpg',
+        url: 'https://www.cloudgakkai.com',
+        durationMonths: 16,
+        startDate: new Date('2021-09-01'),
+        endDate: new Date('2022-12-31'),
+        ownerId,
+      },
+      {
+        companyName: 'fullstacklombok',
+        role: 'Frontend Developer',
+        description:
+          "Assisted clients in emergency situations, ensuring they received timely technical support. Contributed to the design and performance enhancements of Full Stack Lombok's website landing page, making it more visually appealing and responsive. Actively built relationships with schools to introduce and promote our software services.",
+        image: 'https://cdn.kevinadiwiguna.com/experiences/fullstacklombok.png',
+        url: 'https://www.fullstacklombok.com',
+        durationMonths: 4,
+        startDate: new Date('2023-10-01'),
+        endDate: new Date('2024-01-31'),
+        ownerId,
+      },
+      {
+        companyName: 'Nusantaradata.com',
+        role: 'Frontend Developer',
+        description:
+          'Jakarta, Indonesia. Developed innovative digital solutions to streamline budget data collection and management for government operations. Contributed to the creation of a responsive web-based system that allows accurate tracking, recording, and reporting of government expenditure, thereby improving transparency and efficiency in public service delivery.',
+        image: 'https://cdn.kevinadiwiguna.com/experiences/nusantaradata.png',
+        url: 'https://www.nusantaradata.com',
+        durationMonths: 3,
+        startDate: new Date('2025-02-01'),
+        endDate: new Date('2025-04-30'),
+        ownerId,
+      },
+    ],
+  });
 }
 
 main()

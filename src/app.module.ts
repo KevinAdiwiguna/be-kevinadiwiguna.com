@@ -23,6 +23,7 @@ import { FilesModule } from './files/files.module';
 import { UsersModule } from './superuser/users/users.module';
 import { RolesModule } from './superuser/roles/roles.module';
 import { PermissionsModule } from './superuser/permissions/permissions.module';
+import { BlogsModule } from './blogs/blogs.module';
 
 @Module({
   imports: [AuthModule,  PrismaModule, ResendModule,
@@ -39,6 +40,7 @@ import { PermissionsModule } from './superuser/permissions/permissions.module';
      UsersModule,
      RolesModule,
      PermissionsModule,
+     BlogsModule,
   ],
   controllers: [RateLimitController],
   providers: [PrismaService, AuthService, ResendService, RefreshTokenService, RateLimitGuard],

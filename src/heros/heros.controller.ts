@@ -1,25 +1,37 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, UseGuards, UsePipes, ValidationPipe, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+  UseGuards,
+  UsePipes,
+  ValidationPipe,
+  Query,
+} from '@nestjs/common';
 import { HerosService } from './heros.service';
 import { CreateHeroDto } from './dto/create-hero.dto';
 import { UpdateHeroDto } from './dto/update-hero.dto';
 import { JwtAuthGuard } from 'src/commons/guards/jwt-auth.guard';
 import { PermissionsGuard } from 'src/commons/guards/permission.guard';
 import { Permission } from 'src/commons/decorators/permission.decorator';
-import { EmptyDto } from 'src/commons/dto/Emty.dto';
 import { RateLimit } from 'src/commons/decorators/rate-limit.decorator';
 import { RateLimitGuard } from 'src/commons/guards/rate-limit.guard';
 
 @Controller('heros')
 export class HerosController {
-  constructor(private readonly herosService: HerosService) { }
+  constructor(private readonly herosService: HerosService) {}
 
   @Get('primary')
-  async findPrimary(@Query() query: EmptyDto) {
+  async findPrimary() {
     return await this.herosService.findPrimary();
   }
 
   @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
-  @Permission('read_hero')
+  @Permission('hero:read')
   @RateLimit(10, 1)
   @Get()
   findAll() {
@@ -27,7 +39,7 @@ export class HerosController {
   }
 
   @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
-  @Permission('create_hero')
+  @Permission('hero:create')
   @RateLimit(3, 1)
   @Post()
   create(@Body() dto: CreateHeroDto) {
@@ -35,7 +47,7 @@ export class HerosController {
   }
 
   @UseGuards(JwtAuthGuard, PermissionsGuard)
-  @Permission('read_hero_id')
+  @Permission('hero:read_id')
   @RateLimit(15, 1)
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: bigint) {
@@ -43,7 +55,7 @@ export class HerosController {
   }
 
   @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
-  @Permission('update_hero')
+  @Permission('hero:update')
   @Patch(':id')
   @RateLimit(15, 1)
   update(@Param('id', ParseIntPipe) id: bigint, @Body() dto: UpdateHeroDto) {
@@ -51,10 +63,18 @@ export class HerosController {
   }
 
   @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
-  @Permission('delete_hero')
+  @Permission('hero:delete')
   @RateLimit(10, 1)
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: bigint) {
     return this.herosService.remove(id);
+  }
+
+  @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
+  @Permission('hero:set_primary')
+  @RateLimit(10, 1)
+  @Patch(':id/set-primary')
+  setPrimary(@Param('id') id: string) {
+    return this.herosService.setPrimary(BigInt(id));
   }
 }

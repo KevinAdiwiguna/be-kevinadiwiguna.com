@@ -194,11 +194,12 @@ model tech {
 model heroes {
   id          BigInt   @id @default(autoincrement())
   title       String
+  imageUrl    String?
   description String?
   githubLink  String?
   cvLink      String?
   phoneNumber String?
-  isPrimary   Boolean  @unique @default(false)
+  isPrimary   Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

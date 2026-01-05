@@ -5,6 +5,9 @@ export class CreateHeroDto {
     title: string;
 
     @IsString()
+    imageUrl: string;
+    
+    @IsString()
     description: string;
 
     @IsUrl()
@@ -19,4 +22,5 @@ export class CreateHeroDto {
     @IsOptional()
     @IsBoolean()
     isPrimary?: boolean;
+
 }

@@ -6,6 +6,11 @@ import {
   Req,
   UseGuards,
   UploadedFiles,
+  Get,
+  Delete,
+  Param,
+  BadRequestException,
+  Query,
 } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { FilesService } from './files.service';
@@ -17,25 +22,61 @@ import { RateLimit } from 'src/commons/decorators/rate-limit.decorator';
 
 @Controller('files')
 export class FilesController {
-  constructor(private readonly filesService: FilesService) { }
+  constructor(private readonly filesService: FilesService) {}
 
   @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
-  @Permission('upload_files')
+  @Permission('file:upload')
   @RateLimit(10, 1)
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async upload(@UploadedFile() file: Express.Multer.File, @Req() req: any) {
-    const userId = req.user?.id ? BigInt(req.user.id) : undefined;
-    return this.filesService.uploadFile(file, userId);
+  upload(
+    @UploadedFile() file: Express.Multer.File,
+    @Query('folder') folder: string,
+    @Req() req: any,
+  ) {
+    if (!file) {
+      throw new BadRequestException('File is required');
+    }
+
+    return this.filesService.uploadFile(file, {
+      ownerId: BigInt(req.user.sub),
+      folder,
+    });
   }
 
   @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
-  @Permission('upload_files')
+  @Permission('file:upload_many')
   @RateLimit(10, 1)
-  @Post("upload-many")
-  @UseInterceptors(FilesInterceptor("files"))
-  async uploadMany(@UploadedFiles() files: Express.Multer.File[]) {
-    return this.filesService.uploadMany(files);
+  @Post('upload-many')
+  @UseInterceptors(FilesInterceptor('files'))
+  uploadMany(
+    @UploadedFiles() files: Express.Multer.File[],
+    @Query('folder') folder: string,
+    @Req() req: any,
+  ) {
+    if (!files?.length) {
+      throw new BadRequestException('Files are required');
+    }
+
+    return this.filesService.uploadMany(files, {
+      ownerId: BigInt(req.user.sub),
+      folder,
+    });
   }
 
+  @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
+  @Permission('file:read')
+  @RateLimit(10, 1)
+  @Get()
+  findAll(@Req() req: Request) {
+    return this.filesService.findAll();
+  }
+
+  @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
+  @Permission('file:delete')
+  @RateLimit(10, 1)
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    return this.filesService.delete(BigInt(id));
+  }
 }

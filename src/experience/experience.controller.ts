@@ -18,12 +18,12 @@ import { Permission } from 'src/commons/decorators/permission.decorator';
 import { RateLimitGuard } from 'src/commons/guards/rate-limit.guard';
 import { RateLimit } from 'src/commons/decorators/rate-limit.decorator';
 
-@Controller('experience')
+@Controller('experiences')
 export class ExperienceController {
   constructor(private readonly service: ExperienceService) { }
 
   @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
-  @Permission('create_experience')
+  @Permission('experience:create')
   @RateLimit(5, 1)
   @Post()
   async create(@Body() dto: CreateExperienceDto) {
@@ -36,7 +36,7 @@ export class ExperienceController {
   }
 
   @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
-  @Permission('read_experience_id')
+  @Permission('experience:read_id')
   @RateLimit(50, 1)
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: bigint) {
@@ -44,7 +44,7 @@ export class ExperienceController {
   }
 
   @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
-  @Permission('update_experience')
+  @Permission('experience:update')
   @RateLimit(5, 1)
   @Patch(':id')
   async update(
@@ -55,7 +55,7 @@ export class ExperienceController {
   }
 
   @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
-  @Permission('delete_experience')
+  @Permission('experience:delete')
   @RateLimit(5, 1)
   @Delete(':id')
   async remove(@Param('id', ParseIntPipe) id: bigint) {

@@ -18110,6 +18110,7 @@ export namespace Prisma {
   export type HeroesMinAggregateOutputType = {
     id: bigint | null
     title: string | null
+    imageUrl: string | null
     description: string | null
     githubLink: string | null
     cvLink: string | null
@@ -18122,6 +18123,7 @@ export namespace Prisma {
   export type HeroesMaxAggregateOutputType = {
     id: bigint | null
     title: string | null
+    imageUrl: string | null
     description: string | null
     githubLink: string | null
     cvLink: string | null
@@ -18134,6 +18136,7 @@ export namespace Prisma {
   export type HeroesCountAggregateOutputType = {
     id: number
     title: number
+    imageUrl: number
     description: number
     githubLink: number
     cvLink: number
@@ -18156,6 +18159,7 @@ export namespace Prisma {
   export type HeroesMinAggregateInputType = {
     id?: true
     title?: true
+    imageUrl?: true
     description?: true
     githubLink?: true
     cvLink?: true
@@ -18168,6 +18172,7 @@ export namespace Prisma {
   export type HeroesMaxAggregateInputType = {
     id?: true
     title?: true
+    imageUrl?: true
     description?: true
     githubLink?: true
     cvLink?: true
@@ -18180,6 +18185,7 @@ export namespace Prisma {
   export type HeroesCountAggregateInputType = {
     id?: true
     title?: true
+    imageUrl?: true
     description?: true
     githubLink?: true
     cvLink?: true
@@ -18279,6 +18285,7 @@ export namespace Prisma {
   export type HeroesGroupByOutputType = {
     id: bigint
     title: string
+    imageUrl: string | null
     description: string | null
     githubLink: string | null
     cvLink: string | null
@@ -18310,6 +18317,7 @@ export namespace Prisma {
   export type heroesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
+    imageUrl?: boolean
     description?: boolean
     githubLink?: boolean
     cvLink?: boolean
@@ -18322,6 +18330,7 @@ export namespace Prisma {
   export type heroesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
+    imageUrl?: boolean
     description?: boolean
     githubLink?: boolean
     cvLink?: boolean
@@ -18334,6 +18343,7 @@ export namespace Prisma {
   export type heroesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
+    imageUrl?: boolean
     description?: boolean
     githubLink?: boolean
     cvLink?: boolean
@@ -18346,6 +18356,7 @@ export namespace Prisma {
   export type heroesSelectScalar = {
     id?: boolean
     title?: boolean
+    imageUrl?: boolean
     description?: boolean
     githubLink?: boolean
     cvLink?: boolean
@@ -18355,7 +18366,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type heroesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "githubLink" | "cvLink" | "phoneNumber" | "isPrimary" | "createdAt" | "updatedAt", ExtArgs["result"]["heroes"]>
+  export type heroesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "imageUrl" | "description" | "githubLink" | "cvLink" | "phoneNumber" | "isPrimary" | "createdAt" | "updatedAt", ExtArgs["result"]["heroes"]>
 
   export type $heroesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "heroes"
@@ -18363,6 +18374,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       title: string
+      imageUrl: string | null
       description: string | null
       githubLink: string | null
       cvLink: string | null
@@ -18795,6 +18807,7 @@ export namespace Prisma {
   interface heroesFieldRefs {
     readonly id: FieldRef<"heroes", 'BigInt'>
     readonly title: FieldRef<"heroes", 'String'>
+    readonly imageUrl: FieldRef<"heroes", 'String'>
     readonly description: FieldRef<"heroes", 'String'>
     readonly githubLink: FieldRef<"heroes", 'String'>
     readonly cvLink: FieldRef<"heroes", 'String'>
@@ -27276,6 +27289,7 @@ export namespace Prisma {
   export const HeroesScalarFieldEnum: {
     id: 'id',
     title: 'title',
+    imageUrl: 'imageUrl',
     description: 'description',
     githubLink: 'githubLink',
     cvLink: 'cvLink',
@@ -28408,6 +28422,7 @@ export namespace Prisma {
     NOT?: heroesWhereInput | heroesWhereInput[]
     id?: BigIntFilter<"heroes"> | bigint | number
     title?: StringFilter<"heroes"> | string
+    imageUrl?: StringNullableFilter<"heroes"> | string | null
     description?: StringNullableFilter<"heroes"> | string | null
     githubLink?: StringNullableFilter<"heroes"> | string | null
     cvLink?: StringNullableFilter<"heroes"> | string | null
@@ -28420,6 +28435,7 @@ export namespace Prisma {
   export type heroesOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     githubLink?: SortOrderInput | SortOrder
     cvLink?: SortOrderInput | SortOrder
@@ -28431,22 +28447,24 @@ export namespace Prisma {
 
   export type heroesWhereUniqueInput = Prisma.AtLeast<{
     id?: bigint | number
-    isPrimary?: boolean
     AND?: heroesWhereInput | heroesWhereInput[]
     OR?: heroesWhereInput[]
     NOT?: heroesWhereInput | heroesWhereInput[]
     title?: StringFilter<"heroes"> | string
+    imageUrl?: StringNullableFilter<"heroes"> | string | null
     description?: StringNullableFilter<"heroes"> | string | null
     githubLink?: StringNullableFilter<"heroes"> | string | null
     cvLink?: StringNullableFilter<"heroes"> | string | null
     phoneNumber?: StringNullableFilter<"heroes"> | string | null
+    isPrimary?: BoolFilter<"heroes"> | boolean
     createdAt?: DateTimeFilter<"heroes"> | Date | string
     updatedAt?: DateTimeFilter<"heroes"> | Date | string
-  }, "id" | "isPrimary">
+  }, "id">
 
   export type heroesOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     githubLink?: SortOrderInput | SortOrder
     cvLink?: SortOrderInput | SortOrder
@@ -28467,6 +28485,7 @@ export namespace Prisma {
     NOT?: heroesScalarWhereWithAggregatesInput | heroesScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"heroes"> | bigint | number
     title?: StringWithAggregatesFilter<"heroes"> | string
+    imageUrl?: StringNullableWithAggregatesFilter<"heroes"> | string | null
     description?: StringNullableWithAggregatesFilter<"heroes"> | string | null
     githubLink?: StringNullableWithAggregatesFilter<"heroes"> | string | null
     cvLink?: StringNullableWithAggregatesFilter<"heroes"> | string | null
@@ -29846,6 +29865,7 @@ export namespace Prisma {
   export type heroesCreateInput = {
     id?: bigint | number
     title: string
+    imageUrl?: string | null
     description?: string | null
     githubLink?: string | null
     cvLink?: string | null
@@ -29858,6 +29878,7 @@ export namespace Prisma {
   export type heroesUncheckedCreateInput = {
     id?: bigint | number
     title: string
+    imageUrl?: string | null
     description?: string | null
     githubLink?: string | null
     cvLink?: string | null
@@ -29870,6 +29891,7 @@ export namespace Prisma {
   export type heroesUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     title?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     githubLink?: NullableStringFieldUpdateOperationsInput | string | null
     cvLink?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29882,6 +29904,7 @@ export namespace Prisma {
   export type heroesUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     title?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     githubLink?: NullableStringFieldUpdateOperationsInput | string | null
     cvLink?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29894,6 +29917,7 @@ export namespace Prisma {
   export type heroesCreateManyInput = {
     id?: bigint | number
     title: string
+    imageUrl?: string | null
     description?: string | null
     githubLink?: string | null
     cvLink?: string | null
@@ -29906,6 +29930,7 @@ export namespace Prisma {
   export type heroesUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     title?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     githubLink?: NullableStringFieldUpdateOperationsInput | string | null
     cvLink?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29918,6 +29943,7 @@ export namespace Prisma {
   export type heroesUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     title?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     githubLink?: NullableStringFieldUpdateOperationsInput | string | null
     cvLink?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31352,6 +31378,7 @@ export namespace Prisma {
   export type heroesCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    imageUrl?: SortOrder
     description?: SortOrder
     githubLink?: SortOrder
     cvLink?: SortOrder
@@ -31368,6 +31395,7 @@ export namespace Prisma {
   export type heroesMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    imageUrl?: SortOrder
     description?: SortOrder
     githubLink?: SortOrder
     cvLink?: SortOrder
@@ -31380,6 +31408,7 @@ export namespace Prisma {
   export type heroesMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
+    imageUrl?: SortOrder
     description?: SortOrder
     githubLink?: SortOrder
     cvLink?: SortOrder
