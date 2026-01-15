@@ -1,8 +1,4 @@
-import {
-  Controller,
-  Get,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 
 import { PermissionsService } from './permissions.service';
 
@@ -11,12 +7,13 @@ import { PermissionsGuard } from 'src/commons/guards/permission.guard';
 
 import { RateLimit } from 'src/commons/decorators/rate-limit.decorator';
 import { Permission } from 'src/commons/decorators/permission.decorator';
+import { RateLimitGuard } from 'src/commons/guards/rate-limit.guard';
 
 @Controller('permissions')
 export class PermissionsController {
   constructor(private readonly permissionsService: PermissionsService) {}
 
-  @UseGuards(JwtAuthGuard, PermissionsGuard)
+  @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
   @Permission('permission:read')
   @RateLimit(5, 1)
   @Get()

@@ -4,9 +4,16 @@ import { PermissionsController } from './permissions.controller';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { JwtAccessStrategy } from 'src/commons/strategy/jwt-access.strategy';
 import { JwtAuthStrategy } from 'src/commons/strategy/jwt-auth.strategy';
+import { RateLimitModule } from 'src/rate-limit/rate-limit.module';
 
 @Module({
+  imports: [RateLimitModule],
   controllers: [PermissionsController],
-  providers: [PermissionsService, PrismaService, JwtAuthStrategy, JwtAccessStrategy],
+  providers: [
+    PermissionsService,
+    PrismaService,
+    JwtAuthStrategy,
+    JwtAccessStrategy,
+  ],
 })
 export class PermissionsModule {}

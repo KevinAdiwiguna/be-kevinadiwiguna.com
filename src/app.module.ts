@@ -13,7 +13,6 @@ import { RateLimitModule } from './rate-limit/rate-limit.module';
 import { HerosModule } from './heros/heros.module';
 import { ResendModule } from './resend/resend.module';
 
-import { RateLimitController } from './rate-limit/rate-limit.controller';
 
 import { RateLimitGuard } from './commons/guards/rate-limit.guard';
 import { ExperienceModule } from './experience/experience.module';
@@ -25,9 +24,11 @@ import { RolesModule } from './superuser/roles/roles.module';
 import { PermissionsModule } from './superuser/permissions/permissions.module';
 import { BlogsModule } from './blogs/blogs.module';
 import { ProjectsModule } from './projects/projects.module';
+import { EndpointInspectorService } from './commons/services/endpoint-inspector.service';
+import { DiscoveryModule } from '@nestjs/core';
 
 @Module({
-  imports: [AuthModule,  PrismaModule, ResendModule,
+  imports: [AuthModule,  PrismaModule, ResendModule, DiscoveryModule,
      ConfigModule.forRoot({ 
       isGlobal: true, 
     }),
@@ -44,8 +45,8 @@ import { ProjectsModule } from './projects/projects.module';
      BlogsModule,
      ProjectsModule,
   ],
-  controllers: [RateLimitController],
-  providers: [PrismaService, AuthService, ResendService, RefreshTokenService, RateLimitGuard],
+  controllers: [],
+  providers: [EndpointInspectorService ,PrismaService, AuthService, ResendService, RefreshTokenService, RateLimitGuard],
   exports: [RateLimitGuard]
 })
 export class AppModule {}

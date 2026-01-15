@@ -220,20 +220,6 @@ exports.Prisma.User_experiencesScalarFieldEnum = {
   experienceId: 'experienceId'
 };
 
-exports.Prisma.SkillsScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  image: 'image',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.User_skillsScalarFieldEnum = {
-  userId: 'userId',
-  skillId: 'skillId',
-  level: 'level',
-  createdAt: 'createdAt'
-};
-
 exports.Prisma.TechScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -358,8 +344,6 @@ exports.Prisma.ModelName = {
   project_tech: 'project_tech',
   experiences: 'experiences',
   user_experiences: 'user_experiences',
-  skills: 'skills',
-  user_skills: 'user_skills',
   tech: 'tech',
   heroes: 'heroes',
   verification_codes: 'verification_codes',

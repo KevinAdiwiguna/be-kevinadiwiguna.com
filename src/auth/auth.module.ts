@@ -12,12 +12,14 @@ import { ResendService } from 'src/resend/resend.service';
 import { RefreshTokenService } from 'src/refresh-token/refresh-token.service';
 import { JwtAuthStrategy } from 'src/commons/strategy/jwt-auth.strategy';
 import { JwtAccessStrategy } from 'src/commons/strategy/jwt-access.strategy';
+import { RateLimitModule } from 'src/rate-limit/rate-limit.module';
 
 
 @Module({
   imports: [
     PrismaModule,
     ResendModule,
+    RateLimitModule,
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET || 'supersecret',

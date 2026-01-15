@@ -1,4 +1,10 @@
-import { Injectable, CanActivate, ExecutionContext, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { RateLimitService } from '../../rate-limit/rate-limit.service';
 import { Request } from 'express';
@@ -15,20 +21,22 @@ export class RateLimitGuard implements CanActivate {
     const req: Request = context.switchToHttp().getRequest();
 
     const rateLimit = this.reflector.get<{ limit: number; minutes: number }>(
-      "rate_limit",
+      'rate_limit',
       context.getHandler(),
     );
 
-
-    if (!rateLimit) return true; 
+    if (!rateLimit) return true;
 
     const user = req.user as JwtPayload;
     const { limit, minutes } = rateLimit;
     const userId = user?.sub ? BigInt(user.sub) : null;
     const ip = req.ip as string;
-    const action = req.route.path;
-    const windowMs = minutes * 60 * 1000;
 
+    const handler = context.getHandler().name;
+    const controller = context.getClass().name;
+    const action = `${controller}.${handler}`;
+
+    const windowMs = minutes * 60 * 1000;
 
     try {
       if (userId) {

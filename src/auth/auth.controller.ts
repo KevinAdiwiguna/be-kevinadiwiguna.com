@@ -20,17 +20,21 @@ import { RateLimit } from 'src/commons/decorators/rate-limit.decorator';
 import { Permission } from 'src/commons/decorators/permission.decorator';
 import { RefreshTokenGuard } from 'src/commons/guards/RefreshToken.guard';
 import { setAuthCookies } from 'src/commons/utils/auth-cookies.util';
+import { RateLimitGuard } from 'src/commons/guards/rate-limit.guard';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
-  @RateLimit(30, 1)
+  
+  @UseGuards(RateLimitGuard)
+  @RateLimit(5, 1)
   @Post('signup')
   signUp(@Body() data: SignUpDto) {
     return this.authService.signUp(data);
   }
 
-  @RateLimit(30, 1)
+  @UseGuards(RateLimitGuard)
+  @RateLimit(10, 1)
   @Post('signin')
   async signIn(
     @Body() data: SignInDto,
@@ -51,7 +55,7 @@ export class AuthController {
   }
 
   @UseGuards(RefreshTokenGuard)
-  @RateLimit(60, 1)
+  @RateLimit(5, 1)
   @Post('refresh')
   async refresh(
     @Req() req: Request,
@@ -79,7 +83,7 @@ export class AuthController {
     }
   }
 
-  @UseGuards(JwtAuthGuard, PermissionsGuard)
+  @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
   @Permission('auth:signout_single')
   @RateLimit(5, 1)
   @Post('logout')
@@ -99,7 +103,7 @@ export class AuthController {
     return { message: 'Logged out successfully' };
   }
 
-  @UseGuards(JwtAuthGuard, PermissionsGuard)
+  @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
   @Permission('auth:signout_all')
   @RateLimit(5, 1)
   @Post('logout-all')

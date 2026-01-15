@@ -30,6 +30,8 @@ export class ExperienceController {
     return this.service.create(dto);
   }
 
+  @UseGuards(RateLimitGuard)
+  @RateLimit(20, 1)
   @Get()
   async findAll() {
     return this.service.findAll();

@@ -24,6 +24,7 @@ const flattenPermissions = (obj: Record<string, any>): string[] =>
   );
 
 const PERMISSIONS = {
+  // Done
   AUTH: {
     SIGNIN: 'auth:signin',
     SIGNUP: 'auth:signup',
@@ -31,11 +32,13 @@ const PERMISSIONS = {
     SIGNOUT_ALL: 'auth:signout_all',
   },
 
+  // Done
   OTP: {
     SEND_OTP: 'otp:send_otp',
     VERIFY_OTP: 'otp:verify_otp',
   },
 
+  // Done
   USERS: {
     READ: 'users:read',
     READ_ID: 'users:read_id',
@@ -44,6 +47,16 @@ const PERMISSIONS = {
     VERIFY: 'users:verify',
   },
 
+  // Done
+  TECH: {
+    CREATE: 'tech:create',
+    READ: 'tech:read',
+    READ_ID: 'tech:read_id',
+    UPDATE: 'tech:update',
+    DELETE: 'tech:delete',
+  },
+
+  // Done
   ROLES: {
     CREATE: 'roles:create',
     READ: 'roles:read',
@@ -52,10 +65,12 @@ const PERMISSIONS = {
     DELETE: 'roles:delete',
   },
 
+  // Done
   PERMISSIONS: {
     READ: 'permission:read',
   },
 
+  // Done
   HEROS: {
     CREATE: 'hero:create',
     READ: 'hero:read',
@@ -65,12 +80,15 @@ const PERMISSIONS = {
     SET_PRIMARY: 'hero:set_primary',
   },
 
-  SKILL: {
-    CREATE: 'skill:create',
-    UPDATE: 'skill:update',
-    DELETE: 'skill:delete',
-  },
+  // SKILL: {
+  //   CREATE: 'skill:create',
+  //   READ: 'skill:read',
+  //   READ_ID: 'skill:read_id',
+  //   UPDATE: 'skill:update',
+  //   DELETE: 'skill:delete',
+  // },
 
+  // Done
   FILE: {
     READ: 'file:read',
     UPLOAD: 'file:upload',
@@ -83,6 +101,24 @@ const PERMISSIONS = {
     CREATE: 'experience:create',
     UPDATE: 'experience:update',
     DELETE: 'experience:delete',
+  },
+  // Done
+  BLOGS: {
+    CREATE: 'blog:create',
+    READ_OWN: 'blog:read_own',
+    UPDATE_STATUS: 'blog:update_status',
+    DELETE: 'blog:delete',
+  },
+
+  // Done
+  PROJECTS: {
+    CREATE: 'project:create',
+    READ_OWN: 'project:read_own',
+    READ_ALL: 'project:read_all',
+    READ_FEATURED: 'project:read_featured',
+    UPDATE_PUBLISH: 'project:publish',
+    DELETE: 'project:delete',
+    UPDATE_FEATURED: 'project:update_featured',
   },
 } as const;
 

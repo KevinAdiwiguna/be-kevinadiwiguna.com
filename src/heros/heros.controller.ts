@@ -32,7 +32,7 @@ export class HerosController {
 
   @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
   @Permission('hero:read')
-  @RateLimit(10, 1)
+  @RateLimit(15, 1)
   @Get()
   findAll() {
     return this.herosService.findAll();
@@ -40,13 +40,13 @@ export class HerosController {
 
   @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
   @Permission('hero:create')
-  @RateLimit(3, 1)
+  @RateLimit(5, 1)
   @Post()
   create(@Body() dto: CreateHeroDto) {
     return this.herosService.create(dto);
   }
 
-  @UseGuards(JwtAuthGuard, PermissionsGuard)
+  @UseGuards(JwtAuthGuard, PermissionsGuard, RateLimitGuard)
   @Permission('hero:read_id')
   @RateLimit(15, 1)
   @Get(':id')

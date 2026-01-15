@@ -30,7 +30,7 @@ model users {
   activities  activities[]
   blogs       blogs[]
   experiences experiences[]
-  userSkills  user_skills[]
+  // userSkills  user_skills[]
 
   refreshTokens     refresh_tokens[]
   magicLinks        magic_links[]
@@ -159,26 +159,26 @@ model user_experiences {
   @@id([userId, experienceId])
 }
 
-model skills {
-  id        BigInt   @id @default(autoincrement())
-  name      String   @unique
-  image     String?
-  createdAt DateTime @default(now())
+// model skills {
+//   id        BigInt   @id @default(autoincrement())
+//   name      String   @unique
+//   image     String?
+//   createdAt DateTime @default(now())
 
-  users user_skills[]
-}
+//   users user_skills[]
+// }
 
-model user_skills {
-  userId    BigInt
-  skillId   BigInt
-  level     String?
-  createdAt DateTime @default(now())
+// model user_skills {
+//   userId    BigInt
+//   skillId   BigInt
+//   level     String?
+//   createdAt DateTime @default(now())
 
-  skill skills @relation(fields: [skillId], references: [id])
-  user  users  @relation(fields: [userId], references: [id])
+//   skill skills @relation(fields: [skillId], references: [id])
+//   user  users  @relation(fields: [userId], references: [id])
 
-  @@id([userId, skillId])
-}
+//   @@id([userId, skillId])
+// }
 
 model tech {
   id        BigInt   @id @default(autoincrement())
